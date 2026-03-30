@@ -17,9 +17,7 @@
 
   <include package=".services" />
 
-  <utility
-      factory=".tool.KeywordManager"
-      />
+  <utility factory=".tool.KeywordManager" />
 
   <!-- -*- extra stuff goes here -*- -->
 

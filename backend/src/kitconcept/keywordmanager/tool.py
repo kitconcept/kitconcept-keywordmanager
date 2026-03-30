@@ -1,11 +1,11 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
+from kitconcept.keywordmanager import config
+from kitconcept.keywordmanager.interfaces import IKeywordManager
+from kitconcept.keywordmanager.utils import to_str
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from Products.CMFCore.indexing import processQueue
-from kitconcept.keywordmanager import config
-from kitconcept.keywordmanager.utils import to_str
-from kitconcept.keywordmanager.interfaces import IKeywordManager
 from zope.interface import implementer
 
 

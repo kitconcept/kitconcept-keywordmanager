@@ -16,10 +16,10 @@
 
 .react-aria-ModalOverlay .rename-modal,
 .react-aria-ModalOverlay .confirm-modal {
-  max-width: 1200px;
   width: 100%;
-  background-color: #fff;
+  max-width: 1200px;
   padding: 20px;
+  background-color: #fff;
 
   .react-aria-Radio-wrapper {
     display: flex;
