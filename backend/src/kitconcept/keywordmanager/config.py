@@ -11,6 +11,7 @@ IGNORE_INDEXES = [
     "allowedRolesAndUsers",
     "getRawRelatedItems",
     "getEventType",
+    "block_types",
 ]
 
 # A list of indexes that should always be reindexed when merging or deleting

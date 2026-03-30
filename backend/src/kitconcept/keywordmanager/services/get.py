@@ -28,3 +28,9 @@ class TagsGet(Service):
         if batch.links:
             keywords_data["batching"] = batch.links
         return keywords_data
+
+
+class KeywordIndexesGet(Service):
+    def reply(self):
+        km = getUtility(IKeywordManager)
+        return km.getKeywordIndexes()

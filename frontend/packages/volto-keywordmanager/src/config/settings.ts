@@ -1,6 +1,7 @@
 import type { ConfigType } from '@plone/registry';
 import KeywordManager from 'volto-keywordmanager/components/KeywordManager';
 import { keywords } from 'volto-keywordmanager/reducers/keywords';
+import { keywordIndexes } from 'volto-keywordmanager/reducers/keywordIndexes';
 
 export default function install(config: ConfigType) {
   config.settings.controlpanels = [
@@ -20,7 +21,7 @@ export default function install(config: ConfigType) {
     },
   ];
 
-  config.addonReducers = { ...config.addonReducers, keywords };
+  config.addonReducers = { ...config.addonReducers, keywords, keywordIndexes };
 
   return config;
 }

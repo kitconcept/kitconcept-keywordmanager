@@ -23,6 +23,7 @@ import {
   deleteKeywords,
   updateKeywords,
 } from 'volto-keywordmanager/actions/keywords';
+import { getKeywordIndexes } from 'volto-keywordmanager/actions/keywordindexes';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import replaceSVG from '@plone/volto/icons/replace.svg';
@@ -56,6 +57,7 @@ const messages = defineMessages({
 const KeywordManager = (props) => {
   const { location } = props;
   const keywords = useSelector((state) => state.keywords);
+  const keywordIndexes = useSelector((state) => state.keywordIndexes);
   const intl = useIntl();
   const dispatch = useDispatch();
   const isClient = useClient();
@@ -71,9 +73,11 @@ const KeywordManager = (props) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
   const [selectedRadio, setSelectedRadio] = useState<string>('select');
   const [name, setName] = useState<null | string>(null);
+  const [index, setIndex] = useState<string>('Subject');
 
   useEffect(() => {
     dispatch(getKeywords());
+    dispatch(getKeywordIndexes());
   }, []);
 
   const onShowKeyword = (kw: string) => {
@@ -116,6 +120,20 @@ const KeywordManager = (props) => {
             defaultMessage="Lorem Ipsum"
           />
         </p>
+        <div>
+          {keywordIndexes?.items.length > 1 && (
+            <Select
+              label="Keyword field:"
+              selectionMode="single"
+              value={index}
+              onChange={setIndex}
+              items={keywordIndexes?.items.map((idx) => ({
+                label: idx,
+                value: idx,
+              }))}
+            />
+          )}
+        </div>
         <div>
           <h2>Keywords</h2>
           <FormattedMessage

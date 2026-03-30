@@ -27,4 +27,12 @@
       name="@tags"
       />
 
+  <plone:service
+      method="GET"
+      factory=".get.KeywordIndexesGet"
+      for="zope.interface.Interface"
+      permission="zope2.View"
+      name="@keyword-indexes"
+      />
+
 </configure>
