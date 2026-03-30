@@ -1,5 +1,8 @@
-import { GET_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
-import { DELETE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
+import {
+  DELETE_KEYWORDS,
+  GET_KEYWORDS,
+  UPDATE_KEYWORDS,
+} from 'volto-keywordmanager/constants/Keywords';
 
 const initalState = {
   error: null,
@@ -10,7 +13,9 @@ const initalState = {
 
 export function keywords(state = initalState, action = {}) {
   switch (action.type) {
+    case `${DELETE_KEYWORDS}_PENDING`:
     case `${GET_KEYWORDS}_PENDING`:
+    case `${UPDATE_KEYWORDS}_PENDING`:
       return {
         ...state,
         error: null,
@@ -25,7 +30,17 @@ export function keywords(state = initalState, action = {}) {
         loaded: true,
         loading: false,
       };
+    case `${DELETE_KEYWORDS}_SUCCESS`:
+    case `${UPDATE_KEYWORDS}_SUCCESS`:
+      return {
+        ...state,
+        error: action.result?.failed,
+        loaded: true,
+        loading: false,
+      };
+    case `${DELETE_KEYWORDS}_FAIL`:
     case `${GET_KEYWORDS}_FAIL`:
+    case `${UPDATE_KEYWORDS}_FAIL`:
       return {
         ...state,
         error: action.error,

@@ -2,8 +2,6 @@ import { GET_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
 import { UPDATE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
 import { DELETE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
 
-import { AnyAction } from 'redux';
-
 export function getKeywords(options = {}) {
   const { groupKeywords, batchSize, batchStart, ...rest } = options;
   const params = new URLSearchParams({
@@ -21,27 +19,24 @@ export function getKeywords(options = {}) {
   };
 }
 
-export function updateKeywords() {
+export function updateKeywords(data) {
   return {
     type: UPDATE_KEYWORDS,
     request: {
-      op: 'post',
+      op: 'patch',
       path: '/@tags',
+      data,
     },
   };
 }
 
-/**
- * @param {string | string[]} keywords
- * @returns {AnyAction}
- */
-export function deleteKeywords(keywords) {
-  const result = Array.isArray(keywords) ? keywords.join(',') : keywords;
+export function deleteKeywords(data) {
   return {
     type: DELETE_KEYWORDS,
     request: {
       op: 'del',
-      path: `/@tags?${result}`,
+      path: '/@tags',
+      data,
     },
   };
 }

@@ -13,3 +13,15 @@
     text-align: right;
   }
 }
+
+.react-aria-ModalOverlay .rename-modal,
+.react-aria-ModalOverlay .confirm-modal {
+  max-width: 1200px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+
+  .react-aria-Radio-wrapper {
+    display: flex;
+  }
+}

@@ -1,21 +1,22 @@
 from kitconcept.keywordmanager.interfaces import IKeywordManager
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
-from zope.component import getUtility
-from zExceptions import HTTPAccepted as Accepted
 from zExceptions import BadRequest
+from zope.component import getUtility
 
 
 class TagsDelete(Service):
     def reply(self):
-        km = getUtility(IKeywordManager)
         data = json_body(self.request)
-        if keywords := data.get("items"):
-            keywords = keywords.split(",")
-        else:
-            raise BadRequest("Please provide keywords to delete")
-        breakpoint()
+        km = getUtility(IKeywordManager)
+        keywords = data.get("items", [])
 
-        deleted = km.delete(keywords)
+        if isinstance(keywords, str):
+            keywords = [keywords]
 
-        return Accepted(f"Updated {deleted} objects")
+        try:
+            km.delete(keywords)
+        except Exception as err:
+            raise BadRequest(err) from err
+
+        return self.reply_no_content()

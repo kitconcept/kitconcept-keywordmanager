@@ -42,7 +42,11 @@ class KeywordManager:
 
     @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
     def change(
-        self, old_keywords, new_keyword, context=None, indexName="Subject"
+        self,
+        new_keyword: str,
+        old_keywords: list,
+        context=None,
+        indexName: str = "Subject",
     ) -> int:
         """Updates all objects using the old_keywords.
 
@@ -59,16 +63,16 @@ class KeywordManager:
 
         new_keyword = to_str(new_keyword)
         try:
-            querySet = api.content.find(**query)
+            brains = api.content.find(**query)
         except UnicodeDecodeError:
             old_keywords = [
                 k.decode("utf8") if isinstance(k, str) else k for k in old_keywords
             ]
             query[indexName] = old_keywords
-            querySet = api.content.find(**query)
+            brains = api.content.find(**query)
 
-        for item in querySet:
-            obj = item.getObject()
+        for brain in brains:
+            obj = brain.getObject()
             # #MOD Dynamic field getting
 
             value = self.getFieldValue(obj, indexName)
@@ -87,7 +91,7 @@ class KeywordManager:
 
             self.updateObject(obj, indexName, value)
 
-        return len(querySet)
+        return len(brains)
 
     @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
     def delete(self, keywords: list, context=None, indexName: str = "Subject") -> int:
@@ -119,7 +123,7 @@ class KeywordManager:
 
         return len(brains)
 
-    def updateObject(self, obj, indexName, value) -> None:
+    def updateObject(self, obj, indexName: str, value) -> None:
         updateField = self.getSetter(obj, indexName)
         if updateField is not None:
             updateField(value)
@@ -127,19 +131,38 @@ class KeywordManager:
             obj.reindexObject(idxs=idxs)
 
     @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
-    def getKeywords(self, indexName="Subject"):
+    def getKeywords(
+        self, indexName: str = "Subject", withLengths: bool = False
+    ) -> list[str] | list[tuple[str, int]]:
+        """Return all unique keyword values from the specified catalog index,
+        sorted alphabetically.
+
+        Args:
+            indexName: The name of the keyword index to query. Defaults to "Subject".
+            withLengths: If True, returns tuples of (keyword, count) instead of
+            just keywords. Defaults to False.
+
+        Returns:
+            A sorted list of keyword strings, or a sorted list of (keyword, count)
+            tuples if withLengths is True.
+
+        Raises:
+            ValueError: If indexName is not a valid keyword index.
+        """
         processQueue()
         if indexName not in self.getKeywordIndexes():
-            raise ValueError(f"{indexName} is not a valid field")
+            raise ValueError(f"'{indexName}' is not a valid index")
 
         catalog = api.portal.get_tool("portal_catalog")
-        keywords = [x for x in catalog.uniqueValuesFor(indexName) if x is not None]
-        keywords.sort(key=lambda x: x.lower())
+        keywords = sorted(
+            catalog.Indexes[indexName].uniqueValues(withLengths=withLengths),
+            key=lambda x: x.lower() if isinstance(x, str) else x[0].lower(),
+        )
 
         # can we turn this into a yield?
         return keywords
 
-    def getKeywordLength(self, key, indexName="Subject") -> int:
+    def getKeywordLength(self, key, indexName: str = "Subject") -> int:
         processQueue()
         if indexName not in self.getKeywordIndexes():
             raise ValueError(f"{indexName} is not a valid field")
@@ -184,7 +207,7 @@ class KeywordManager:
         # Return first n terms without scores
         return [item[1] for item in res[:num]]
 
-    def getKeywordIndexes(self):
+    def getKeywordIndexes(self) -> list[str]:
         """Gets a list of indexes from the catalog. Uses config.py to choose the
         meta type and filters out a subset of known indexes that should not be
         managed.
@@ -200,7 +223,7 @@ class KeywordManager:
         return idxs
 
     @security.private
-    def fieldNameForIndex(self, indexName):
+    def fieldNameForIndex(self, indexName: str) -> str:
         """The name of the index may not be the same as the field on the object,
         and we need the actual field name in order to find its mutator.
         """
