@@ -27,6 +27,7 @@ export function keywords(state = initalState, action = {}) {
         ...state,
         error: null,
         items: action.result.items,
+        items_total: action.result.items_total,
         loaded: true,
         loading: false,
       };

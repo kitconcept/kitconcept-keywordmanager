@@ -11,6 +11,7 @@ import {
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Error from '@plone/volto/components/theme/Error/Error';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
+import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
 import { useClient } from '@plone/volto/hooks';
 import React, { useEffect, useState } from 'react';
@@ -74,9 +75,17 @@ const KeywordManager = (props) => {
   const [selectedRadio, setSelectedRadio] = useState<string>('select');
   const [name, setName] = useState<null | string>(null);
   const [index, setIndex] = useState<string>('Subject');
+  // Pagination
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<number>(25);
+
+  const options = {
+    batchSize: pageSize,
+    batchStart: currentPage,
+  };
 
   useEffect(() => {
-    dispatch(getKeywords());
+    dispatch(getKeywords(options));
     dispatch(getKeywordIndexes());
   }, []);
 
@@ -85,13 +94,13 @@ const KeywordManager = (props) => {
   };
 
   const handleDeleteKeywords = async (kw: string | Array<string>) => {
-    await dispatch(deleteKeywords({ items: kw }));
-    dispatch(getKeywords());
+    dispatch(deleteKeywords({ items: kw })).then(() => dispatch(getKeywords()));
   };
 
   const handleUpdateKeywords = async (kw: string, olds: Array<string>) => {
-    await dispatch(updateKeywords({ new_keyword: kw, old_keywords: olds }));
-    dispatch(getKeywords());
+    dispatch(updateKeywords({ new_keyword: kw, old_keywords: olds })).then(() =>
+      dispatch(getKeywords()),
+    );
   };
 
   if (keywords.loading) {
@@ -321,16 +330,40 @@ const KeywordManager = (props) => {
             actions: (
               <>
                 <Button onPress={() => onShowKeyword(kw.name)}>
-                  <Icon name={showSVG} />
+                  <Icon name={showSVG} size="20px" />
                 </Button>
                 <Button onPress={() => handleDeleteKeywords(kw.name)}>
-                  <Icon name={trashSVG} />
+                  <Icon name={trashSVG} size="20px" />
                 </Button>
               </>
             ),
           }))}
           selectionMode="multiple"
           onSelectionChange={setSelectedKeys}
+        />
+        <Pagination
+          current={currentPage}
+          total={Math.ceil(keywords?.items_total / pageSize)}
+          pageSize={pageSize}
+          pageSizes={[25, 50, 100]}
+          onChangePage={(e, { value }) => {
+            setCurrentPage(value);
+            dispatch(
+              getKeywords({
+                batchSize: pageSize,
+                batchStart: pageSize * value,
+              }),
+            );
+          }}
+          onChangePageSize={(e, { value }) => {
+            setPageSize(value);
+            dispatch(
+              getKeywords({
+                batchSize: value,
+                batchStart: currentPage,
+              }),
+            );
+          }}
         />
         {isClient &&
           createPortal(
