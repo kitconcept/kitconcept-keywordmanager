@@ -1,16 +1,14 @@
 from kitconcept.keywordmanager.interfaces import IKeywordManager
 from plone.restapi.batching import HypermediaBatch
-from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
 from zope.component import getUtility
 
 
 class TagsGet(Service):
     def reply(self):
-        data = json_body(self.request)
         km = getUtility(IKeywordManager)
         query = {"withLengths": True}
-        if idx := data.get("idx"):
+        if idx := self.request.form.get("idx"):
             query = {"indexName": idx}
 
         keywords = km.getKeywords(**query)

@@ -82,6 +82,7 @@ const KeywordManager = (props) => {
   const options = {
     batchSize: pageSize,
     batchStart: currentPage,
+    ...(index !== 'Subject' && { idx: index }),
   };
 
   useEffect(() => {
@@ -352,6 +353,7 @@ const KeywordManager = (props) => {
               getKeywords({
                 batchSize: pageSize,
                 batchStart: pageSize * value,
+                ...(index !== 'Subject' && { idx: index }),
               }),
             );
           }}
@@ -361,6 +363,7 @@ const KeywordManager = (props) => {
               getKeywords({
                 batchSize: value,
                 batchStart: currentPage,
+                ...(index !== 'Subject' && { idx: index }),
               }),
             );
           }}
