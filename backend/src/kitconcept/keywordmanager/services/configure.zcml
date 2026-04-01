@@ -7,22 +7,22 @@
 
   <plone:service
       method="GET"
-      for="zope.interface.Interface"
       factory=".get.KeywordsGet"
+      for="plone.base.interfaces.IPloneSiteRoot"
       permission="zope2.View"
       name="@keywords"
       />
   <plone:service
       method="DELETE"
-      for="zope.interface.Interface"
       factory=".delete.KeywordsDelete"
+      for="plone.base.interfaces.IPloneSiteRoot"
       permission="zope2.View"
       name="@keywords"
       />
   <plone:service
       method="PATCH"
-      for="zope.interface.Interface"
       factory=".update.KeywordsPatch"
+      for="plone.base.interfaces.IPloneSiteRoot"
       permission="zope2.View"
       name="@keywords"
       />
@@ -30,7 +30,7 @@
   <plone:service
       method="GET"
       factory=".get.KeywordIndexesGet"
-      for="zope.interface.Interface"
+      for="plone.base.interfaces.IPloneSiteRoot"
       permission="zope2.View"
       name="@keyword-indexes"
       />
