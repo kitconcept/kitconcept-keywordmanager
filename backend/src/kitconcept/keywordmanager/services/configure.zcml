@@ -7,24 +7,24 @@
 
   <plone:service
       method="GET"
-      factory=".get.TagsGet"
       for="zope.interface.Interface"
+      factory=".get.KeywordsGet"
       permission="zope2.View"
-      name="@tags"
+      name="@keywords"
       />
   <plone:service
       method="DELETE"
-      factory=".delete.TagsDelete"
       for="zope.interface.Interface"
+      factory=".delete.KeywordsDelete"
       permission="zope2.View"
-      name="@tags"
+      name="@keywords"
       />
   <plone:service
       method="PATCH"
-      factory=".update.TagsPatch"
       for="zope.interface.Interface"
+      factory=".update.KeywordsPatch"
       permission="zope2.View"
-      name="@tags"
+      name="@keywords"
       />
 
   <plone:service

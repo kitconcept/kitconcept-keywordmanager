@@ -4,7 +4,7 @@ from plone.restapi.services import Service
 from zope.component import getUtility
 
 
-class TagsGet(Service):
+class KeywordsGet(Service):
     def reply(self):
         km = getUtility(IKeywordManager)
         query = {"withLengths": True}

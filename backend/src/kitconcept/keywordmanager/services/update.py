@@ -5,7 +5,7 @@ from zExceptions import BadRequest
 from zope.component import getUtility
 
 
-class TagsPatch(Service):
+class KeywordsPatch(Service):
     def reply(self):
         data = json_body(self.request)
         km = getUtility(IKeywordManager)
