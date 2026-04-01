@@ -14,7 +14,7 @@ export function getKeywords(options = {}) {
     type: GET_KEYWORDS,
     request: {
       op: 'get',
-      path: `/@tags?${params.toString()}`,
+      path: `/@keywords?${params.toString()}`,
     },
   };
 }
@@ -24,7 +24,7 @@ export function updateKeywords(data) {
     type: UPDATE_KEYWORDS,
     request: {
       op: 'patch',
-      path: '/@tags',
+      path: '/@keywords',
       data,
     },
   };
@@ -35,7 +35,7 @@ export function deleteKeywords(data) {
     type: DELETE_KEYWORDS,
     request: {
       op: 'del',
-      path: '/@tags',
+      path: '/@keywords',
       data,
     },
   };
