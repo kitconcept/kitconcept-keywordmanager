@@ -9,21 +9,21 @@
       method="GET"
       factory=".get.KeywordsGet"
       for="plone.base.interfaces.IPloneSiteRoot"
-      permission="zope2.View"
+      permission="kitconcept.keywordmanager.ManageKeywords"
       name="@keywords"
       />
   <plone:service
       method="DELETE"
       factory=".delete.KeywordsDelete"
       for="plone.base.interfaces.IPloneSiteRoot"
-      permission="zope2.View"
+      permission="kitconcept.keywordmanager.ManageKeywords"
       name="@keywords"
       />
   <plone:service
       method="PATCH"
       factory=".update.KeywordsPatch"
       for="plone.base.interfaces.IPloneSiteRoot"
-      permission="zope2.View"
+      permission="kitconcept.keywordmanager.ManageKeywords"
       name="@keywords"
       />
 
@@ -31,7 +31,7 @@
       method="GET"
       factory=".get.KeywordIndexesGet"
       for="plone.base.interfaces.IPloneSiteRoot"
-      permission="zope2.View"
+      permission="kitconcept.keywordmanager.ManageKeywords"
       name="@keyword-indexes"
       />
 
