@@ -10,12 +10,18 @@ class KeywordsPatch(Service):
         data = json_body(self.request)
         km = getUtility(IKeywordManager)
 
-        new_keyword = data.get("new_keyword", "")
-        old_keywords = data.get("old_keywords", [])
+        new_keyword = data.get("new_keyword") or ""
+        old_keywords = data.get("old_keywords") or []
 
-        try:
-            km.change(new_keyword, old_keywords)
-        except Exception as err:
-            raise BadRequest(err) from err
+        if not isinstance(new_keyword, str):
+            raise BadRequest("")
+        if not new_keyword:
+            raise BadRequest("")
+        if not isinstance(old_keywords, list):
+            raise BadRequest("")
+        if not old_keywords:
+            raise BadRequest("")
+
+        km.change(new_keyword, old_keywords)
 
         return self.reply_no_content()

@@ -14,9 +14,7 @@ class KeywordsGet(Service):
         keywords = km.getKeywords(**query)
 
         batch = HypermediaBatch(self.request, keywords)
-        items = []
-        for kw in batch:
-            items.append({"name": kw[0], "total": kw[1]})
+        items = {{"name": name, "total": count} for name, count in batch}
 
         keywords_data = {
             "@id": batch.canonical_url,

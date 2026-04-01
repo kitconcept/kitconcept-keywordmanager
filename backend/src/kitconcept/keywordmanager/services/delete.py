@@ -9,14 +9,13 @@ class KeywordsDelete(Service):
     def reply(self):
         data = json_body(self.request)
         km = getUtility(IKeywordManager)
-        keywords = data.get("items", [])
+        keywords = data.get("items") or []
 
-        if isinstance(keywords, str):
-            keywords = [keywords]
+        if not isinstance(keywords, list):
+            raise BadRequest("")
+        if not keywords:
+            raise BadRequest("")
 
-        try:
-            km.delete(keywords)
-        except Exception as err:
-            raise BadRequest(err) from err
+        km.delete(keywords)
 
         return self.reply_no_content()
