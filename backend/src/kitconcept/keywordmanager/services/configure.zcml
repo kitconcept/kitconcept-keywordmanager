@@ -1,0 +1,38 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone.keywordmanager"
+    >
+
+  <plone:service
+      method="GET"
+      factory=".get.KeywordsGet"
+      for="plone.base.interfaces.IPloneSiteRoot"
+      permission="kitconcept.keywordmanager.ManageKeywords"
+      name="@keywords"
+      />
+  <plone:service
+      method="DELETE"
+      factory=".delete.KeywordsDelete"
+      for="plone.base.interfaces.IPloneSiteRoot"
+      permission="kitconcept.keywordmanager.ManageKeywords"
+      name="@keywords"
+      />
+  <plone:service
+      method="PATCH"
+      factory=".update.KeywordsPatch"
+      for="plone.base.interfaces.IPloneSiteRoot"
+      permission="kitconcept.keywordmanager.ManageKeywords"
+      name="@keywords"
+      />
+
+  <plone:service
+      method="GET"
+      factory=".get.KeywordIndexesGet"
+      for="plone.base.interfaces.IPloneSiteRoot"
+      permission="kitconcept.keywordmanager.ManageKeywords"
+      name="@keyword-indexes"
+      />
+
+</configure>

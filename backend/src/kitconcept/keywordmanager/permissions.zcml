@@ -1,5 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
-  <!-- -*- extra stuff goes here -*- -->
+  <permission
+      id="kitconcept.keywordmanager.ManageKeywords"
+      title="kitconcept.keywordmanager: Manage Keywords"
+      />
 
 </configure>
