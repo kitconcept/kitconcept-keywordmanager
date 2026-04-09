@@ -9,7 +9,7 @@ class KeywordsGet(Service):
         km = getUtility(IKeywordManager)
         query = {"withLengths": True}
         if idx := self.request.form.get("idx"):
-            query = {"indexName": idx}
+            query["indexName"] = idx
 
         keywords = km.getKeywords(**query)
 
