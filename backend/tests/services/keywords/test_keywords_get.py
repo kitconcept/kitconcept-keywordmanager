@@ -37,3 +37,7 @@ class TestKeywordsPatch:
     def test_response_anonymous(self):
         resp = self.anon_api_session.get("/doc1/@keywords")
         assert resp.status_code == 404
+
+    def test_response_with_idx(self):
+        resp = self.api_session.get("/@keywords?idx=Bla")
+        assert resp.status_code == 200

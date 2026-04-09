@@ -40,3 +40,51 @@ class TestKeywordsPatch:
     def test_response_anonymous(self):
         resp = self.anon_api_session.patch("/doc1/@keywords")
         assert resp.status_code == 404
+
+    def test_response_empty_new_keyword(self):
+        resp = self.api_session.patch(
+            "/@keywords",
+            data=json.dumps({"new_keyword": "", "old_keywords": ["doc"]}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 400
+
+    def test_response_empty_old_keywords(self):
+        resp = self.api_session.patch(
+            "/@keywords",
+            data=json.dumps({"new_keyword": "foo", "old_keywords": []}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 400
+
+    def test_response_no_new_keyword(self):
+        resp = self.api_session.patch(
+            "/@keywords",
+            data=json.dumps({"old_keywords": ["doc"]}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 400
+
+    def test_response_no_old_keywords(self):
+        resp = self.api_session.patch(
+            "/@keywords",
+            data=json.dumps({"new_keyword": "foo"}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 400
+
+    def test_response_wrong_new_keyword_type(self):
+        resp = self.api_session.patch(
+            "/@keywords",
+            data=json.dumps({"new_keyword": ["document"], "old_keywords": ["doc"]}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 400
+
+    def test_response_wrong_old_keywords_type(self):
+        resp = self.api_session.patch(
+            "/@keywords",
+            data=json.dumps({"new_keyword": "document", "old_keywords": "doc"}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 400
