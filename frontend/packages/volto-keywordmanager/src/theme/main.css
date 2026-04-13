@@ -37,12 +37,26 @@
         white-space: nowrap;
       }
 
-      .react-aria-Checkbox .checkbox {
-        border: 2px solid #1d1d1d;
+      .react-aria-Checkbox {
+        padding: 4px 8px;
+
+        .checkbox {
+          border: 2px solid #1d1d1d;
+        }
       }
 
       button {
         padding: 0;
+        cursor: pointer;
+      }
+
+      > div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      * svg {
+        color: #000;
       }
     }
 
@@ -58,16 +72,16 @@
       text-align: right;
     }
   }
+}
 
-  .react-aria-ModalOverlay .rename-modal,
-  .react-aria-ModalOverlay .confirm-modal {
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-    background-color: #fff;
+.react-aria-ModalOverlay .rename-modal,
+.react-aria-ModalOverlay .confirm-modal {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #fff;
 
-    .react-aria-Radio-wrapper {
-      display: flex;
-    }
+  .react-aria-Radio-wrapper {
+    display: flex;
   }
 }

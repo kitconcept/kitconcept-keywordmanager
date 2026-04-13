@@ -2,6 +2,7 @@ import type { ConfigType } from '@plone/registry';
 import KeywordManager from 'volto-keywordmanager/components/KeywordManager';
 import { keywords } from 'volto-keywordmanager/reducers/keywords';
 import { keywordIndexes } from 'volto-keywordmanager/reducers/keywordIndexes';
+import KeywordView from 'volto-keywordmanager/components/Keyword';
 
 export default function install(config: ConfigType) {
   config.settings.controlpanels = [
@@ -15,6 +16,10 @@ export default function install(config: ConfigType) {
 
   config.addonRoutes = [
     ...config.addonRoutes,
+    {
+      path: '/controlpanel/keyword-manager/:id',
+      component: KeywordView,
+    },
     {
       path: '/controlpanel/keyword-manager',
       component: KeywordManager,

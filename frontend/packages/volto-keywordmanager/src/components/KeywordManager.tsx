@@ -7,7 +7,6 @@ import {
   Radio,
   TextField,
   Select,
-  Switch,
 } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Error from '@plone/volto/components/theme/Error/Error';
@@ -26,6 +25,7 @@ import {
   updateKeywords,
 } from 'volto-keywordmanager/actions/keywords';
 import { getKeywordIndexes } from 'volto-keywordmanager/actions/keywordindexes';
+import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import replaceSVG from '@plone/volto/icons/replace.svg';
@@ -75,15 +75,16 @@ const KeywordManager = (props) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
   const [selectedRadio, setSelectedRadio] = useState<string>('select');
   const [name, setName] = useState<null | string>(null);
-  const [index, setIndex] = useState<string>('Subject');
+  const [keywordIndex, setKeywordIndex] = useState<string>('Subject');
   // Pagination
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(25);
+  const pageSizes = [25, 50, 100];
 
   const options = {
     batchSize: pageSize,
     batchStart: currentPage,
-    ...(index !== 'Subject' && { idx: index }),
+    ...(keywordIndex !== 'Subject' && { idx: keywordIndex }),
   };
 
   useEffect(() => {
@@ -91,18 +92,17 @@ const KeywordManager = (props) => {
     dispatch(getKeywordIndexes());
   }, []);
 
-  const onShowKeyword = (kw: string) => {
-    console.log(`Looking at ${kw}`);
+  const handleDeleteKeywords = async (kw: string | string[]) => {
+    if (typeof kw == 'string') {
+      kw = [kw];
+    }
+    await dispatch(deleteKeywords({ items: kw }));
+    await dispatch(getKeywords(options));
   };
 
-  const handleDeleteKeywords = async (kw: string | Array<string>) => {
-    dispatch(deleteKeywords({ items: kw })).then(() => dispatch(getKeywords()));
-  };
-
-  const handleUpdateKeywords = async (kw: string, olds: Array<string>) => {
-    dispatch(updateKeywords({ new_keyword: kw, old_keywords: olds })).then(() =>
-      dispatch(getKeywords()),
-    );
+  const handleUpdateKeywords = async (kw: string, olds: string[]) => {
+    await dispatch(updateKeywords({ new_keyword: kw, old_keywords: olds }));
+    await dispatch(getKeywords(options));
   };
 
   if (keywords.loading) {
@@ -119,13 +119,13 @@ const KeywordManager = (props) => {
         id="page-keyword_manager"
         className="ui container controlpanel-keyword-manager"
       >
-        <h1>
+        <h1 className="title">
           <FormattedMessage
             id="Keyword Manager"
             defaultMessage="Keyword Manager"
           />
         </h1>
-        <p>
+        <p className="description">
           <FormattedMessage
             id="keyword-manager-description"
             defaultMessage="The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
@@ -136,8 +136,8 @@ const KeywordManager = (props) => {
           <Select
             selectionMode="single"
             isDisabled={keywordIndexes?.items.length > 0}
-            value={index}
-            onChange={setIndex}
+            value={keywordIndex}
+            onChange={setKeywordIndex}
             items={keywordIndexes?.items.map((idx) => ({
               label: idx,
               value: idx,
@@ -342,48 +342,53 @@ const KeywordManager = (props) => {
           rows={keywords.items?.map((kw) => ({
             id: kw.name,
             textValue: kw.name,
-            keyword: kw.name,
-            occurrence: kw.total,
+            keyword: <p>{kw.name}</p>,
+            occurrence: <p>{kw.total}</p>,
             actions: (
-              <>
-                <Button onPress={() => onShowKeyword(kw.name)}>
+              <div>
+                <UniversalLink
+                  href={`${pathname}/${kw.name}`}
+                  openLinkInNewTab={true}
+                >
                   <Icon name={showSVG} size="20px" />
-                </Button>
+                </UniversalLink>
                 <Button onPress={() => handleDeleteKeywords(kw.name)}>
                   <Icon name={trashSVG} size="20px" />
                 </Button>
-              </>
+              </div>
             ),
           }))}
           selectionMode="multiple"
           onSelectionChange={setSelectedKeys}
         />
-        <Pagination
-          current={currentPage}
-          total={Math.ceil(keywords?.items_total / pageSize)}
-          pageSize={pageSize}
-          pageSizes={[25, 50, 100]}
-          onChangePage={(e, { value }) => {
-            setCurrentPage(value);
-            dispatch(
-              getKeywords({
-                batchSize: pageSize,
-                batchStart: pageSize * value,
-                ...(index !== 'Subject' && { idx: index }),
-              }),
-            );
-          }}
-          onChangePageSize={(e, { value }) => {
-            setPageSize(value);
-            dispatch(
-              getKeywords({
-                batchSize: value,
-                batchStart: currentPage,
-                ...(index !== 'Subject' && { idx: index }),
-              }),
-            );
-          }}
-        />
+        {keywords?.items_total > Math.min(...pageSizes) && (
+          <Pagination
+            current={currentPage}
+            total={Math.ceil(keywords?.items_total / pageSize)}
+            pageSize={pageSize}
+            pageSizes={pageSizes}
+            onChangePage={(e, { value }) => {
+              setCurrentPage(value);
+              dispatch(
+                getKeywords({
+                  batchSize: pageSize,
+                  batchStart: pageSize * value,
+                  ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
+                }),
+              );
+            }}
+            onChangePageSize={(e, { value }) => {
+              setPageSize(value);
+              dispatch(
+                getKeywords({
+                  batchSize: value,
+                  batchStart: currentPage,
+                  ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
+                }),
+              );
+            }}
+          />
+        )}
         {isClient &&
           createPortal(
             <Toolbar
