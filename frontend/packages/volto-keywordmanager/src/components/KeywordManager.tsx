@@ -24,7 +24,7 @@ import {
   deleteKeywords,
   updateKeywords,
 } from 'volto-keywordmanager/actions/keywords';
-import { getKeywordIndexes } from 'volto-keywordmanager/actions/keywordindexes';
+import { getKeywordIndexes } from 'volto-keywordmanager/actions/keywordIndexes';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 
 import backSVG from '@plone/volto/icons/back.svg';
