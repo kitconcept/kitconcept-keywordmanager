@@ -7,6 +7,7 @@ import {
   Radio,
   TextField,
   Select,
+  Switch,
 } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Error from '@plone/volto/components/theme/Error/Error';
@@ -127,44 +128,59 @@ const KeywordManager = (props) => {
         <p>
           <FormattedMessage
             id="keyword-manager-description"
-            defaultMessage="Lorem Ipsum"
+            defaultMessage="The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
           />
         </p>
         <div>
-          {keywordIndexes?.items.length > 1 && (
-            <Select
-              label="Keyword field:"
-              selectionMode="single"
-              value={index}
-              onChange={setIndex}
-              items={keywordIndexes?.items.map((idx) => ({
-                label: idx,
-                value: idx,
-              }))}
-            />
-          )}
-        </div>
-        <div>
-          <h2>Keywords</h2>
-          <FormattedMessage
-            id="number-selected-keywords"
-            defaultMessage="{num} keyword(s) selected"
-            values={{
-              num: selectionCount,
-            }}
+          <p>Keyword field: </p>
+          <Select
+            selectionMode="single"
+            isDisabled={keywordIndexes?.items.length > 0}
+            value={index}
+            onChange={setIndex}
+            items={keywordIndexes?.items.map((idx) => ({
+              label: idx,
+              value: idx,
+            }))}
           />
-          <Button
-            isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
-            onPress={() => setIsModalOpen(true)}
-          >
-            <Icon name={replaceSVG} />
-          </Button>
-          <Button
-            isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
-            onPress={() => setIsConfirmModalOpen(true)}
-          >
-            <Icon name={trashSVG} />
-          </Button>
+        </div>
+        <div className="table-heading">
+          <div className="info">
+            <h2>Keywords</h2>
+            <p>–</p>
+            <p>
+              {selectionCount < 1 ? (
+                <FormattedMessage
+                  id="no-selected-keywords"
+                  defaultMessage="No keyword selected"
+                />
+              ) : (
+                <FormattedMessage
+                  id="number-selected-keywords"
+                  defaultMessage="{num} keyword(s) selected"
+                  values={{
+                    num: selectionCount,
+                  }}
+                />
+              )}
+            </p>
+          </div>
+          <div className="tools">
+            <div className="bulk-actions">
+              <Button
+                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+                onPress={() => setIsModalOpen(true)}
+              >
+                <Icon name={replaceSVG} size="20px" />
+              </Button>
+              <Button
+                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+                onPress={() => setIsConfirmModalOpen(true)}
+              >
+                <Icon name={trashSVG} size="20px" />
+              </Button>
+            </div>
+          </div>
         </div>
         <Modal
           className="rename-modal"

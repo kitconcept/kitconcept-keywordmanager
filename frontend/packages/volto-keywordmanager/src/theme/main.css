@@ -1,27 +1,73 @@
-.react-aria-Table.cmsui-table {
-  --plone-table-cell-border-bottom: 1px solid var(--quanta-smoke);
-  --plone-table-header-border-bottom: 2px solid var(--quanta-silver);
-  width: 100%;
-  border-radius: 0;
-
-  .react-aria-Row {
-    border-bottom: none;
+#page-keyword_manager {
+  button {
+    border: none;
+    background: none;
   }
 
-  .react-aria-Column[data-key$='occurrences'],
-  .react-aria-Cell[data-key$=':occurrences'] {
-    text-align: right;
+  .react-aria-Select > button {
+    border: 1px solid #000;
   }
-}
 
-.react-aria-ModalOverlay .rename-modal,
-.react-aria-ModalOverlay .confirm-modal {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  background-color: #fff;
-
-  .react-aria-Radio-wrapper {
+  .table-heading {
     display: flex;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+
+  .react-aria-Table.cmsui-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .react-aria-TableHeader {
+      background: #f6f3f3;
+    }
+
+    .react-aria-Column,
+    .react-aria-Cell {
+      border: 1px solid #000;
+      height: 36px;
+      padding: 0 10px;
+
+      &[role='columnheader'],
+      &[data-key$=':actions'] {
+        white-space: nowrap;
+      }
+
+      .react-aria-Checkbox .checkbox {
+        border: 2px solid #1d1d1d;
+      }
+
+      button {
+        padding: 0;
+      }
+    }
+
+    .react-aria-Row[data-selected] {
+      background: #bbc2e9;
+    }
+
+    .react-aria-Cell[data-key$=':keyword'] {
+      width: 100%;
+    }
+
+    .react-aria-Cell[data-key$=':occurrence'] {
+      text-align: right;
+    }
+  }
+
+  .react-aria-ModalOverlay .rename-modal,
+  .react-aria-ModalOverlay .confirm-modal {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #fff;
+
+    .react-aria-Radio-wrapper {
+      display: flex;
+    }
   }
 }
