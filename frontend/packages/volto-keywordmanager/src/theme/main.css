@@ -28,9 +28,9 @@
 
     .react-aria-Column,
     .react-aria-Cell {
-      border: 1px solid #000;
       height: 36px;
       padding: 0 10px;
+      border: 1px solid #000;
 
       &[role='columnheader'],
       &[data-key$=':actions'] {
