@@ -53,15 +53,30 @@
       > div {
         display: flex;
         justify-content: space-between;
+
+        a {
+          height: 20px;
+        }
       }
 
       * svg {
         color: #000;
       }
+
+      /* border-radius on first/last cell clips the rows background in google-chrome */
+      &:first-child,
+      &:last-child {
+        border-radius: 0;
+      }
     }
 
     .react-aria-Row[data-selected] {
+      color: #000;
       background: #bbc2e9;
+      clip-path: none;
+      /* fix for background overlapping the border in firefox */
+      position: unset;
+      transform: none;
     }
 
     .react-aria-Cell[data-key$=':keyword'] {
