@@ -237,7 +237,7 @@ class KeywordManager:
         return fieldName
 
     @security.private
-    def getSetter(self, obj, indexName):
+    def getSetter(self, obj, indexName: str):
         """Gets the setter function for the field based on the index name.
 
         Returns None if it can't get the function
@@ -260,8 +260,7 @@ class KeywordManager:
             fieldName = fieldName[0].lower() + fieldName[1:]
             return lambda value: setattr(aq_base(obj), fieldName, value)
 
-        # Always reindex discussion objects, since their values
-        # # will have been acquired
+        # Always reindex discussion objects, since their values will have been acquired
         if IComment.providedBy(obj):
             return lambda value: None
 
