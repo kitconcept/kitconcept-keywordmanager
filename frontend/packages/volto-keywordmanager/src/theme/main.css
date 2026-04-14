@@ -15,6 +15,14 @@
       display: flex;
       align-items: center;
       gap: 30px;
+
+      button {
+        cursor: pointer;
+
+        &:disabled {
+          cursor: default;
+        }
+      }
     }
   }
 
