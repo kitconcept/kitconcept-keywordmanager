@@ -3,13 +3,11 @@ import { UPDATE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
 import { DELETE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
 
 export function getKeywords({
-  id = null,
   index = null,
   groupKeywords = false,
   batchSize = 25,
   batchStart = 0,
 }: {
-  id?: string | null;
   index?: string | null;
   groupKeywords?: boolean;
   batchSize?: number;
@@ -26,10 +24,6 @@ export function getKeywords({
   }
 
   let requestPath = '/@keywords';
-
-  if (id) {
-    requestPath += `/${id}`;
-  }
 
   if (params) {
     requestPath += `?${params.toString()}`;
