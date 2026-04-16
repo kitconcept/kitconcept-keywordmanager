@@ -7,11 +7,15 @@ export function getKeywords({
   groupKeywords = false,
   batchSize = 25,
   batchStart = 0,
+  sortOn = null,
+  sortOrder = null,
 }: {
   index?: string | null;
   groupKeywords?: boolean;
   batchSize?: number;
   batchStart?: number;
+  sortOn?: string;
+  sortOrder?: string;
 }) {
   let params = new URLSearchParams({
     grouped: String(groupKeywords),
@@ -19,9 +23,9 @@ export function getKeywords({
     b_start: String(batchStart),
   });
 
-  if (index) {
-    params.append('idx', index);
-  }
+  if (index) params.append('idx', index);
+  if (sortOn) params.append('sort_on', sortOn);
+  if (sortOrder) params.append('sort_order', sortOrder);
 
   let requestPath = '/@keywords';
 
