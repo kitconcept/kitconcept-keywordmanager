@@ -19,7 +19,7 @@ def contents(portal):
         transaction.commit()
 
 
-class TestKeywordsPatch:
+class TestKeywordsDelete:
     @pytest.fixture(autouse=True)
     def _setup(self, contents, api_manager_request, api_anon_request):
         self.api_session = api_manager_request

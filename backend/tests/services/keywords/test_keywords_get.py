@@ -18,7 +18,7 @@ def contents(portal):
         transaction.commit()
 
 
-class TestKeywordsPatch:
+class TestKeywordsGet:
     @pytest.fixture(autouse=True)
     def _setup(self, contents, api_manager_request, api_anon_request):
         self.api_session = api_manager_request
@@ -38,6 +38,10 @@ class TestKeywordsPatch:
         resp = self.anon_api_session.get("/doc1/@keywords")
         assert resp.status_code == 404
 
-    def test_response_with_idx(self):
-        resp = self.api_session.get("/@keywords?idx=Bla")
+    def test_response_valid_index(self):
+        resp = self.api_session.get("/@keywords?idx=Subject")
         assert resp.status_code == 200
+
+    def test_response_invalid_index(self):
+        resp = self.api_session.get("/@keywords?idx=Bla")
+        assert resp.status_code == 500
