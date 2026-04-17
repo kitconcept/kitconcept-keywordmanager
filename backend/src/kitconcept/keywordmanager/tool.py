@@ -134,8 +134,7 @@ class KeywordManager:
     def getKeywords(
         self, indexName: str = "Subject", withLengths: bool = False
     ) -> list[str] | list[tuple[str, int]]:
-        """Return all unique keyword values from the specified catalog index,
-        sorted alphabetically.
+        """Return all unique keyword values from the specified catalog index.
 
         Args:
             indexName: The name of the keyword index to query. Defaults to "Subject".
@@ -143,8 +142,8 @@ class KeywordManager:
             just keywords. Defaults to False.
 
         Returns:
-            A sorted list of keyword strings, or a sorted list of (keyword, count)
-            tuples if withLengths is True.
+            A list of keyword strings, or a list of (keyword, count) tuples if
+            withLengths is True.
 
         Raises:
             ValueError: If indexName is not a valid keyword index.
@@ -154,9 +153,8 @@ class KeywordManager:
             raise ValueError(f"'{indexName}' is not a valid index")
 
         catalog = api.portal.get_tool("portal_catalog")
-        keywords = sorted(
-            catalog.Indexes[indexName].uniqueValues(withLengths=withLengths),
-            key=lambda x: x.lower() if isinstance(x, str) else x[0].lower(),
+        keywords = list(
+            catalog.Indexes[indexName].uniqueValues(withLengths=withLengths)
         )
 
         # can we turn this into a yield?
