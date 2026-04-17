@@ -1,0 +1,120 @@
+#page-keyword_manager {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  button {
+    border: none;
+    background: none;
+  }
+
+  * h2,
+  p {
+    margin: 0;
+  }
+
+  .react-aria-Select > button {
+    border: 1px solid #000;
+  }
+
+  .table-heading {
+    display: flex;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      button {
+        cursor: pointer;
+
+        &:disabled {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .react-aria-Table.cmsui-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .react-aria-TableHeader {
+      background: #f6f3f3;
+    }
+
+    .react-aria-Column,
+    .react-aria-Cell {
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid #000;
+
+      &[role='columnheader'],
+      &[data-key$=':actions'] {
+        white-space: nowrap;
+
+        > div {
+          display: flex;
+          gap: 10px;
+
+          a {
+            /* this is to center the eye icon in the actions column */
+            height: 20px;
+          }
+        }
+      }
+
+      .react-aria-Checkbox {
+        padding: 4px 8px;
+
+        .checkbox {
+          border: 2px solid #1d1d1d;
+        }
+      }
+
+      button {
+        padding: 0;
+        cursor: pointer;
+      }
+
+      * svg {
+        color: #000;
+      }
+
+      /* border-radius on first/last cell clips the rows background in google-chrome */
+      &:first-child,
+      &:last-child {
+        border-radius: 0;
+      }
+    }
+
+    .react-aria-Row[data-selected] {
+      color: #000;
+      background: #bbc2e9;
+      clip-path: none;
+      /* fix for background overlapping the border in firefox */
+      position: unset;
+      transform: none;
+    }
+
+    .react-aria-Cell[data-key$=':keyword'] {
+      width: 100%;
+    }
+
+    .react-aria-Cell[data-key$=':occurrence'] {
+      text-align: right;
+    }
+  }
+}
+
+.react-aria-ModalOverlay .rename-modal,
+.react-aria-ModalOverlay .confirm-modal {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #fff;
+
+  .react-aria-Radio-wrapper {
+    display: flex;
+  }
+}

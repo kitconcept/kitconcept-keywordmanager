@@ -31,6 +31,7 @@ dependencies = [
     "plone.api",
     "plone.restapi",
     "plone.volto",
+    "Levenshtein"
 ]
 
 [project.optional-dependencies]
