@@ -3,6 +3,27 @@
   flex-direction: column;
   gap: 15px;
 
+  .title {
+    padding: 20px 15px;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        #0e0e0e 14%,
+        #565656 84%,
+        rgba(102, 102, 102, 0.2) 100%
+      )
+      1;
+    color: #4e4e4e;
+  }
+
+  .description {
+    padding: 30px;
+    border-radius: 6px;
+    background: #e6e6e6;
+    color: #4e4e4e;
+  }
+
   button {
     border: none;
     background: none;
@@ -89,11 +110,11 @@
     }
 
     .react-aria-Row[data-selected] {
-      color: #000;
-      background: #bbc2e9;
-      clip-path: none;
       /* fix for background overlapping the border in firefox */
       position: unset;
+      background: #bbc2e9;
+      clip-path: none;
+      color: #000;
       transform: none;
     }
 
@@ -109,12 +130,77 @@
 
 .react-aria-ModalOverlay .rename-modal,
 .react-aria-ModalOverlay .confirm-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
-  max-width: 1200px;
-  padding: 20px;
+  max-width: 1070px;
   background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #1d1d1d;
+
+  * h2,
+  * p {
+    margin: 0;
+  }
 
   .react-aria-Radio-wrapper {
     display: flex;
+
+    .react-aria-Radio {
+      padding-right: 10px;
+    }
+
+    .react-aria-Select,
+    .react-aria-TextField {
+      width: 100%;
+      max-width: 400px;
+
+      .react-aria-Label {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .react-aria-Button,
+      .react-aria-Input {
+        width: 100%;
+        border: 1px solid #1d1d1d;
+        border-top: 3px solid #1d1d1d;
+        border-radius: 0;
+        padding: 8px;
+
+        &:disabled {
+          border: 1px solid rgba(29, 29, 29, 0.6);
+          border-top: 3px solid rgba(29, 29, 29, 0.6);
+          background: #f0f0f0;
+        }
+      }
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    padding: 8px 20px;
+    justify-content: space-between;
+    align-items: center;
+    background: #e6e6e6;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #1d1d1d;
+
+    button {
+      background: none;
+      border: 0;
+    }
+  }
+
+  .modal-body {
+    padding: 0 20px;
+  }
+
+  .modal-actions {
+    padding: 20px;
+    padding-top: 0;
   }
 }

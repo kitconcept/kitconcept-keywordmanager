@@ -1,4 +1,4 @@
-import { Spinner, Table, Button } from '@plone/components';
+import { Spinner, Table, Button, Modal } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
+import clearSVG from '@plone/volto/icons/clear.svg';
 
 const messages = defineMessages({
   back: {
@@ -41,8 +42,7 @@ const messages = defineMessages({
 
 const KeywordView = (props) => {
   const { location } = props;
-  const params = useParams<{ id: string }>();
-  const id = params.id;
+  const { id } = useParams<{ id: string }>();
   const intl = useIntl();
   const keywords = useSelector((state) => state.search.subrequests.keywords);
   const dispatch = useDispatch();
@@ -51,10 +51,13 @@ const KeywordView = (props) => {
   const [selectedKeys, setSelectedKeys] = useState<string | Set<string>>(
     new Set(),
   );
+  const selectionCount =
+    selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(searchContent('/', { Subject: [id] }, 'keywords'));
-  }, []);
+  }, [dispatch, id]);
 
   const handleDeleteKeywords = async (kw: string | string[]) => {
     if (typeof kw == 'string') {
@@ -77,7 +80,73 @@ const KeywordView = (props) => {
       id="page-keyword_manager"
       className="ui container controlpanel-keyword-manager"
     >
-      <h1>Hello world</h1>
+      <h1>
+        <FormattedMessage
+          id="keyword-name"
+          defaultMessage="{name}"
+          values={{ name: id }}
+        />
+      </h1>
+      <div className="tools">
+        <div className="bulk-actions">
+          <Button
+            isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+            onPress={() => setIsModalOpen(true)}
+          >
+            <Icon name={trashSVG} size="20px" />
+          </Button>
+        </div>
+      </div>
+      <Modal
+        className="confirm-modal"
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+      >
+        <h2>
+          <FormattedMessage
+            id="confirm-modal-title"
+            defaultMessage="Delete keyword(s)"
+          />
+        </h2>
+        <Button
+          onPress={() => {
+            setIsModalOpen(false);
+          }}
+        >
+          <Icon name={clearSVG} />
+        </Button>
+        <p>
+          <FormattedMessage
+            id="confirm-modal-description"
+            defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
+            values={{
+              num: <strong>{selectionCount}</strong>,
+            }}
+          />
+        </p>
+        <div>
+          <Button
+            onPress={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            <FormattedMessage id="Cancel" defaultMessage="Cancel" />
+          </Button>
+          <Button
+            onPress={() => {
+              handleDeleteKeywords(
+                selectedKeys === 'all'
+                  ? keywords.items?.map((kw) => kw.name)
+                  : [...selectedKeys], // spread into an array since selectedKeys is a Set()
+              );
+              setIsModalOpen(false);
+              setSelectedKeys(new Set());
+            }}
+          >
+            <FormattedMessage id="Delete" defaultMessage="Delete" />
+          </Button>
+        </div>
+      </Modal>
       <Table
         className="react-aria-Table cmsui-table"
         columns={[

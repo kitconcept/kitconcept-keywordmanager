@@ -124,12 +124,18 @@ const KeywordManager = (props) => {
     if (typeof kw == 'string') {
       kw = [kw];
     }
-    await dispatch(deleteKeywords({ items: kw }));
+    await dispatch(deleteKeywords({ items: kw, indexName: keywordIndex }));
     await dispatch(getKeywords(options));
   };
 
   const handleUpdateKeywords = async (kw: string, olds: string[]) => {
-    await dispatch(updateKeywords({ new_keyword: kw, old_keywords: olds }));
+    await dispatch(
+      updateKeywords({
+        new_keyword: kw,
+        old_keywords: olds,
+        indexName: keywordIndex,
+      }),
+    );
     await dispatch(getKeywords(options));
   };
 
@@ -160,10 +166,14 @@ const KeywordManager = (props) => {
           />
         </p>
         <div>
-          <p>Keyword field: </p>
+          <p>
+            <FormattedMessage
+              id="keyword-field"
+              defaultMessage="Keyword field: "
+            />
+          </p>
           <Select
             selectionMode="single"
-            isDisabled={keywordIndexes?.items.length > 0}
             value={keywordIndex}
             onChange={setKeywordIndex}
             items={keywordIndexes?.items.map((idx) => ({
@@ -174,7 +184,9 @@ const KeywordManager = (props) => {
         </div>
         <div className="table-heading">
           <div className="info">
-            <h2>Keywords</h2>
+            <h2>
+              <FormattedMessage id="Keywords" defaultMessage="Keywords" />
+            </h2>
             <p>–</p>
             <p>
               {selectionCount < 1 ? (
@@ -215,73 +227,77 @@ const KeywordManager = (props) => {
           isOpen={isModalOpen}
           onOpenChange={setIsModalOpen}
         >
-          <h2>
-            <FormattedMessage
-              id="rename-modal-title"
-              defaultMessage="Rename & merge keyword(s)"
-            />
-          </h2>
-          <Button
-            onPress={() => {
-              setIsModalOpen(false);
-              setName(null);
-            }}
-          >
-            <Icon name={clearSVG} />
-          </Button>
-          <p>
-            <FormattedMessage
-              id="rename-modal-description"
-              defaultMessage="You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
-              values={{
-                num: <strong>{selectionCount}</strong>,
-              }}
-            />
-          </p>
-          <RadioGroup
-            defaultValue="select"
-            value={selectedRadio}
-            onChange={setSelectedRadio}
-          >
-            <div className="react-aria-Radio-wrapper">
-              <Radio value="select" />
-              <Select
-                isDisabled={selectedRadio !== 'select'}
-                label="Select existing keyword to keep:"
-                selectionMode="single"
-                placeholder="Please select ..."
-                onChange={setName}
-                items={
-                  selectedKeys === 'all'
-                    ? keywords.items?.map((kw) => ({
-                        label: kw.name,
-                        value: kw.name,
-                      }))
-                    : [...selectedKeys].map((kw) => ({
-                        label: kw,
-                        value: kw,
-                      }))
-                }
+          <div className="modal-header">
+            <h2>
+              <FormattedMessage
+                id="rename-modal-title"
+                defaultMessage="Rename & merge keyword(s)"
               />
-            </div>
-            <div className="react-aria-Radio-wrapper">
-              <Radio value="text" />
-              <TextField
-                isDisabled={selectedRadio !== 'text'}
-                label="New keyword name:"
-                placeholder="Please enter new name"
-                onChange={setName}
-              />
-            </div>
-          </RadioGroup>
-          <div>
+            </h2>
             <Button
               onPress={() => {
                 setIsModalOpen(false);
                 setName(null);
               }}
             >
-              Cancel
+              <Icon name={clearSVG} size="20px" />
+            </Button>
+          </div>
+          <div className="modal-body">
+            <p>
+              <FormattedMessage
+                id="rename-modal-description"
+                defaultMessage="You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
+                values={{
+                  num: <strong>{selectionCount}</strong>,
+                }}
+              />
+            </p>
+            <RadioGroup
+              defaultValue="select"
+              value={selectedRadio}
+              onChange={setSelectedRadio}
+            >
+              <div className="react-aria-Radio-wrapper">
+                <Radio value="select" />
+                <Select
+                  isDisabled={selectedRadio !== 'select'}
+                  label="Select existing keyword to keep:"
+                  selectionMode="single"
+                  placeholder="Please select ..."
+                  onChange={setName}
+                  items={
+                    selectedKeys === 'all'
+                      ? keywords.items?.map((kw) => ({
+                          label: kw.name,
+                          value: kw.name,
+                        }))
+                      : [...selectedKeys].map((kw) => ({
+                          label: kw,
+                          value: kw,
+                        }))
+                  }
+                />
+              </div>
+              <div className="react-aria-Radio-wrapper">
+                <Radio value="text" />
+                <TextField
+                  isDisabled={selectedRadio !== 'text'}
+                  label="New keyword name:"
+                  placeholder="Please enter new name"
+                  onChange={setName}
+                />
+              </div>
+            </RadioGroup>
+          </div>
+          <div className="modal-actions">
+            <Button
+              onPress={() => {
+                setIsModalOpen(false);
+                setName(null);
+              }}
+            >
+              <FormattedMessage id="Cancel" defaultMessage="Cancel" />
             </Button>
             <Button
               isDisabled={name === null}
@@ -296,7 +312,10 @@ const KeywordManager = (props) => {
                 setSelectedKeys(new Set());
               }}
             >
-              Rename & merge
+              <FormattedMessage
+                id="Rename & Merge"
+                defaultMessage="Rename & Merge"
+              />
             </Button>
           </div>
         </Modal>
@@ -333,7 +352,7 @@ const KeywordManager = (props) => {
                 setIsConfirmModalOpen(false);
               }}
             >
-              Cancel
+              <FormattedMessage id="Cancel" defaultMessage="Cancel" />
             </Button>
             <Button
               onPress={() => {
@@ -346,7 +365,7 @@ const KeywordManager = (props) => {
                 setSelectedKeys(new Set());
               }}
             >
-              Delete
+              <FormattedMessage id="Delete" defaultMessage="Delete" />
             </Button>
           </div>
         </Modal>

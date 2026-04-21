@@ -45,15 +45,23 @@ export function getKeywords({
 export function updateKeywords({
   new_keyword,
   old_keywords,
+  indexName,
 }: {
   new_keyword: string;
   old_keywords: string[];
+  indexName: string;
 }) {
+  let requestPath = '/@keywords';
+
+  if (indexName) {
+    requestPath += `?idx=${indexName}`;
+  }
+
   return {
     type: UPDATE_KEYWORDS,
     request: {
       op: 'patch',
-      path: '/@keywords',
+      path: requestPath,
       data: {
         new_keyword,
         old_keywords,
@@ -62,12 +70,24 @@ export function updateKeywords({
   };
 }
 
-export function deleteKeywords({ items }: { items: string[] }) {
+export function deleteKeywords({
+  items,
+  indexName,
+}: {
+  items: string[];
+  indexName: string;
+}) {
+  let requestPath = '/@keywords';
+
+  if (indexName) {
+    requestPath += `?idx=${indexName}`;
+  }
+
   return {
     type: DELETE_KEYWORDS,
     request: {
       op: 'del',
-      path: '/@keywords',
+      path: requestPath,
       data: { items },
     },
   };
