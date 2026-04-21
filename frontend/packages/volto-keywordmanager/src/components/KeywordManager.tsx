@@ -324,29 +324,33 @@ const KeywordManager = (props) => {
           isOpen={isConfirmModalOpen}
           setIsOpen={setIsConfirmModalOpen}
         >
-          <h2>
-            <FormattedMessage
-              id="confirm-modal-title"
-              defaultMessage="Delete keyword(s)"
-            />
-          </h2>
-          <Button
-            onPress={() => {
-              setIsConfirmModalOpen(false);
-            }}
-          >
-            <Icon name={clearSVG} />
-          </Button>
-          <p>
-            <FormattedMessage
-              id="confirm-modal-description"
-              defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
-              values={{
-                num: <strong>{selectionCount}</strong>,
+          <div className="modal-header">
+            <h2>
+              <FormattedMessage
+                id="confirm-modal-title"
+                defaultMessage="Delete keyword(s)"
+              />
+            </h2>
+            <Button
+              onPress={() => {
+                setIsConfirmModalOpen(false);
               }}
-            />
-          </p>
-          <div>
+            >
+              <Icon name={clearSVG} />
+            </Button>
+          </div>
+          <div className="modal-body">
+            <p>
+              <FormattedMessage
+                id="confirm-modal-description"
+                defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
+                values={{
+                  num: <strong>{selectionCount}</strong>,
+                }}
+              />
+            </p>
+          </div>
+          <div className="modal-actions">
             <Button
               onPress={() => {
                 setIsConfirmModalOpen(false);
