@@ -38,6 +38,10 @@
     border: 1px solid #000;
   }
 
+  .react-aria-Button[data-pressed] {
+    box-shadow: none;
+  }
+
   .table-heading {
     display: flex;
     justify-content: space-between;
