@@ -1,13 +1,5 @@
-import {
-  Spinner,
-  Table,
-  Modal,
-  Button,
-  RadioGroup,
-  Radio,
-  TextField,
-  Select,
-} from '@plone/components';
+import { Spinner, Table, Button, Select } from '@plone/components';
+import { DialogTrigger } from 'react-aria-components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Error from '@plone/volto/components/theme/Error/Error';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
@@ -26,12 +18,13 @@ import {
 } from 'volto-keywordmanager/actions/keywords';
 import { getKeywordIndexes } from 'volto-keywordmanager/actions/keywordIndexes';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
+import RenameModal from './RenameModal';
+import DeleteModal from './DeleteModal';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import replaceSVG from '@plone/volto/icons/replace.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import showSVG from '@plone/volto/icons/show.svg';
-import clearSVG from '@plone/volto/icons/clear.svg';
 import sortUpSVG from '@plone/volto/icons/sort-up.svg';
 import sortDownSVG from '@plone/volto/icons/sort-down.svg';
 
@@ -73,10 +66,6 @@ const KeywordManager = (props) => {
   );
   const selectionCount =
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
-  const [selectedRadio, setSelectedRadio] = useState<string>('select');
-  const [name, setName] = useState<null | string>(null);
   const [keywordIndex, setKeywordIndex] = useState<string>('Subject');
   // Pagination
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -207,172 +196,46 @@ const KeywordManager = (props) => {
           </div>
           <div className="tools">
             <div className="bulk-actions">
-              <Button
-                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
-                onPress={() => setIsModalOpen(true)}
-              >
-                <Icon name={replaceSVG} size="20px" />
-              </Button>
-              <Button
-                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
-                onPress={() => setIsConfirmModalOpen(true)}
-              >
-                <Icon name={trashSVG} size="20px" />
-              </Button>
+              <DialogTrigger>
+                <Button
+                  isDisabled={
+                    selectedKeys !== 'all' && selectedKeys?.size === 0
+                  }
+                >
+                  <Icon name={replaceSVG} size="20px" />
+                </Button>
+                <RenameModal
+                  selectionCount={selectionCount}
+                  selectedKeys={selectedKeys}
+                  keywords={keywords}
+                  onConfirm={(newName, oldNames) => {
+                    handleUpdateKeywords(newName, oldNames);
+                    setSelectedKeys(new Set());
+                  }}
+                />
+              </DialogTrigger>
+
+              <DialogTrigger>
+                <Button
+                  isDisabled={
+                    selectedKeys !== 'all' && selectedKeys?.size === 0
+                  }
+                >
+                  <Icon name={trashSVG} size="20px" />
+                </Button>
+                <DeleteModal
+                  selectionCount={selectionCount}
+                  selectedKeys={selectedKeys}
+                  keywords={keywords}
+                  onConfirm={(keys) => {
+                    handleDeleteKeywords(keys);
+                    setSelectedKeys(new Set());
+                  }}
+                />
+              </DialogTrigger>
             </div>
           </div>
         </div>
-        <Modal
-          className="rename-modal"
-          isOpen={isModalOpen}
-          onOpenChange={setIsModalOpen}
-        >
-          <div className="modal-header">
-            <h2>
-              <FormattedMessage
-                id="rename-modal-title"
-                defaultMessage="Rename & merge keyword(s)"
-              />
-            </h2>
-            <Button
-              onPress={() => {
-                setIsModalOpen(false);
-                setName(null);
-              }}
-            >
-              <Icon name={clearSVG} size="20px" />
-            </Button>
-          </div>
-          <div className="modal-body">
-            <p>
-              <FormattedMessage
-                id="rename-modal-description"
-                defaultMessage="You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
-                values={{
-                  num: <strong>{selectionCount}</strong>,
-                }}
-              />
-            </p>
-            <RadioGroup
-              defaultValue="select"
-              value={selectedRadio}
-              onChange={setSelectedRadio}
-            >
-              <div className="react-aria-Radio-wrapper">
-                <Radio value="select" />
-                <Select
-                  isDisabled={selectedRadio !== 'select'}
-                  label="Select existing keyword to keep:"
-                  selectionMode="single"
-                  placeholder="Please select ..."
-                  onChange={setName}
-                  items={
-                    selectedKeys === 'all'
-                      ? keywords.items?.map((kw) => ({
-                          label: kw.name,
-                          value: kw.name,
-                        }))
-                      : [...selectedKeys].map((kw) => ({
-                          label: kw,
-                          value: kw,
-                        }))
-                  }
-                />
-              </div>
-              <div className="react-aria-Radio-wrapper">
-                <Radio value="text" />
-                <TextField
-                  isDisabled={selectedRadio !== 'text'}
-                  label="New keyword name:"
-                  placeholder="Please enter new name"
-                  onChange={setName}
-                />
-              </div>
-            </RadioGroup>
-          </div>
-          <div className="modal-actions">
-            <Button
-              onPress={() => {
-                setIsModalOpen(false);
-                setName(null);
-              }}
-            >
-              <FormattedMessage id="Cancel" defaultMessage="Cancel" />
-            </Button>
-            <Button
-              isDisabled={name === null}
-              onPress={() => {
-                handleUpdateKeywords(
-                  name,
-                  selectedKeys === 'all'
-                    ? keywords.items?.map((kw) => kw.name)
-                    : [...selectedKeys],
-                );
-                setIsModalOpen(false);
-                setSelectedKeys(new Set());
-              }}
-            >
-              <FormattedMessage
-                id="Rename & Merge"
-                defaultMessage="Rename & Merge"
-              />
-            </Button>
-          </div>
-        </Modal>
-        <Modal
-          className="confirm-modal"
-          isOpen={isConfirmModalOpen}
-          setIsOpen={setIsConfirmModalOpen}
-        >
-          <div className="modal-header">
-            <h2>
-              <FormattedMessage
-                id="confirm-modal-title"
-                defaultMessage="Delete keyword(s)"
-              />
-            </h2>
-            <Button
-              onPress={() => {
-                setIsConfirmModalOpen(false);
-              }}
-            >
-              <Icon name={clearSVG} />
-            </Button>
-          </div>
-          <div className="modal-body">
-            <p>
-              <FormattedMessage
-                id="confirm-modal-description"
-                defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
-                values={{
-                  num: <strong>{selectionCount}</strong>,
-                }}
-              />
-            </p>
-          </div>
-          <div className="modal-actions">
-            <Button
-              onPress={() => {
-                setIsConfirmModalOpen(false);
-              }}
-            >
-              <FormattedMessage id="Cancel" defaultMessage="Cancel" />
-            </Button>
-            <Button
-              onPress={() => {
-                handleDeleteKeywords(
-                  selectedKeys === 'all'
-                    ? keywords.items?.map((kw) => kw.name)
-                    : [...selectedKeys], // spread into an array since selectedKeys is a Set()
-                );
-                setIsConfirmModalOpen(false);
-                setSelectedKeys(new Set());
-              }}
-            >
-              <FormattedMessage id="Delete" defaultMessage="Delete" />
-            </Button>
-          </div>
-        </Modal>
         <Table
           className="react-aria-Table cmsui-table"
           columns={[

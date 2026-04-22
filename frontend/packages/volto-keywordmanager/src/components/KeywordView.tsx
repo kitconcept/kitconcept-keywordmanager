@@ -30,9 +30,13 @@ const messages = defineMessages({
     id: 'title',
     defaultMessage: 'Title',
   },
-  path: {
-    id: 'path',
-    defaultMessage: 'Path',
+  type: {
+    id: 'type',
+    defaultMessage: 'Type',
+  },
+  state: {
+    id: 'state',
+    defaultMessage: 'State',
   },
   actions: {
     id: 'actions',
@@ -156,9 +160,10 @@ const KeywordView = (props) => {
             isRowHeader: true,
           },
           {
-            id: 'path',
-            name: intl.formatMessage(messages.path),
+            id: 'type',
+            name: intl.formatMessage(messages.type),
           },
+          { id: 'state', name: intl.formatMessage(messages.state) },
           {
             id: 'actions',
             name: intl.formatMessage(messages.actions),
@@ -168,7 +173,8 @@ const KeywordView = (props) => {
           id: item['@id'],
           textValue: item.title,
           title: <p>{item.title}</p>,
-          path: <p>{item['@id']}</p>,
+          type: <p>{item['@type']}</p>,
+          state: <p>{item.review_state}</p>,
           actions: (
             <Button onPress={() => handleDeleteKeywords(item['@id'])}>
               <Icon name={trashSVG} size="20px" />

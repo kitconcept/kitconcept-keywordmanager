@@ -133,7 +133,8 @@
 }
 
 .react-aria-ModalOverlay .rename-modal,
-.react-aria-ModalOverlay .confirm-modal {
+.react-aria-ModalOverlay .delete-modal,
+.react-aria-ModalOverlay .keyword-modal {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -146,6 +147,10 @@
   * h2,
   * p {
     margin: 0;
+  }
+
+  .react-aria-Dialog {
+    padding: 0;
   }
 
   .react-aria-Radio-wrapper {
