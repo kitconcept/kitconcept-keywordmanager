@@ -1,4 +1,5 @@
-import { Spinner, Table, Button, Modal } from '@plone/components';
+import { Spinner, Table, Button } from '@plone/components';
+import { DialogTrigger } from 'react-aria-components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { useEffect, useState } from 'react';
@@ -12,10 +13,10 @@ import Error from '@plone/volto/components/theme/Error/Error';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useClient } from '@plone/volto/hooks';
 import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
+import DeleteModal from './DeleteModal';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
-import clearSVG from '@plone/volto/icons/clear.svg';
 
 const messages = defineMessages({
   back: {
@@ -57,7 +58,6 @@ const KeywordView = (props) => {
   );
   const selectionCount =
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(searchContent('/', { Subject: [id] }, 'keywords'));
@@ -93,64 +93,24 @@ const KeywordView = (props) => {
       </h1>
       <div className="tools">
         <div className="bulk-actions">
-          <Button
-            isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
-            onPress={() => setIsModalOpen(true)}
-          >
-            <Icon name={trashSVG} size="20px" />
-          </Button>
+          <DialogTrigger>
+            <Button
+              isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+            >
+              <Icon name={trashSVG} size="20px" />
+            </Button>
+            <DeleteModal
+              selectionCount={selectionCount}
+              selectedKeys={selectedKeys}
+              keywords={keywords}
+              onConfirm={(keys) => {
+                handleDeleteKeywords(keys);
+                setSelectedKeys(new Set());
+              }}
+            />
+          </DialogTrigger>
         </div>
       </div>
-      <Modal
-        className="confirm-modal"
-        isOpen={isModalOpen}
-        setIsOpen={setIsModalOpen}
-      >
-        <h2>
-          <FormattedMessage
-            id="confirm-modal-title"
-            defaultMessage="Delete keyword(s)"
-          />
-        </h2>
-        <Button
-          onPress={() => {
-            setIsModalOpen(false);
-          }}
-        >
-          <Icon name={clearSVG} />
-        </Button>
-        <p>
-          <FormattedMessage
-            id="confirm-modal-description"
-            defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
-            values={{
-              num: <strong>{selectionCount}</strong>,
-            }}
-          />
-        </p>
-        <div>
-          <Button
-            onPress={() => {
-              setIsModalOpen(false);
-            }}
-          >
-            <FormattedMessage id="Cancel" defaultMessage="Cancel" />
-          </Button>
-          <Button
-            onPress={() => {
-              handleDeleteKeywords(
-                selectedKeys === 'all'
-                  ? keywords.items?.map((kw) => kw.name)
-                  : [...selectedKeys], // spread into an array since selectedKeys is a Set()
-              );
-              setIsModalOpen(false);
-              setSelectedKeys(new Set());
-            }}
-          >
-            <FormattedMessage id="Delete" defaultMessage="Delete" />
-          </Button>
-        </div>
-      </Modal>
       <Table
         className="react-aria-Table cmsui-table"
         columns={[
