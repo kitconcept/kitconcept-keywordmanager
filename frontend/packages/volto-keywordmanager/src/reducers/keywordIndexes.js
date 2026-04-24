@@ -1,13 +1,13 @@
 import { GET_KEYWORD_INDEXES } from 'volto-keywordmanager/constants/KeywordIndexes';
 
-const initalState = {
+const initialState = {
   error: null,
   items: [],
   loaded: false,
   loading: false,
 };
 
-export function keywordIndexes(state = initalState, action = {}) {
+export function keywordIndexes(state = initialState, action = {}) {
   switch (action.type) {
     case `${GET_KEYWORD_INDEXES}_PENDING`:
       return {

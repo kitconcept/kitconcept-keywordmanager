@@ -4,14 +4,14 @@ import {
   UPDATE_KEYWORDS,
 } from 'volto-keywordmanager/constants/Keywords';
 
-const initalState = {
+const initialState = {
   error: null,
   items: [],
   loaded: false,
   loading: false,
 };
 
-export function keywords(state = initalState, action = {}) {
+export function keywords(state = initialState, action = {}) {
   switch (action.type) {
     case `${DELETE_KEYWORDS}_PENDING`:
     case `${GET_KEYWORDS}_PENDING`:
