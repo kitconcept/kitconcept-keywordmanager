@@ -2,7 +2,6 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from kitconcept.keywordmanager import config
 from kitconcept.keywordmanager.interfaces import IKeywordManager
-from kitconcept.keywordmanager.utils import to_str
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from Products.CMFCore.indexing import processQueue
@@ -61,15 +60,7 @@ class KeywordManager:
         if context is not None:
             query["path"] = "/".join(context.getPhysicalPath())
 
-        new_keyword = to_str(new_keyword)
-        try:
-            brains = api.content.find(**query)
-        except UnicodeDecodeError:
-            old_keywords = [
-                k.decode("utf8") if isinstance(k, str) else k for k in old_keywords
-            ]
-            query[indexName] = old_keywords
-            brains = api.content.find(**query)
+        brains = api.content.find(**query)
 
         for brain in brains:
             obj = brain.getObject()
@@ -99,7 +90,7 @@ class KeywordManager:
 
         Returns the number of objects that have been updated.
         """
-        query = {indexName: keywords}
+        # query = {indexName: keywords}
         if context is not None:
             query["path"] = "/".join(context.getPhysicalPath())
         brains = api.content.find(**query)
