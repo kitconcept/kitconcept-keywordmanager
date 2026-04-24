@@ -1,8 +1,9 @@
-import { Spinner, Table, Button } from '@plone/components';
+import { Spinner, Table, Button, SearchField } from '@plone/components';
 import { DialogTrigger } from 'react-aria-components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
-import { useEffect, useState } from 'react';
+import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
+import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
@@ -28,8 +29,8 @@ const messages = defineMessages({
     defaultMessage: 'Loading',
   },
   title: {
-    id: 'title',
-    defaultMessage: 'Title',
+    id: 'title-path',
+    defaultMessage: 'Title / Path',
   },
   type: {
     id: 'type',
@@ -58,10 +59,23 @@ const KeywordView = (props) => {
   );
   const selectionCount =
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
+  // Pagination
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<number>(25);
+  const pageSizes = [25, 50, 100];
+
+  const options = useMemo(
+    () => ({
+      Subject: [id],
+      ...(pageSize !== 25 && { b_size: pageSize }),
+      ...(currentPage !== 0 && { b_start: currentPage }),
+    }),
+    [id, pageSize, currentPage],
+  );
 
   useEffect(() => {
-    dispatch(searchContent('/', { Subject: [id] }, 'keywords'));
-  }, [dispatch, id]);
+    dispatch(searchContent('/', options, 'keywords'));
+  }, [dispatch, options]);
 
   const handleDeleteKeywords = async (kw: string | string[]) => {
     if (typeof kw == 'string') {
@@ -84,31 +98,62 @@ const KeywordView = (props) => {
       id="page-keyword_manager"
       className="ui container controlpanel-keyword-manager"
     >
-      <h1>
+      <h1 className="title">
         <FormattedMessage
           id="keyword-name"
-          defaultMessage="{name}"
+          defaultMessage='Manage Contents For Keyword "{name}"'
           values={{ name: id }}
         />
       </h1>
-      <div className="tools">
-        <div className="bulk-actions">
-          <DialogTrigger>
-            <Button
-              isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
-            >
-              <Icon name={trashSVG} size="20px" />
-            </Button>
-            <DeleteModal
-              selectionCount={selectionCount}
-              selectedKeys={selectedKeys}
-              keywords={keywords}
-              onConfirm={(keys) => {
-                handleDeleteKeywords(keys);
-                setSelectedKeys(new Set());
-              }}
+      <div className="table-heading">
+        <div className="info">
+          <h2>
+            <FormattedMessage
+              id="Keywords"
+              defaultMessage="{num} Keywords"
+              values={{ num: keywords?.total }}
             />
-          </DialogTrigger>
+          </h2>
+          <p>–</p>
+          <p>
+            {selectionCount < 1 ? (
+              <FormattedMessage
+                id="no-selected-keywords"
+                defaultMessage="No keyword selected"
+              />
+            ) : (
+              <FormattedMessage
+                id="number-selected-keywords"
+                defaultMessage="{num} keyword(s) selected"
+                values={{
+                  num: selectionCount,
+                }}
+              />
+            )}
+          </p>
+        </div>
+        <div className="tools">
+          <div className="bulk-actions">
+            <DialogTrigger>
+              <Button
+                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+              >
+                <Icon name={trashSVG} size="20px" />
+              </Button>
+              <DeleteModal
+                selectionCount={selectionCount}
+                selectedKeys={selectedKeys}
+                keywords={keywords}
+                onConfirm={(keys) => {
+                  handleDeleteKeywords(keys);
+                  setSelectedKeys(new Set());
+                }}
+              />
+            </DialogTrigger>
+          </div>
+          <div className="search">
+            <SearchField />
+          </div>
         </div>
       </div>
       <Table
@@ -144,6 +189,38 @@ const KeywordView = (props) => {
         selectionMode="multiple"
         onSelectionChange={setSelectedKeys}
       />
+      {keywords?.total > Math.min(...pageSizes) && (
+        <Pagination
+          current={currentPage}
+          total={Math.ceil(keywords?.total / pageSize)}
+          pageSize={pageSize}
+          pageSizes={pageSizes}
+          onChangePage={(e, { value }) => {
+            setCurrentPage(value);
+            dispatch(
+              searchContent(
+                '/',
+                {
+                  b_size: pageSize,
+                  b_start: pageSize * value,
+                  Subject: [id],
+                },
+                'keywords',
+              ),
+            );
+          }}
+          onChangePageSize={(e, { value }) => {
+            setPageSize(value);
+            dispatch(
+              searchContent(
+                '/',
+                { b_size: value, b_start: currentPage, Subject: [id] },
+                'keywords',
+              ),
+            );
+          }}
+        />
+      )}
       {isClient &&
         createPortal(
           <Toolbar

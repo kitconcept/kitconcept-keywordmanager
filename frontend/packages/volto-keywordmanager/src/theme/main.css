@@ -75,7 +75,9 @@
       border: 1px solid #000;
 
       &[role='columnheader'],
-      &[data-key$=':actions'] {
+      &[data-key$=':actions'],
+      &[data-key$=':type'],
+      &[data-key$=':state'] {
         white-space: nowrap;
 
         > div {
@@ -122,7 +124,8 @@
       transform: none;
     }
 
-    .react-aria-Cell[data-key$=':keyword'] {
+    .react-aria-Cell[data-key$=':keyword'],
+    .react-aria-Cell[data-key$=':title'] {
       width: 100%;
     }
 
