@@ -18,6 +18,9 @@ import DeleteModal from './DeleteModal';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
+import searchSVG from '@plone/volto/icons/zoom.svg';
+import { Select } from '@plone/components';
+import { getTypes } from '@plone/volto/actions/types/types';
 
 const messages = defineMessages({
   back: {
@@ -44,6 +47,10 @@ const messages = defineMessages({
     id: 'actions',
     defaultMessage: 'Actions',
   },
+  searchFieldPlaceholder: {
+    id: 'search',
+    defaultMessage: 'Search',
+  },
 });
 
 const KeywordView = (props) => {
@@ -51,6 +58,7 @@ const KeywordView = (props) => {
   const { id } = useParams<{ id: string }>();
   const intl = useIntl();
   const keywords = useSelector((state) => state.search.subrequests.keywords);
+  const types = useSelector((state) => state.types);
   const dispatch = useDispatch();
   const isClient = useClient();
   const pathname = location.pathname;
@@ -63,14 +71,16 @@ const KeywordView = (props) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(25);
   const pageSizes = [25, 50, 100];
+  const [selectedTypes, setSelectedTypes] = useState<[]>([]);
 
   const options = useMemo(
     () => ({
       Subject: [id],
+      ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
       ...(pageSize !== 25 && { b_size: pageSize }),
       ...(currentPage !== 0 && { b_start: currentPage }),
     }),
-    [id, pageSize, currentPage],
+    [id, selectedTypes, pageSize, currentPage],
   );
 
   useEffect(() => {
@@ -84,14 +94,6 @@ const KeywordView = (props) => {
     await dispatch(deleteKeywords({ items: kw }));
     await dispatch(searchContent('/', { Subject: [id] }, 'keywords'));
   };
-
-  if (keywords?.loading) {
-    return <Spinner label={intl.formatMessage(messages.loading)} />;
-  }
-
-  if (keywords?.error?.status) {
-    return <Error error={keywords.error} />;
-  }
 
   return (
     <div
@@ -151,44 +153,61 @@ const KeywordView = (props) => {
               />
             </DialogTrigger>
           </div>
+          <div>
+            <Select
+              selectionMode="multiple"
+              onChange={setSelectedTypes}
+              items={types?.types.map((type) => ({
+                label: type.title,
+                value: type.title,
+              }))}
+            />
+          </div>
           <div className="search">
-            <SearchField />
+            <SearchField
+              placeholder={intl.formatMessage(messages.searchFieldPlaceholder)}
+            />
+            <Icon name={searchSVG} size="20px" />
           </div>
         </div>
       </div>
-      <Table
-        className="react-aria-Table cmsui-table"
-        columns={[
-          {
-            id: 'title',
-            name: intl.formatMessage(messages.title),
-            isRowHeader: true,
-          },
-          {
-            id: 'type',
-            name: intl.formatMessage(messages.type),
-          },
-          { id: 'state', name: intl.formatMessage(messages.state) },
-          {
-            id: 'actions',
-            name: intl.formatMessage(messages.actions),
-          },
-        ]}
-        rows={keywords?.items?.map((item) => ({
-          id: item['@id'],
-          textValue: item.title,
-          title: <p>{item.title}</p>,
-          type: <p>{item['@type']}</p>,
-          state: <p>{item.review_state}</p>,
-          actions: (
-            <Button onPress={() => handleDeleteKeywords(item['@id'])}>
-              <Icon name={trashSVG} size="20px" />
-            </Button>
-          ),
-        }))}
-        selectionMode="multiple"
-        onSelectionChange={setSelectedKeys}
-      />
+      {keywords?.loaded ? (
+        <Table
+          className="react-aria-Table cmsui-table"
+          columns={[
+            {
+              id: 'title',
+              name: intl.formatMessage(messages.title),
+              isRowHeader: true,
+            },
+            {
+              id: 'type',
+              name: intl.formatMessage(messages.type),
+            },
+            { id: 'state', name: intl.formatMessage(messages.state) },
+            {
+              id: 'actions',
+              name: intl.formatMessage(messages.actions),
+            },
+          ]}
+          rows={keywords?.items?.map((item) => ({
+            id: item['@id'],
+            textValue: item.title,
+            title: <p>{item.title}</p>,
+            type: <p>{item['@type']}</p>,
+            state: <p>{item.review_state}</p>,
+            actions: (
+              <Button onPress={() => handleDeleteKeywords(item['@id'])}>
+                <Icon name={trashSVG} size="20px" />
+              </Button>
+            ),
+          }))}
+          selectionMode="multiple"
+          onSelectionChange={setSelectedKeys}
+        />
+      ) : (
+        <Spinner label={intl.formatMessage(messages.loading)} />
+      )}
       {keywords?.total > Math.min(...pageSizes) && (
         <Pagination
           current={currentPage}
