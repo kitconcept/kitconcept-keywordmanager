@@ -239,7 +239,6 @@ class KeywordManager:
 
         # other
         fieldName = self.fieldNameForIndex(indexName)
-        field = None
 
         # Dexterity
         if IDexterityContent.providedBy(obj):
@@ -252,19 +251,6 @@ class KeywordManager:
         # Always reindex discussion objects, since their values will have been acquired
         if IComment.providedBy(obj):
             return lambda value: None
-
-        # Anything left is maybe AT content
-        field = getattr(aq_base(obj), "getField", None)
-        # Archetypes:
-        if field:
-            fieldObj = field(fieldName) or field(fieldName.lower())
-            if not fieldObj and fieldName.startswith("get"):
-                fieldName = fieldName.lstrip("get_")
-                fieldName = fieldName[0].lower() + fieldName[1:]
-                fieldObj = obj.getField(fieldName)
-            if fieldObj is not None:
-                return fieldObj.getMutator(obj)
-            return None
 
         return None
 
