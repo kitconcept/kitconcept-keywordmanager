@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-25 17:12+0000\n"
+"POT-Creation-Date: 2026-04-23 20:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,3 +13,27 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+
+#: kitconcept/keywordmanager/profiles.zcml:13
+msgid "Change, merge and delete keywords (subjects) in Plone."
+msgstr ""
+
+#: kitconcept/keywordmanager/profiles.zcml:22
+msgid "Create example content to showcase this addon."
+msgstr ""
+
+#: kitconcept/keywordmanager/profiles.zcml:22
+msgid "Keyword Manager: Example content"
+msgstr ""
+
+#: kitconcept/keywordmanager/profiles.zcml:13
+msgid "Keyword Manager: Install"
+msgstr ""
+
+#: kitconcept/keywordmanager/profiles.zcml:30
+msgid "Keyword Manager: Uninstall"
+msgstr ""
+
+#: kitconcept/keywordmanager/profiles.zcml:30
+msgid "Uninstall Keyword Manager setup."
+msgstr ""

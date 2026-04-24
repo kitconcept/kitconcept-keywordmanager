@@ -1,0 +1,22 @@
+MANAGE_KEYWORDS_PERMISSION = "kitconcept.keywordmanager: Manage Keywords"
+
+# Meta type of the keyword indexes. If you're one of those crazy people that use
+# custom indexes, you'll want to update this.
+META_TYPE = "KeywordIndex"
+
+# indexes of META_TYPE we know we don't want to manage, because bad things(tm)
+# will happen
+IGNORE_INDEXES = [
+    "object_provides",
+    "allowedRolesAndUsers",
+    "getRawRelatedItems",
+    "getEventType",
+    "block_types",
+]
+
+# A list of indexes that should always be reindexed when merging or deleting
+# keywords on objects. Most people won't need this.
+ALWAYS_REINDEX = (
+    # 'Subject',
+    "SearchableText",
+)
