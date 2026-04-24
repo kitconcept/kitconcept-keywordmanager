@@ -1,4 +1,4 @@
-MANAGE_KEYWORDS_PERMISSION = "Manage Keywords"
+MANAGE_KEYWORDS_PERMISSION = "kitconcept.keywordmanager: Manage Keywords"
 
 # Meta type of the keyword indexes. If you're one of those crazy people that use
 # custom indexes, you'll want to update this.
