@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <permissions>
-    <!-- -*- extra stuff goes here -*- -->
+    <permission acquire="True"
+                name="kitconcept.keywordmanager: Manage Keywords"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
   </permissions>
 </rolemap>
