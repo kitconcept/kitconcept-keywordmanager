@@ -1,4 +1,4 @@
-import { Spinner, Table, Button, SearchField } from '@plone/components';
+import { Spinner, Table, Button, SearchField, Select } from '@plone/components';
 import { DialogTrigger } from 'react-aria-components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
@@ -15,12 +15,13 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useClient } from '@plone/volto/hooks';
 import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
 import DeleteModal from './DeleteModal';
+import { getTypes } from '@plone/volto/actions/types/types';
+import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
 
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
-import { Select } from '@plone/components';
-import { getTypes } from '@plone/volto/actions/types/types';
+import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 
 const messages = defineMessages({
   back: {
@@ -47,6 +48,14 @@ const messages = defineMessages({
     id: 'actions',
     defaultMessage: 'Actions',
   },
+  selectTypePlaceholder: {
+    id: 'All types',
+    defaultMessage: 'All types',
+  },
+  selectStatePlaceholder: {
+    id: 'All states',
+    defaultMessage: 'All states',
+  },
   searchFieldPlaceholder: {
     id: 'search',
     defaultMessage: 'Search',
@@ -58,7 +67,13 @@ const KeywordView = (props) => {
   const { id } = useParams<{ id: string }>();
   const intl = useIntl();
   const keywords = useSelector((state) => state.search.subrequests.keywords);
-  const types = useSelector((state) => state.types);
+  const types = useSelector(
+    (state) =>
+      state.vocabularies['plone.app.vocabularies.ReallyUserFriendlyTypes'],
+  );
+  const states = useSelector(
+    (state) => state.vocabularies['plone.app.vocabularies.WorkflowStates'],
+  );
   const dispatch = useDispatch();
   const isClient = useClient();
   const pathname = location.pathname;
@@ -72,19 +87,33 @@ const KeywordView = (props) => {
   const [pageSize, setPageSize] = useState<number>(25);
   const pageSizes = [25, 50, 100];
   const [selectedTypes, setSelectedTypes] = useState<[]>([]);
+  const [selectedStates, setSelectedStates] = useState<[]>([]);
+  const [search, setSearch] = useState<string>('');
 
   const options = useMemo(
     () => ({
       Subject: [id],
       ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
+      ...(selectedStates.length > 0 && { review_state: selectedStates }),
+      ...(search && { SearchableText: search }),
       ...(pageSize !== 25 && { b_size: pageSize }),
       ...(currentPage !== 0 && { b_start: currentPage }),
     }),
-    [id, selectedTypes, pageSize, currentPage],
+    [id, selectedTypes, selectedStates, search, pageSize, currentPage],
   );
 
   useEffect(() => {
     dispatch(searchContent('/', options, 'keywords'));
+    dispatch(
+      getVocabulary({
+        vocabNameOrURL: 'plone.app.vocabularies.ReallyUserFriendlyTypes',
+      }),
+    );
+    dispatch(
+      getVocabulary({
+        vocabNameOrURL: 'plone.app.vocabularies.WorkflowStates',
+      }),
+    );
   }, [dispatch, options]);
 
   const handleDeleteKeywords = async (kw: string | string[]) => {
@@ -153,25 +182,41 @@ const KeywordView = (props) => {
               />
             </DialogTrigger>
           </div>
-          <div>
+          <div className="select-portal_type">
             <Select
               selectionMode="multiple"
+              placeholder={intl.formatMessage(messages.selectTypePlaceholder)}
               onChange={setSelectedTypes}
-              items={types?.types.map((type) => ({
-                label: type.title,
-                value: type.title,
+              items={types?.items?.map((item) => ({
+                label: item.value,
+                value: <FormattedMessage id={item.label} />,
+              }))}
+            />
+          </div>
+          <div className="select-review_state">
+            <Select
+              selectionMode="multiple"
+              placeholder={intl.formatMessage(messages.selectStatePlaceholder)}
+              onChange={setSelectedStates}
+              items={states?.items?.map((item) => ({
+                label: item.value,
+                value: item.label,
               }))}
             />
           </div>
           <div className="search">
             <SearchField
               placeholder={intl.formatMessage(messages.searchFieldPlaceholder)}
-            />
-            <Icon name={searchSVG} size="20px" />
+              onSubmit={setSearch}
+            >
+              <Button>
+                <Icon name={searchSVG} size="20px" />
+              </Button>
+            </SearchField>
           </div>
         </div>
       </div>
-      {keywords?.loaded ? (
+      {keywords?.loaded && keywords?.items.length > 0 ? (
         <Table
           className="react-aria-Table cmsui-table"
           columns={[
