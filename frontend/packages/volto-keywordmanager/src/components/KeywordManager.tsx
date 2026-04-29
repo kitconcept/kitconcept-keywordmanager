@@ -289,7 +289,7 @@ const KeywordManager = (props) => {
             actions: (
               <div>
                 <UniversalLink
-                  href={`${pathname}/${kw.name}`}
+                  href={`${pathname}/${keywordIndex}/${kw.name}`}
                   openLinkInNewTab={true}
                 >
                   <Icon name={showSVG} size="20px" />

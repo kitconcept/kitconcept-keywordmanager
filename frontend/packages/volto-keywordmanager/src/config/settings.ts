@@ -17,7 +17,7 @@ export default function install(config: ConfigType) {
   config.addonRoutes = [
     ...config.addonRoutes,
     {
-      path: '/controlpanel/keyword-manager/:id',
+      path: '/controlpanel/keyword-manager/:keywordIndex/:id',
       component: KeywordView,
     },
     {

@@ -1,27 +1,23 @@
-import { Spinner, Table, Button, SearchField, Select } from '@plone/components';
-import { DialogTrigger } from 'react-aria-components';
+import { Button, SearchField, Select, Spinner, Table } from '@plone/components';
+import { searchContent } from '@plone/volto/actions/search/search';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
-import { useEffect, useMemo, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
-import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { searchContent } from '@plone/volto/actions/search/search';
-import Error from '@plone/volto/components/theme/Error/Error';
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useClient } from '@plone/volto/hooks';
+import { useEffect, useMemo, useState } from 'react';
+import { DialogTrigger } from 'react-aria-components';
+import { createPortal } from 'react-dom';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
 import DeleteModal from './DeleteModal';
-import { getTypes } from '@plone/volto/actions/types/types';
-import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
 
+import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
-import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 
 const messages = defineMessages({
   back: {
@@ -64,7 +60,7 @@ const messages = defineMessages({
 
 const KeywordView = (props) => {
   const { location } = props;
-  const { id } = useParams<{ id: string }>();
+  const { keywordIndex, id } = useParams<{ id: string }>();
   const intl = useIntl();
   const keywords = useSelector((state) => state.search.subrequests.keywords);
   const types = useSelector(
@@ -92,14 +88,22 @@ const KeywordView = (props) => {
 
   const options = useMemo(
     () => ({
-      Subject: [id],
+      [keywordIndex]: [id],
       ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
       ...(selectedStates.length > 0 && { review_state: selectedStates }),
       ...(search && { SearchableText: search }),
       ...(pageSize !== 25 && { b_size: pageSize }),
       ...(currentPage !== 0 && { b_start: currentPage }),
     }),
-    [id, selectedTypes, selectedStates, search, pageSize, currentPage],
+    [
+      keywordIndex,
+      id,
+      selectedTypes,
+      selectedStates,
+      search,
+      pageSize,
+      currentPage,
+    ],
   );
 
   useEffect(() => {
