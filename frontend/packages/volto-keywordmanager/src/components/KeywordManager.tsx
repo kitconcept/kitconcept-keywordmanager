@@ -284,8 +284,8 @@ const KeywordManager = (props) => {
           rows={keywords.items?.map((kw) => ({
             id: kw.name,
             textValue: kw.name,
-            keyword: <p>{kw.name}</p>,
-            occurrence: <p>{kw.total}</p>,
+            keyword: kw.name,
+            occurrence: kw.total,
             actions: (
               <div>
                 <UniversalLink

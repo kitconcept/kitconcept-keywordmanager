@@ -62,17 +62,12 @@
 
   .react-aria-Table.cmsui-table {
     width: 100%;
-    border-collapse: collapse;
-
-    .react-aria-TableHeader {
-      background: #f6f3f3;
-    }
 
     .react-aria-Column,
     .react-aria-Cell {
       height: 36px;
-      padding: 0 10px;
-      border: 1px solid #000;
+      padding: 10px;
+      border: none;
 
       &[role='columnheader'],
       &[data-key$=':actions'],
@@ -87,6 +82,23 @@
           a {
             /* this is to center the eye icon in the actions column */
             height: 20px;
+          }
+        }
+      }
+
+      .keywords {
+        display: flex;
+        gap: 5px;
+
+        span {
+          padding: 1px 10px;
+          background: #e6e6e6;
+          border: 1px solid #a0a0a0;
+          border-radius: 6px;
+
+          &.current {
+            background: #d1d6f1;
+            border-color: #bbc2e9;
           }
         }
       }
@@ -107,30 +119,40 @@
       * svg {
         color: #000;
       }
-
-      /* border-radius on first/last cell clips the rows background in google-chrome */
-      &:first-child,
-      &:last-child {
-        border-radius: 0;
-      }
     }
 
-    .react-aria-Row[data-selected] {
-      /* fix for background overlapping the border in firefox */
-      position: unset;
-      background: #bbc2e9;
-      clip-path: none;
-      color: #000;
-      transform: none;
+    tr[role='row'] {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.2) 0%,
+          #0e0e0e 14%,
+          #565656 84%,
+          rgba(102, 102, 102, 0.2) 100%
+        );
+      }
+
+      &.react-aria-Row:hover {
+        background: #f0f2ff;
+      }
+
+      &[data-selected] {
+        background: #d1d6f1;
+        color: #000;
+      }
     }
 
     .react-aria-Cell[data-key$=':keyword'],
     .react-aria-Cell[data-key$=':title'] {
       width: 100%;
-    }
-
-    .react-aria-Cell[data-key$=':occurrence'] {
-      text-align: right;
     }
   }
 }

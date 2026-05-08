@@ -3,7 +3,7 @@ import { searchContent } from '@plone/volto/actions/search/search';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
-import { getParentUrl } from '@plone/volto/helpers/Url/Url';
+import { flattenToAppURL, getParentUrl } from '@plone/volto/helpers/Url/Url';
 import { useClient } from '@plone/volto/hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { DialogTrigger } from 'react-aria-components';
@@ -18,6 +18,7 @@ import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
+import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 
 const messages = defineMessages({
   back: {
@@ -40,9 +41,9 @@ const messages = defineMessages({
     id: 'state',
     defaultMessage: 'State',
   },
-  actions: {
-    id: 'actions',
-    defaultMessage: 'Actions',
+  action: {
+    id: 'action',
+    defaultMessage: 'Action',
   },
   selectTypePlaceholder: {
     id: 'All types',
@@ -89,6 +90,7 @@ const KeywordView = (props) => {
   const options = useMemo(
     () => ({
       [keywordIndex]: [id],
+      metadata_fields: keywordIndex,
       ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
       ...(selectedStates.length > 0 && { review_state: selectedStates }),
       ...(search && { SearchableText: search }),
@@ -125,7 +127,7 @@ const KeywordView = (props) => {
       kw = [kw];
     }
     await dispatch(deleteKeywords({ items: kw }));
-    await dispatch(searchContent('/', { Subject: [id] }, 'keywords'));
+    await dispatch(searchContent('/', options, 'keywords'));
   };
 
   return (
@@ -204,7 +206,7 @@ const KeywordView = (props) => {
               onChange={setSelectedStates}
               items={states?.items?.map((item) => ({
                 label: item.value,
-                value: item.label,
+                value: <FormattedMessage id={item.label} />,
               }))}
             />
           </div>
@@ -235,18 +237,39 @@ const KeywordView = (props) => {
             },
             { id: 'state', name: intl.formatMessage(messages.state) },
             {
-              id: 'actions',
-              name: intl.formatMessage(messages.actions),
+              id: 'action',
+              name: intl.formatMessage(messages.action),
             },
           ]}
-          rows={keywords?.items?.map((item) => ({
-            id: item['@id'],
-            textValue: item.title,
-            title: <p>{item.title}</p>,
-            type: <p>{item['@type']}</p>,
-            state: <p>{item.review_state}</p>,
-            actions: (
-              <Button onPress={() => handleDeleteKeywords(item['@id'])}>
+          rows={keywords?.items?.map((obj) => ({
+            id: obj['@id'],
+            textValue: obj.title,
+            title: (
+              <>
+                <UniversalLink href={obj['@id'] || '/'}>
+                  {obj.title}
+                </UniversalLink>
+                {flattenToAppURL(obj['@id']) || '/'}
+                <div className="keywords">
+                  {obj.Subject.map((item) => (
+                    <span key={item} className={item === id && 'current'}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </>
+            ),
+            type: <p>{obj.type_title}</p>,
+            state: (
+              <FormattedMessage
+                id={
+                  states?.items?.find((item) => item.value === obj.review_state)
+                    ?.label ?? 'no workflow state'
+                }
+              />
+            ),
+            action: (
+              <Button onPress={() => handleDeleteKeywords(obj['@id'])}>
                 <Icon name={trashSVG} size="20px" />
               </Button>
             ),
@@ -295,7 +318,7 @@ const KeywordView = (props) => {
             pathname={pathname}
             hideDefaultViewButtons
             inner={
-              <Link to={getParentUrl(pathname)} className="item">
+              <Link to={'/controlpanel/keyword-manager'} className="item">
                 <Icon
                   name={backSVG}
                   className="contents circled"
