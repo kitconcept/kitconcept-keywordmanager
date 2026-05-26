@@ -128,114 +128,106 @@ const KeywordManager = (props) => {
     await dispatch(getKeywords(options));
   };
 
-  if (keywords.loading) {
-    return <Spinner label={intl.formatMessage(messages.loading)} />;
-  }
-
   if (keywords?.error?.status) {
     return <Error error={keywords.error} />;
   }
 
   return (
-    keywords.loaded && (
-      <div
-        id="page-keyword_manager"
-        className="ui container controlpanel-keyword-manager"
-      >
-        <h1 className="title">
+    <div
+      id="page-keyword_manager"
+      className="ui container controlpanel-keyword-manager"
+    >
+      <h1 className="title">
+        <FormattedMessage
+          id="Keyword Manager"
+          defaultMessage="Keyword Manager"
+        />
+      </h1>
+      <p className="description">
+        <FormattedMessage
+          id="keyword-manager-description"
+          defaultMessage="The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+        />
+      </p>
+      <div>
+        <p>
           <FormattedMessage
-            id="Keyword Manager"
-            defaultMessage="Keyword Manager"
-          />
-        </h1>
-        <p className="description">
-          <FormattedMessage
-            id="keyword-manager-description"
-            defaultMessage="The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+            id="keyword-field"
+            defaultMessage="Keyword field: "
           />
         </p>
-        <div>
+        <Select
+          selectionMode="single"
+          value={keywordIndex}
+          onChange={setKeywordIndex}
+          items={keywordIndexes?.items.map((idx) => ({
+            label: idx,
+            value: idx,
+          }))}
+        />
+      </div>
+      <div className="table-heading">
+        <div className="info">
+          <h2>
+            <FormattedMessage id="Keywords" defaultMessage="Keywords" />
+          </h2>
+          <p>–</p>
           <p>
-            <FormattedMessage
-              id="keyword-field"
-              defaultMessage="Keyword field: "
-            />
+            {selectionCount < 1 ? (
+              <FormattedMessage
+                id="no-selected-keywords"
+                defaultMessage="No keyword selected"
+              />
+            ) : (
+              <FormattedMessage
+                id="number-selected-keywords"
+                defaultMessage="{num} keyword(s) selected"
+                values={{
+                  num: selectionCount,
+                }}
+              />
+            )}
           </p>
-          <Select
-            selectionMode="single"
-            value={keywordIndex}
-            onChange={setKeywordIndex}
-            items={keywordIndexes?.items.map((idx) => ({
-              label: idx,
-              value: idx,
-            }))}
-          />
         </div>
-        <div className="table-heading">
-          <div className="info">
-            <h2>
-              <FormattedMessage id="Keywords" defaultMessage="Keywords" />
-            </h2>
-            <p>–</p>
-            <p>
-              {selectionCount < 1 ? (
-                <FormattedMessage
-                  id="no-selected-keywords"
-                  defaultMessage="No keyword selected"
-                />
-              ) : (
-                <FormattedMessage
-                  id="number-selected-keywords"
-                  defaultMessage="{num} keyword(s) selected"
-                  values={{
-                    num: selectionCount,
-                  }}
-                />
-              )}
-            </p>
-          </div>
-          <div className="tools">
-            <div className="bulk-actions">
-              <DialogTrigger>
-                <Button
-                  isDisabled={
-                    selectedKeys !== 'all' && selectedKeys?.size === 0
-                  }
-                >
-                  <Icon name={replaceSVG} size="20px" />
-                </Button>
-                <RenameModal
-                  selectionCount={selectionCount}
-                  selectedKeys={selectedKeys}
-                  keywords={keywords}
-                  onConfirm={(newName, oldNames) => {
-                    handleUpdateKeywords(newName, oldNames);
-                    setSelectedKeys(new Set());
-                  }}
-                />
-              </DialogTrigger>
+        <div className="tools">
+          <div className="bulk-actions">
+            <DialogTrigger>
+              <Button
+                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+              >
+                <Icon name={replaceSVG} size="20px" />
+              </Button>
+              <RenameModal
+                selectionCount={selectionCount}
+                selectedKeys={selectedKeys}
+                keywords={keywords}
+                onConfirm={(newName, oldNames) => {
+                  handleUpdateKeywords(newName, oldNames);
+                  setSelectedKeys(new Set());
+                }}
+              />
+            </DialogTrigger>
 
-              <DialogTrigger>
-                <Button
-                  isDisabled={
-                    selectedKeys !== 'all' && selectedKeys?.size === 0
-                  }
-                >
-                  <Icon name={trashSVG} size="20px" />
-                </Button>
-                <DeleteModal
-                  selectionCount={selectionCount}
-                  selectedKeys={selectedKeys}
-                  keywords={keywords}
-                  onConfirm={(keys) => {
-                    handleDeleteKeywords(keys);
-                    setSelectedKeys(new Set());
-                  }}
-                />
-              </DialogTrigger>
-            </div>
+            <DialogTrigger>
+              <Button
+                isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
+              >
+                <Icon name={trashSVG} size="20px" />
+              </Button>
+              <DeleteModal
+                selectionCount={selectionCount}
+                selectedKeys={selectedKeys}
+                keywords={keywords}
+                onConfirm={(keys) => {
+                  handleDeleteKeywords(keys);
+                  setSelectedKeys(new Set());
+                }}
+              />
+            </DialogTrigger>
           </div>
         </div>
+      </div>
+      {keywords.loaded ? (
         <Table
           className="react-aria-Table cmsui-table"
           columns={[
@@ -303,54 +295,56 @@ const KeywordManager = (props) => {
           selectionMode="multiple"
           onSelectionChange={setSelectedKeys}
         />
-        {keywords?.items_total > Math.min(...pageSizes) && (
-          <Pagination
-            current={currentPage}
-            total={Math.ceil(keywords?.items_total / pageSize)}
-            pageSize={pageSize}
-            pageSizes={pageSizes}
-            onChangePage={(e, { value }) => {
-              setCurrentPage(value);
-              dispatch(
-                getKeywords({
-                  batchSize: pageSize,
-                  batchStart: pageSize * value,
-                  ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
-                }),
-              );
-            }}
-            onChangePageSize={(e, { value }) => {
-              setPageSize(value);
-              dispatch(
-                getKeywords({
-                  batchSize: value,
-                  batchStart: currentPage,
-                  ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
-                }),
-              );
-            }}
-          />
+      ) : (
+        <Spinner label={intl.formatMessage(messages.loading)} />
+      )}
+      {keywords?.items_total > Math.min(...pageSizes) && (
+        <Pagination
+          current={currentPage}
+          total={Math.ceil(keywords?.items_total / pageSize)}
+          pageSize={pageSize}
+          pageSizes={pageSizes}
+          onChangePage={(e, { value }) => {
+            setCurrentPage(value);
+            dispatch(
+              getKeywords({
+                batchSize: pageSize,
+                batchStart: pageSize * value,
+                ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
+              }),
+            );
+          }}
+          onChangePageSize={(e, { value }) => {
+            setPageSize(value);
+            dispatch(
+              getKeywords({
+                batchSize: value,
+                batchStart: currentPage,
+                ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
+              }),
+            );
+          }}
+        />
+      )}
+      {isClient &&
+        createPortal(
+          <Toolbar
+            pathname={pathname}
+            hideDefaultViewButtons
+            inner={
+              <Link to={getParentUrl(pathname)} className="item">
+                <Icon
+                  name={backSVG}
+                  className="contents circled"
+                  size="30px"
+                  title={intl.formatMessage(messages.back)}
+                />
+              </Link>
+            }
+          />,
+          document.getElementById('toolbar') as HTMLElement,
         )}
-        {isClient &&
-          createPortal(
-            <Toolbar
-              pathname={pathname}
-              hideDefaultViewButtons
-              inner={
-                <Link to={getParentUrl(pathname)} className="item">
-                  <Icon
-                    name={backSVG}
-                    className="contents circled"
-                    size="30px"
-                    title={intl.formatMessage(messages.back)}
-                  />
-                </Link>
-              }
-            />,
-            document.getElementById('toolbar') as HTMLElement,
-          )}
-      </div>
-    )
+    </div>
   );
 };
 
