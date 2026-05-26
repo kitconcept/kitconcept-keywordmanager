@@ -149,23 +149,25 @@ const KeywordManager = (props) => {
           defaultMessage="The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
         />
       </p>
-      <div>
-        <p>
-          <FormattedMessage
-            id="keyword-field"
-            defaultMessage="Keyword field: "
+      {keywordIndexes?.items?.length > 1 && (
+        <div>
+          <p>
+            <FormattedMessage
+              id="keyword-field"
+              defaultMessage="Keyword field: "
+            />
+          </p>
+          <Select
+            selectionMode="single"
+            value={keywordIndex}
+            onChange={setKeywordIndex}
+            items={keywordIndexes?.items.map((idx) => ({
+              label: idx,
+              value: idx,
+            }))}
           />
-        </p>
-        <Select
-          selectionMode="single"
-          value={keywordIndex}
-          onChange={setKeywordIndex}
-          items={keywordIndexes?.items.map((idx) => ({
-            label: idx,
-            value: idx,
-          }))}
-        />
-      </div>
+        </div>
+      )}
       <div className="table-heading">
         <div className="info">
           <h2>
