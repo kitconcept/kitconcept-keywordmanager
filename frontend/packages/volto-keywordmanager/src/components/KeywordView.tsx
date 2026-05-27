@@ -18,6 +18,7 @@ import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
+import circleDismissSVG from '@plone/volto/icons/circle-dismiss.svg';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 
 const messages = defineMessages({
@@ -40,10 +41,6 @@ const messages = defineMessages({
   state: {
     id: 'state',
     defaultMessage: 'State',
-  },
-  action: {
-    id: 'action',
-    defaultMessage: 'Action',
   },
   selectTypePlaceholder: {
     id: 'All types',
@@ -236,10 +233,6 @@ const KeywordView = (props) => {
               name: intl.formatMessage(messages.type),
             },
             { id: 'state', name: intl.formatMessage(messages.state) },
-            {
-              id: 'action',
-              name: intl.formatMessage(messages.action),
-            },
           ]}
           rows={keywords?.items?.map((obj) => ({
             id: obj['@id'],
@@ -254,6 +247,9 @@ const KeywordView = (props) => {
                   {obj.Subject.map((item) => (
                     <span key={item} className={item === id && 'current'}>
                       {item}
+                      <Button onPress={() => handleDeleteKeywords(obj['@id'])}>
+                        <Icon name={circleDismissSVG} size="16px" />
+                      </Button>
                     </span>
                   ))}
                 </div>
@@ -267,11 +263,6 @@ const KeywordView = (props) => {
                     ?.label ?? 'no workflow state'
                 }
               />
-            ),
-            action: (
-              <Button onPress={() => handleDeleteKeywords(obj['@id'])}>
-                <Icon name={trashSVG} size="20px" />
-              </Button>
             ),
           }))}
           selectionMode="multiple"
