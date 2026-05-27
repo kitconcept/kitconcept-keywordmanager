@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-04-23T20:58:48.705Z\n"
+"POT-Creation-Date: 2026-05-27T08:03:35.484Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -18,6 +18,16 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#. Default: "All states"
+#: components/KeywordView
+msgid "All states"
+msgstr ""
+
+#. Default: "All types"
+#: components/KeywordView
+msgid "All types"
+msgstr ""
+
 #. Default: "Back"
 #: components/KeywordManager
 #: components/KeywordView
@@ -28,6 +38,11 @@ msgstr ""
 #: components/DeleteModal
 #: components/RenameModal
 msgid "Cancel"
+msgstr ""
+
+#. Default: "{num} Contents"
+#: components/KeywordView
+msgid "Contents"
 msgstr ""
 
 #. Default: "Delete"
@@ -60,9 +75,9 @@ msgstr ""
 msgid "Rename & Merge"
 msgstr ""
 
-#. Default: "Actions"
+#. Default: "Action"
 #: components/KeywordView
-msgid "actions"
+msgid "action"
 msgstr ""
 
 #. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
@@ -85,7 +100,7 @@ msgstr ""
 msgid "keyword-manager-description"
 msgstr ""
 
-#. Default: "{name}"
+#. Default: "Manage Contents For Keyword \"{name}\""
 #: components/KeywordView
 msgid "keyword-name"
 msgstr ""
@@ -96,14 +111,24 @@ msgstr ""
 msgid "loading"
 msgstr ""
 
+#. Default: "No content selected"
+#: components/KeywordView
+msgid "no-content-selected"
+msgstr ""
+
 #. Default: "No keyword selected"
 #: components/KeywordManager
-msgid "no-selected-keywords"
+msgid "no-keyword-selected"
+msgstr ""
+
+#. Default: "{num} content(s) selected"
+#: components/KeywordView
+msgid "number-contents-selected"
 msgstr ""
 
 #. Default: "{num} keyword(s) selected"
 #: components/KeywordManager
-msgid "number-selected-keywords"
+msgid "number-keywords-selected"
 msgstr ""
 
 #. Default: "You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
@@ -116,14 +141,19 @@ msgstr ""
 msgid "rename-modal-title"
 msgstr ""
 
+#. Default: "Search"
+#: components/KeywordView
+msgid "search"
+msgstr ""
+
 #. Default: "State"
 #: components/KeywordView
 msgid "state"
 msgstr ""
 
-#. Default: "Title"
+#. Default: "Title / Path"
 #: components/KeywordView
-msgid "title"
+msgid "title-path"
 msgstr ""
 
 #. Default: "Type"
