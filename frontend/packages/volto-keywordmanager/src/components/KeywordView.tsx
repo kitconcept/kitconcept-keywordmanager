@@ -244,7 +244,7 @@ const KeywordView = (props) => {
                 </UniversalLink>
                 {flattenToAppURL(obj['@id']) || '/'}
                 <div className="keywords">
-                  {obj.Subject.map((item) => (
+                  {obj[keywordIndex].map((item) => (
                     <span key={item} className={item === id && 'current'}>
                       {item}
                       <Button onPress={() => handleDeleteKeywords(obj['@id'])}>
