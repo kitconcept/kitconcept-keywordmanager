@@ -277,8 +277,10 @@ const KeywordView = (props) => {
           selectionMode="multiple"
           onSelectionChange={setSelectedKeys}
         />
-      ) : (
+      ) : keywords?.loading ? (
         <Spinner label={intl.formatMessage(messages.loading)} />
+      ) : (
+        <div>No results.</div>
       )}
       {keywords?.total > Math.min(...pageSizes) && (
         <Pagination
