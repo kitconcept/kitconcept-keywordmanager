@@ -177,12 +177,12 @@ const KeywordManager = (props) => {
           <p>
             {selectionCount < 1 ? (
               <FormattedMessage
-                id="no-selected-keywords"
+                id="no-keyword-selected"
                 defaultMessage="No keyword selected"
               />
             ) : (
               <FormattedMessage
-                id="number-selected-keywords"
+                id="number-keywords-selected"
                 defaultMessage="{num} keyword(s) selected"
                 values={{
                   num: selectionCount,

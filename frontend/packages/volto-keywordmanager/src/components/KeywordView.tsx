@@ -3,7 +3,7 @@ import { searchContent } from '@plone/volto/actions/search/search';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
-import { flattenToAppURL, getParentUrl } from '@plone/volto/helpers/Url/Url';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { useClient } from '@plone/volto/hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { DialogTrigger } from 'react-aria-components';
@@ -146,8 +146,8 @@ const KeywordView = (props) => {
         <div className="info">
           <h2>
             <FormattedMessage
-              id="Keywords"
-              defaultMessage="{num} Keywords"
+              id="Contents"
+              defaultMessage="{num} Contents"
               values={{ num: keywords?.total }}
             />
           </h2>
@@ -155,13 +155,13 @@ const KeywordView = (props) => {
           <p>
             {selectionCount < 1 ? (
               <FormattedMessage
-                id="no-selected-keywords"
-                defaultMessage="No keyword selected"
+                id="no-content-selected"
+                defaultMessage="No content selected"
               />
             ) : (
               <FormattedMessage
-                id="number-selected-keywords"
-                defaultMessage="{num} keyword(s) selected"
+                id="number-contents-selected"
+                defaultMessage="{num} content(s) selected"
                 values={{
                   num: selectionCount,
                 }}
