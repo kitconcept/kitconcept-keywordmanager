@@ -144,7 +144,7 @@
         );
       }
 
-      &.react-aria-Row:hover {
+      &.react-aria-Row:hover:not([data-selected]) {
         background: #f0f2ff;
       }
 
