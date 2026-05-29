@@ -1,8 +1,8 @@
-# Keyword Manager 🚀
+# kitconcept-keywordmanager 🚀
 
 [![Built with Cookieplone](https://img.shields.io/badge/built%20with-Cookieplone-0083be.svg?logo=cookiecutter)](https://github.com/plone/cookieplone-templates/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![CI](https://github.com/kitconcept/kitconcept.keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept.keywordmanager/actions/workflows/main.yml)
+[![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
 Change, merge and delete keywords (subjects) in Plone.
 
@@ -13,7 +13,7 @@ Change, merge and delete keywords (subjects) in Plone.
 -   An [operating system](https://6.docs.plone.org/install/create-project-cookieplone.html#prerequisites-for-installation) that runs all the requirements mentioned.
 -   [uv](https://6.docs.plone.org/install/create-project-cookieplone.html#uv)
 -   [nvm](https://6.docs.plone.org/install/create-project-cookieplone.html#nvm)
--   [Node.js and pnpm](https://6.docs.plone.org/install/create-project.html#node-js) 22
+-   [Node.js and pnpm](https://6.docs.plone.org/install/create-project.html#node-js) 24
 -   [Make](https://6.docs.plone.org/install/create-project-cookieplone.html#make)
 -   [Git](https://6.docs.plone.org/install/create-project-cookieplone.html#git)
 -   [Docker](https://docs.docker.com/get-started/get-docker/) (optional)
@@ -24,8 +24,8 @@ Change, merge and delete keywords (subjects) in Plone.
 1.  Clone this repository, then change your working directory.
 
     ```shell
-    git clone git@github.com:kitconcept/kitconcept.keywordmanager.git
-    cd kitconcept.keywordmanager
+    git clone git@github.com:kitconcept/kitconcept-keywordmanager.git
+    cd kitconcept-keywordmanager
     ```
 
 2.  Install this code base.
@@ -63,7 +63,7 @@ Deploy a local Docker Compose environment that includes the following.
 
 - Docker images for Backend and Frontend 🖼️
 - A stack with a Traefik router and a PostgreSQL database 🗃️
-- Accessible at [http://kitconcept.keywordmanager.localhost](http://kitconcept.keywordmanager.localhost) 🌐
+- Accessible at [http://kitconcept-keywordmanager.localhost](http://kitconcept-keywordmanager.localhost) 🌐
 
 Run the following commands in a shell session.
 
@@ -145,4 +145,4 @@ make i18n
 
 ## Credits and acknowledgements 🙏
 
-Generated using [Cookieplone (0.9.10)](https://github.com/plone/cookieplone) and [cookieplone-templates (ca9ba9f)](https://github.com/plone/cookieplone-templates/commit/ca9ba9fa67bc9a824eab13962a63db230c93679e) on 2026-03-19 16:49:15.524832. A special thanks to all contributors and supporters!
+Generated using [Cookieplone (2.0.0a3)](https://github.com/plone/cookieplone) and [cookieplone-templates (cda10db)](https://github.com/plone/cookieplone-templates/commit/cda10db886223a9aa9be1b1368484296418bb880) on 2026-05-29 11:44:37.855709. A special thanks to all contributors and supporters!

@@ -1,10 +1,10 @@
 ---
 myst:
   html_meta:
-    "description": "Keyword Manager Tutorials"
-    "property=og:description": "Keyword Manager Tutorials"
-    "property=og:title": "Keyword Manager Tutorials"
-    "keywords": "Plone, Keyword Manager, tutorials"
+    "description": "kitconcept-keywordmanager Tutorials"
+    "property=og:description": "kitconcept-keywordmanager Tutorials"
+    "property=og:title": "kitconcept-keywordmanager Tutorials"
+    "keywords": "Plone, kitconcept-keywordmanager, tutorials"
 ---
 
 # Tutorials

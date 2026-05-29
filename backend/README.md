@@ -22,8 +22,8 @@ make create-site
 
 ## Contribute
 
-- [Issue tracker](https://github.com/kitconcept/kitconcept.keywordmanager/issues)
-- [Source code](https://github.com/kitconcept/kitconcept.keywordmanager/)
+- [Issue tracker](https://github.com/kitconcept/kitconcept-keywordmanager/issues)
+- [Source code](https://github.com/kitconcept/kitconcept-keywordmanager/)
 
 ### Prerequisites ✅
 
@@ -38,8 +38,8 @@ make create-site
 1.  Clone this repository.
 
     ```shell
-    git clone git@github.com:kitconcept/kitconcept.keywordmanager.git
-    cd kitconcept.keywordmanager/backend
+    git clone git@github.com:kitconcept/kitconcept-keywordmanager.git
+    cd kitconcept-keywordmanager/backend
     ```
 
 2.  Install this code base.
@@ -84,4 +84,4 @@ The project is licensed under GPLv2.
 
 ## Credits and acknowledgements 🙏
 
-Generated from the [`cookieplone-templates`  template](https://github.com/plone/cookieplone-templates/tree/main/) on 2026-03-19 15:50:11.. A special thanks to all contributors and supporters!
+Generated using [Cookieplone (2.0.0a3)](https://github.com/plone/cookieplone) and [cookieplone-templates (cda10db)](https://github.com/plone/cookieplone-templates/commit/cda10db886223a9aa9be1b1368484296418bb880) on 2026-05-29 11:44:37.855709. A special thanks to all contributors and supporters!

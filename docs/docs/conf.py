@@ -1,5 +1,5 @@
 # Configuration file for the Sphinx documentation builder.
-# Keyword Manager build configuration file
+# kitconcept-keywordmanager build configuration file
 
 
 # -- Path setup --------------------------------------------------------------
@@ -19,7 +19,7 @@ from plone_sphinx_theme import __version__
 
 # -- Project information -----------------------------------------------------
 
-project = "Keyword Manager"
+project = "kitconcept-keywordmanager"
 author = "kitconcept GmbH"
 trademark_name = "kitconcept"
 now = datetime.now()
@@ -95,7 +95,7 @@ linkcheck_ignore = [
     # Ignore file downloads
     r"^/_static/",
     # Ignore pages that require authentication
-    r"https://github.com/kitconcept/keywordmanager/issues/new",  # requires auth
+    r"https://github.com/kitconcept/kitconcept_keywordmanager/issues/new",  # requires auth
     # Ignore github.com pages with anchors
     r"https://github.com/.*#.*",
     # Ignore other specific anchors
@@ -155,7 +155,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/kitconcept/keywordmanager",
+            "url": "https://github.com/kitconcept/kitconcept_keywordmanager",
             "icon": "fa-brands fa-square-github",
             "type": "fontawesome",
             "attributes": {
@@ -177,12 +177,12 @@ html_theme_options = {
         # },
     ],
     "logo": {
-        "text": "Keyword Manager",
+        "text": "kitconcept-keywordmanager",
     },
     "navigation_with_keys": True,
     "path_to_docs": "docs/docs",
     "repository_branch": "main",
-    "repository_url": "https://github.com/kitconcept/keywordmanager",
+    "repository_url": "https://github.com/kitconcept/kitconcept_keywordmanager",
     "search_bar_text": "Search",
     "show_toc_level": 2,
     "use_edit_page_button": True,
@@ -192,7 +192,7 @@ html_theme_options = {
 # suggest edit link
 # remark:  is mandatory in "edit_page_url_template"
 # html_context = {
-#     "edit_page_url_template": "https://github.com/kitconcept/keywordmanager/edit/main/docs/",
+#     "edit_page_url_template": "https://github.com/kitconcept/kitconcept_keywordmanager/edit/main/docs/",
 # }
 
 # Announce that we have an opensearch plugin
@@ -286,7 +286,7 @@ mermaid_version = "11.2.0"
 ogp_site_url = "https://MY_READTHEDOCS_PROJECT_SLUG.readthedocs.io/"
 ogp_description_length = 200
 ogp_image = "https://MY_READTHEDOCS_PROJECT_SLUG/_static/MY_LOGO.svg"
-ogp_site_name = "Keyword Manager Documentation"
+ogp_site_name = "kitconcept-keywordmanager Documentation"
 ogp_type = "website"
 ogp_custom_meta_tags = [
     '<meta property="og:locale" content="en_US" />',
@@ -321,7 +321,7 @@ tippy_props = {
 # -- Options for HTML help output -------------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "Keyword ManagerDocumentation"
+htmlhelp_basename = "kitconcept-keywordmanagerDocumentation"
 
 
 # -- Options for LaTeX output -------------------------------------------------
@@ -331,8 +331,8 @@ htmlhelp_basename = "Keyword ManagerDocumentation"
 latex_documents = [
     (
         "index",
-        "Keyword ManagerDocumentation.tex",
-        "Keyword Manager Documentation",
+        "kitconcept-keywordmanagerDocumentation.tex",
+        "kitconcept-keywordmanager Documentation",
         "kitconcept community",
         "manual",
     ),

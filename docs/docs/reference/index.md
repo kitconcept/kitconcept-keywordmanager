@@ -1,10 +1,10 @@
 ---
 myst:
   html_meta:
-    "description": "Keyword Manager Reference"
-    "property=og:description": "Keyword Manager Reference"
-    "property=og:title": "Keyword Manager Reference"
-    "keywords": "Plone, _Keyword Manager,_ reference"
+    "description": "kitconcept-keywordmanager Reference"
+    "property=og:description": "kitconcept-keywordmanager Reference"
+    "property=og:title": "kitconcept-keywordmanager Reference"
+    "keywords": "Plone, _kitconcept-keywordmanager,_ reference"
 ---
 
 # Reference

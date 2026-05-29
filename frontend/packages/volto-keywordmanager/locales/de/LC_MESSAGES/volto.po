@@ -73,11 +73,6 @@ msgstr ""
 msgid "Rename & Merge"
 msgstr ""
 
-#. Default: "Action"
-#: components/KeywordView
-msgid "action"
-msgstr ""
-
 #. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
 #: components/DeleteModal
 msgid "confirm-modal-description"

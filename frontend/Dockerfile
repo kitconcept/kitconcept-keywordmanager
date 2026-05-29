@@ -24,8 +24,8 @@ EOT
 FROM plone/frontend-prod-config:${VOLTO_VERSION}
 
 LABEL maintainer="kitconcept GmbH <info@kitconcept.com>" \
-      org.label-schema.name="kitconcept.keywordmanager-frontend" \
-      org.label-schema.description="Keyword Manager frontend image." \
+      org.label-schema.name="kitconcept-keywordmanager-frontend" \
+      org.label-schema.description="kitconcept-keywordmanager frontend image." \
       org.label-schema.vendor="kitconcept GmbH"
 
 COPY --from=builder /app/ /app/
@@ -33,6 +33,6 @@ COPY --from=builder /app/ /app/
 RUN <<EOT
     set -e
     CI=1 npm i -g corepack@latest && corepack enable pnpm
-    CI=1 corepack use pnpm@9.1.1
-    CI=1 corepack prepare pnpm@9.1.1 --activate
+    CI=1 corepack use pnpm@10.20.0
+    CI=1 corepack prepare pnpm@10.20.0 --activate
 EOT

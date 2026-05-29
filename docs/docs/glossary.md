@@ -7,7 +7,7 @@ myst:
     "keywords": "Plone, documentation, glossary, term, definition"
 ---
 
-This glossary provides example terms and definitions relevant to **Keyword Manager**.
+This glossary provides example terms and definitions relevant to **kitconcept-keywordmanager**.
 Change, merge and delete keywords (subjects) in Plone.
 
 ```{note}

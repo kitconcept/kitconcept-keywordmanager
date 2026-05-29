@@ -3,13 +3,13 @@ myst:
   html_meta:
     "description": "Change, merge and delete keywords (subjects) in Plone."
     "property=og:description": "Change, merge and delete keywords (subjects) in Plone."
-    "property=og:title": "Keyword Manager"
-    "keywords": "Keyword Manager, documentation, Change, merge and delete keywords (subjects) in Plone."
+    "property=og:title": "kitconcept-keywordmanager"
+    "keywords": "kitconcept-keywordmanager, documentation, Change, merge and delete keywords (subjects) in Plone."
 ---
 
-# Keyword Manager
+# kitconcept-keywordmanager
 
-Welcome to the documentation for Keyword Manager!
+Welcome to the documentation for kitconcept-keywordmanager!
 Change, merge and delete keywords (subjects) in Plone.
 
 This scaffold provides a ready-to-use environment for creating comprehensive documentation for {term}`Plone` projects, based on {term}`Plone Sphinx Theme`.

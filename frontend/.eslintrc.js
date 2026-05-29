@@ -30,7 +30,7 @@ module.exports = {
           ['@plone/registry', `${coreLocation}/packages/registry/src`],
           [
             'volto-keywordmanager',
-            './packages/volto-keywordmanager/src',
+            `${projectRootPath}/packages/volto-keywordmanager/src`,
           ],
           ...addonAliases,
         ],

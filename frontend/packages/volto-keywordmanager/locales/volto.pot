@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-05-27T08:03:35.484Z\n"
+"POT-Creation-Date: 2026-05-29T10:01:55.376Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -73,11 +73,6 @@ msgstr ""
 #. Default: "Rename & Merge"
 #: components/RenameModal
 msgid "Rename & Merge"
-msgstr ""
-
-#. Default: "Action"
-#: components/KeywordView
-msgid "action"
 msgstr ""
 
 #. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"

@@ -1,8 +1,8 @@
 [project]
-name = "Keyword_Manager_Documentation"
+name = "kitconcept_keywordmanager_Documentation"
 description = "Change, merge and delete keywords (subjects) in Plone."
 keywords = [
-    "Keyword Manager",
+    "kitconcept-keywordmanager",
     "documentation",
     "Plone",
     "Diátaxis",
@@ -53,7 +53,7 @@ dev = [
 ]
 
 [project.urls]
-Repository = "https://github.com/kitconcept/keywordmanager"
+Repository = "https://github.com/kitconcept/kitconcept_keywordmanager"
 Documentation = "https://MY_READTHEDOCS_PROJECT_SLUG.readthedocs.io/"
 
 [build-system]

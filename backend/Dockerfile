@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.1.4
+ARG PLONE_VERSION=6.2.0
 FROM plone/server-builder:${PLONE_VERSION} AS builder
 
 WORKDIR /app
@@ -25,8 +25,8 @@ EOT
 FROM plone/server-prod-config:${PLONE_VERSION}
 
 LABEL maintainer="kitconcept GmbH <info@kitconcept.com>" \
-      org.label-schema.name="kitconcept.keywordmanager-backend" \
-      org.label-schema.description="Keyword Manager backend image." \
+      org.label-schema.name="kitconcept-keywordmanager-backend" \
+      org.label-schema.description="kitconcept-keywordmanager backend image." \
       org.label-schema.vendor="kitconcept GmbH"
 
 # Copy /app from builder
