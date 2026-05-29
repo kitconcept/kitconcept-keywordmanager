@@ -1,5 +1,6 @@
 from kitconcept.keywordmanager.interfaces import IKeywordManager
 from plone import api
+from plone.base.interfaces import IPloneSiteRoot
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
 from zExceptions import BadRequest
@@ -11,7 +12,6 @@ class KeywordsDelete(Service):
         data = json_body(self.request)
         km = getUtility(IKeywordManager)
         keywords = data.get("items") or []
-        paths = data.get("paths") or []
         query = {}
         if idx := self.request.form.get("idx"):
             query["indexName"] = idx
@@ -22,15 +22,11 @@ class KeywordsDelete(Service):
             )
         if not keywords:
             raise BadRequest("Invalid request: missing required parameter 'items'.")
-        if paths and not isinstance(paths, list):
-            raise BadRequest(
-                f"Invalid request: 'paths' must be of type 'list', but received '{type(paths).__name__}'."
-            )
 
         query["keywords"] = keywords
-        if not paths:
+        if IPloneSiteRoot.providedBy(self.context):
             km.delete(**query)
         else:
-            [km.delete(context=api.content.get(path=path), **query) for path in paths]
+            km.delete(context=self.context, **query)
 
         return self.reply_no_content()

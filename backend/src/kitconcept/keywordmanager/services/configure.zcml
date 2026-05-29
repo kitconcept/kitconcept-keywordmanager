@@ -15,7 +15,7 @@
   <plone:service
       method="DELETE"
       factory=".delete.KeywordsDelete"
-      for="plone.base.interfaces.IPloneSiteRoot"
+      for="*"
       permission="kitconcept.keywordmanager.ManageKeywords"
       name="@keywords"
       />
