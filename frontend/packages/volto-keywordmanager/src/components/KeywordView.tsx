@@ -119,11 +119,13 @@ const KeywordView = (props) => {
     );
   }, [dispatch, options]);
 
-  const handleDeleteKeywords = async (kw: string | string[]) => {
+  const handleDeleteKeywords = async (kw: string | string[], id?: string) => {
     if (typeof kw == 'string') {
       kw = [kw];
     }
-    await dispatch(deleteKeywords({ items: kw }));
+    await dispatch(
+      deleteKeywords({ items: kw, path: id, indexName: keywordIndex }),
+    );
     await dispatch(searchContent('/', options, 'keywords'));
   };
 
@@ -247,7 +249,9 @@ const KeywordView = (props) => {
                   {obj[keywordIndex].map((item) => (
                     <span key={item} className={item === id && 'current'}>
                       {item}
-                      <Button onPress={() => handleDeleteKeywords(obj['@id'])}>
+                      <Button
+                        onPress={() => handleDeleteKeywords(item, obj['@id'])}
+                      >
                         <Icon name={circleDismissSVG} size="16px" />
                       </Button>
                     </span>

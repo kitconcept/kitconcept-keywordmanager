@@ -90,8 +90,9 @@ class KeywordManager:
 
         Returns the number of objects that have been updated.
         """
-        # query = {indexName: keywords}
-        if context is not None:
+        query = {indexName: keywords}
+        if context:
+            query["depth"] = 0
             query["path"] = "/".join(context.getPhysicalPath())
         brains = api.content.find(**query)
 

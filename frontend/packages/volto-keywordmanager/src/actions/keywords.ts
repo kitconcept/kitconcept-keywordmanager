@@ -72,12 +72,14 @@ export function updateKeywords({
 
 export function deleteKeywords({
   items,
+  path,
   indexName,
 }: {
   items: string[];
+  path?: string;
   indexName: string;
 }) {
-  let requestPath = '/@keywords';
+  let requestPath = `${path ?? ''}/@keywords`;
 
   if (indexName) {
     requestPath += `?idx=${indexName}`;

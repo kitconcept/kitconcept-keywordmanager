@@ -100,6 +100,10 @@
             background: #d1d6f1;
             border-color: #bbc2e9;
           }
+
+          button {
+            padding-left: 6px;
+          }
         }
       }
 
