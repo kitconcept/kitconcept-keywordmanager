@@ -1,22 +1,34 @@
-import { Button, Modal } from '@plone/components';
+import { Button, Modal, Spinner } from '@plone/components';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { FormattedMessage } from 'react-intl';
 import clearSVG from '@plone/volto/icons/clear.svg';
 import { Dialog } from '@plone/components';
+import { useIntl, defineMessages } from 'react-intl';
 
 interface DeleteModalProps {
+  isLoading: boolean;
   selectionCount: number;
   selectedKeys: string | Set<string>;
   keywords: { items?: { name: string }[] };
   onConfirm: (keys: string[]) => void;
 }
 
+const messages = defineMessages({
+  loading: {
+    id: 'loading',
+    defaultMessage: 'Loading',
+  },
+});
+
 const DeleteModal = ({
+  isLoading,
   selectionCount,
   selectedKeys,
   keywords,
   onConfirm,
 }: DeleteModalProps) => {
+  const intl = useIntl();
+
   return (
     <Modal className="delete-modal">
       <Dialog>
@@ -56,7 +68,11 @@ const DeleteModal = ({
                   close();
                 }}
               >
-                <FormattedMessage id="Delete" defaultMessage="Delete" />
+                {isLoading ? (
+                  <Spinner aria-label={intl.formatMessage(messages.loading)} />
+                ) : (
+                  <FormattedMessage id="Delete" defaultMessage="Delete" />
+                )}
               </Button>
             </div>
           </>

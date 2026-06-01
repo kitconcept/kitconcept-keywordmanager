@@ -11,20 +11,32 @@ import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import clearSVG from '@plone/volto/icons/clear.svg';
 import { Dialog } from '@plone/components';
+import { Spinner } from '@plone/components';
+import { useIntl, defineMessages } from 'react-intl';
 
 interface RenameModalProps {
+  isLoading: boolean;
   selectionCount: number;
   selectedKeys: string | Set<string>;
   keywords: { items?: { name: string }[] };
   onConfirm: (newKeyword: string, oldKeywords: string[]) => void;
 }
 
+const messages = defineMessages({
+  loading: {
+    id: 'loading',
+    defaultMessage: 'Loading',
+  },
+});
+
 const RenameModal = ({
+  isLoading,
   selectionCount,
   selectedKeys,
   keywords,
   onConfirm,
 }: RenameModalProps) => {
+  const intl = useIntl();
   const [selectedRadio, setSelectedRadio] = useState<string>('select');
   const [name, setName] = useState<string | null>(null);
 
@@ -116,10 +128,14 @@ const RenameModal = ({
                   close();
                 }}
               >
-                <FormattedMessage
-                  id="Rename & Merge"
-                  defaultMessage="Rename & Merge"
-                />
+                {isLoading ? (
+                  <Spinner aria-label={intl.formatMessage(messages.loading)} />
+                ) : (
+                  <FormattedMessage
+                    id="Rename & Merge"
+                    defaultMessage="Rename & Merge"
+                  />
+                )}
               </Button>
             </div>
           </>

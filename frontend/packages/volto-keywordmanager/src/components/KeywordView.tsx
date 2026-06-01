@@ -18,7 +18,6 @@ import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
-import circleDismissSVG from '@plone/volto/icons/circle-dismiss.svg';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 import KeywordList from './KeywordList';
 
@@ -84,6 +83,7 @@ const KeywordView = (props) => {
   const [selectedTypes, setSelectedTypes] = useState<[]>([]);
   const [selectedStates, setSelectedStates] = useState<[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const options = useMemo(
     () => ({
@@ -124,10 +124,15 @@ const KeywordView = (props) => {
     if (typeof kw == 'string') {
       kw = [kw];
     }
-    await dispatch(
-      deleteKeywords({ items: kw, path: id, indexName: keywordIndex }),
-    );
-    await dispatch(searchContent('/', options, 'keywords'));
+    setIsLoading(true);
+    try {
+      await dispatch(
+        deleteKeywords({ items: kw, path: id, indexName: keywordIndex }),
+      );
+    } finally {
+      setIsLoading(false);
+    }
+    dispatch(searchContent('/', options, 'keywords'));
   };
 
   return (
@@ -178,6 +183,7 @@ const KeywordView = (props) => {
                 <Icon name={trashSVG} size="20px" />
               </Button>
               <DeleteModal
+                isLoading={isLoading}
                 selectionCount={selectionCount}
                 selectedKeys={selectedKeys}
                 keywords={keywords}

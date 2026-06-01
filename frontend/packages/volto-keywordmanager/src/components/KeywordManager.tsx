@@ -74,6 +74,7 @@ const KeywordManager = (props) => {
   // Sorting
   const [sortOn, setSortOn] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const options = useMemo(
     () => ({
@@ -113,19 +114,29 @@ const KeywordManager = (props) => {
     if (typeof kw == 'string') {
       kw = [kw];
     }
-    await dispatch(deleteKeywords({ items: kw, indexName: keywordIndex }));
-    await dispatch(getKeywords(options));
+    setIsLoading(true);
+    try {
+      await dispatch(deleteKeywords({ items: kw, indexName: keywordIndex }));
+    } finally {
+      setIsLoading(false);
+    }
+    dispatch(getKeywords(options));
   };
 
   const handleUpdateKeywords = async (kw: string, olds: string[]) => {
-    await dispatch(
-      updateKeywords({
-        new_keyword: kw,
-        old_keywords: olds,
-        indexName: keywordIndex,
-      }),
-    );
-    await dispatch(getKeywords(options));
+    setIsLoading(true);
+    try {
+      await dispatch(
+        updateKeywords({
+          new_keyword: kw,
+          old_keywords: olds,
+          indexName: keywordIndex,
+        }),
+      );
+    } finally {
+      setIsLoading(false);
+    }
+    dispatch(getKeywords(options));
   };
 
   if (keywords?.error?.status) {
@@ -200,6 +211,7 @@ const KeywordManager = (props) => {
                 <Icon name={replaceSVG} size="20px" />
               </Button>
               <RenameModal
+                isLoading={isLoading}
                 selectionCount={selectionCount}
                 selectedKeys={selectedKeys}
                 keywords={keywords}
@@ -217,6 +229,7 @@ const KeywordManager = (props) => {
                 <Icon name={trashSVG} size="20px" />
               </Button>
               <DeleteModal
+                isLoading={isLoading}
                 selectionCount={selectionCount}
                 selectedKeys={selectedKeys}
                 keywords={keywords}
