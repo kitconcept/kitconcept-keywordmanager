@@ -14,7 +14,7 @@ msgstr ""
 #. Default: "Actions"
 #: components/KeywordManager
 msgid "Actions"
-msgstr ""
+msgstr "Aktionen"
 
 #. Default: "All states"
 #: components/KeywordView
@@ -30,23 +30,23 @@ msgstr ""
 #: components/KeywordManager
 #: components/KeywordView
 msgid "Back"
-msgstr ""
+msgstr "Zurück"
 
 #. Default: "Cancel"
 #: components/DeleteModal
 #: components/RenameModal
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. Default: "{num} Contents"
 #: components/KeywordView
 msgid "Contents"
-msgstr ""
+msgstr "{num} Inhalte"
 
 #. Default: "Delete"
 #: components/DeleteModal
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #. Default: "Keyword"
 #: components/KeywordManager
@@ -71,7 +71,7 @@ msgstr ""
 #. Default: "Rename & Merge"
 #: components/RenameModal
 msgid "Rename & Merge"
-msgstr ""
+msgstr "Umbennen & Zusammenführen"
 
 #. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
 #: components/DeleteModal
@@ -88,7 +88,7 @@ msgstr ""
 msgid "keyword-field"
 msgstr ""
 
-#. Default: "The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+#. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
 #: components/KeywordManager
 msgid "keyword-manager-description"
 msgstr ""
@@ -99,15 +99,17 @@ msgid "keyword-name"
 msgstr ""
 
 #. Default: "Loading"
+#: components/DeleteModal
 #: components/KeywordManager
 #: components/KeywordView
+#: components/RenameModal
 msgid "loading"
 msgstr ""
 
 #. Default: "No content selected"
 #: components/KeywordView
 msgid "no-content-selected"
-msgstr ""
+msgstr "Kein Inhalt ausgewählt"
 
 #. Default: "No keyword selected"
 #: components/KeywordManager
@@ -117,7 +119,7 @@ msgstr ""
 #. Default: "{num} content(s) selected"
 #: components/KeywordView
 msgid "number-contents-selected"
-msgstr ""
+msgstr "{num} Inhalt(e) ausgewählt"
 
 #. Default: "{num} keyword(s) selected"
 #: components/KeywordManager
@@ -137,17 +139,17 @@ msgstr ""
 #. Default: "Search"
 #: components/KeywordView
 msgid "search"
-msgstr ""
+msgstr "Suche"
 
 #. Default: "State"
 #: components/KeywordView
 msgid "state"
-msgstr ""
+msgstr "Status"
 
 #. Default: "Title / Path"
 #: components/KeywordView
 msgid "title-path"
-msgstr ""
+msgstr "Titel / Pfad"
 
 #. Default: "Type"
 #: components/KeywordView

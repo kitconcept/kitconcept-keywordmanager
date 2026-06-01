@@ -88,7 +88,7 @@ msgstr ""
 msgid "keyword-field"
 msgstr ""
 
-#. Default: "The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+#. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
 #: components/KeywordManager
 msgid "keyword-manager-description"
 msgstr ""
@@ -99,8 +99,10 @@ msgid "keyword-name"
 msgstr ""
 
 #. Default: "Loading"
+#: components/DeleteModal
 #: components/KeywordManager
 #: components/KeywordView
+#: components/RenameModal
 msgid "loading"
 msgstr ""
 

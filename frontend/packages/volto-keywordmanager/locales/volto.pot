@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-05-29T10:01:55.376Z\n"
+"POT-Creation-Date: 2026-06-01T14:06:59.107Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -90,7 +90,7 @@ msgstr ""
 msgid "keyword-field"
 msgstr ""
 
-#. Default: "The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+#. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
 #: components/KeywordManager
 msgid "keyword-manager-description"
 msgstr ""
@@ -101,8 +101,10 @@ msgid "keyword-name"
 msgstr ""
 
 #. Default: "Loading"
+#: components/DeleteModal
 #: components/KeywordManager
 #: components/KeywordView
+#: components/RenameModal
 msgid "loading"
 msgstr ""
 
