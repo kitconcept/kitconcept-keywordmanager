@@ -251,6 +251,8 @@ const KeywordView = (props) => {
                 <UniversalLink href={obj['@id'] || '/'}>
                   {obj.title}
                 </UniversalLink>
+                <br />
+                <span className="sc-only">Path: </span>
                 <span>{flattenToAppURL(obj['@id']) || '/'}</span>
                 <KeywordList
                   keywords={obj[keywordIndex]}

@@ -3,6 +3,12 @@
   flex-direction: column;
   gap: 15px;
 
+  /* Screen reader only class */
+  /* mostly used to give more context to a person using a screen reader */
+  * .sc-only {
+    display: none;
+  }
+
   .title {
     padding: 20px 15px;
     border-bottom: 2px solid;
