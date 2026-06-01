@@ -1,5 +1,4 @@
 from kitconcept.keywordmanager.interfaces import IKeywordManager
-from plone import api
 from plone.base.interfaces import IPloneSiteRoot
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
