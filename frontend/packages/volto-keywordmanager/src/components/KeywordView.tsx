@@ -188,7 +188,7 @@ const KeywordView = (props) => {
                 selectedKeys={selectedKeys}
                 keywords={keywords}
                 onConfirm={(keys) => {
-                  handleDeleteKeywords(keys);
+                  keys.forEach((key) => handleDeleteKeywords(id, key));
                   setSelectedKeys(new Set());
                 }}
               />
