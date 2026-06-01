@@ -93,11 +93,11 @@
       }
 
       ul {
-        padding: 0;
-        list-style: none;
         display: flex;
         align-items: center;
+        padding: 0;
         gap: 5px;
+        list-style: none;
 
         .normal {
           padding-left: 10px;
@@ -109,13 +109,13 @@
 
         li:not(.normal) {
           padding: 1px 10px;
-          background: #e6e6e6;
           border: 1px solid #a0a0a0;
           border-radius: 6px;
+          background: #e6e6e6;
 
           &.current {
-            background: #d1d6f1;
             border-color: #bbc2e9;
+            background: #d1d6f1;
           }
 
           button {
@@ -146,11 +146,10 @@
       position: relative;
 
       &:after {
-        content: '';
         position: absolute;
+        right: 0;
         bottom: 0;
         left: 0;
-        right: 0;
         height: 1px;
         background: linear-gradient(
           90deg,
@@ -159,6 +158,7 @@
           #565656 84%,
           rgba(102, 102, 102, 0.2) 100%
         );
+        content: '';
       }
 
       &.react-aria-Row:hover:not([data-selected]) {
