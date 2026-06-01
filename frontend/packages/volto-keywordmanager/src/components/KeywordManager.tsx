@@ -146,7 +146,7 @@ const KeywordManager = (props) => {
       <p className="description">
         <FormattedMessage
           id="keyword-manager-description"
-          defaultMessage="The Keyword Manager allows you to maintain the keywords used in your intranet. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+          defaultMessage="The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
         />
       </p>
       {keywordIndexes?.items?.length > 1 && (
