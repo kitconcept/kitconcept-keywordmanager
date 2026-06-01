@@ -20,6 +20,7 @@ import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
 import circleDismissSVG from '@plone/volto/icons/circle-dismiss.svg';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
+import KeywordList from './KeywordList';
 
 const messages = defineMessages({
   back: {
@@ -244,19 +245,12 @@ const KeywordView = (props) => {
                 <UniversalLink href={obj['@id'] || '/'}>
                   {obj.title}
                 </UniversalLink>
-                {flattenToAppURL(obj['@id']) || '/'}
-                <div className="keywords">
-                  {obj[keywordIndex].map((item) => (
-                    <span key={item} className={item === id && 'current'}>
-                      {item}
-                      <Button
-                        onPress={() => handleDeleteKeywords(item, obj['@id'])}
-                      >
-                        <Icon name={circleDismissSVG} size="16px" />
-                      </Button>
-                    </span>
-                  ))}
-                </div>
+                <span>{flattenToAppURL(obj['@id']) || '/'}</span>
+                <KeywordList
+                  keywords={obj[keywordIndex]}
+                  currentId={id}
+                  onDelete={(item) => handleDeleteKeywords(item, obj['@id'])}
+                />
               </>
             ),
             type: <p>{obj.type_title}</p>,
