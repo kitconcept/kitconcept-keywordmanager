@@ -6,7 +6,7 @@ import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { useClient } from '@plone/volto/hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { DialogTrigger } from 'react-aria-components';
+import { DialogTrigger } from '@plone/components';
 import { createPortal } from 'react-dom';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';

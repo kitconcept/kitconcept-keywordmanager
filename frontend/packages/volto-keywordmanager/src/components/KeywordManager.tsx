@@ -1,5 +1,5 @@
 import { Spinner, Table, Button, Select } from '@plone/components';
-import { DialogTrigger } from 'react-aria-components';
+import { DialogTrigger } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Error from '@plone/volto/components/theme/Error/Error';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
