@@ -58,7 +58,10 @@ const messages = defineMessages({
 
 const KeywordView = (props) => {
   const { location } = props;
-  const { keywordIndex, id } = useParams<{ id: string }>();
+  const { keywordIndex, id } = useParams<{
+    keywordIndex: string;
+    id: string;
+  }>();
   const intl = useIntl();
   const keywords = useSelector((state) => state.search.subrequests.keywords);
   const types = useSelector(
@@ -78,8 +81,7 @@ const KeywordView = (props) => {
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
   // Pagination
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [pageSize, setPageSize] = useState<number>(25);
-  const pageSizes = [25, 50, 100];
+  const [pageSize, setPageSize] = useState<number>(5);
   const [selectedTypes, setSelectedTypes] = useState<[]>([]);
   const [selectedStates, setSelectedStates] = useState<[]>([]);
   const [search, setSearch] = useState<string>('');
@@ -89,11 +91,11 @@ const KeywordView = (props) => {
     () => ({
       [keywordIndex]: [id],
       metadata_fields: keywordIndex,
+      b_size: pageSize,
+      b_start: currentPage * pageSize,
       ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
       ...(selectedStates.length > 0 && { review_state: selectedStates }),
       ...(search && { SearchableText: search }),
-      ...(pageSize !== 25 && { b_size: pageSize }),
-      ...(currentPage !== 0 && { b_start: currentPage }),
     }),
     [
       keywordIndex,
@@ -252,7 +254,7 @@ const KeywordView = (props) => {
                   {obj.title}
                 </UniversalLink>
                 <br />
-                <span className="sc-only">Path: </span>
+                <span hidden>Path: </span>
                 <span>{flattenToAppURL(obj['@id']) || '/'}</span>
                 <KeywordList
                   keywords={obj[keywordIndex]}
@@ -261,7 +263,7 @@ const KeywordView = (props) => {
                 />
               </>
             ),
-            type: <p>{obj.type_title}</p>,
+            type: obj.type_title,
             state: (
               <FormattedMessage
                 id={
@@ -275,39 +277,22 @@ const KeywordView = (props) => {
           onSelectionChange={setSelectedKeys}
         />
       ) : keywords?.loading ? (
-        <Spinner label={intl.formatMessage(messages.loading)} />
+        <Spinner aria-label={intl.formatMessage(messages.loading)} />
       ) : (
         <div>No results.</div>
       )}
-      {keywords?.total > Math.min(...pageSizes) && (
+      {keywords?.total > pageSize && (
         <Pagination
           current={currentPage}
           total={Math.ceil(keywords?.total / pageSize)}
           pageSize={pageSize}
-          pageSizes={pageSizes}
           onChangePage={(e, { value }) => {
             setCurrentPage(value);
-            dispatch(
-              searchContent(
-                '/',
-                {
-                  b_size: pageSize,
-                  b_start: pageSize * value,
-                  Subject: [id],
-                },
-                'keywords',
-              ),
-            );
+            dispatch(searchContent('/', options, 'keywords'));
           }}
           onChangePageSize={(e, { value }) => {
             setPageSize(value);
-            dispatch(
-              searchContent(
-                '/',
-                { b_size: value, b_start: currentPage, Subject: [id] },
-                'keywords',
-              ),
-            );
+            dispatch(searchContent('/', options, 'keywords'));
           }}
         />
       )}

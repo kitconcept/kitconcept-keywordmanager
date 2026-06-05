@@ -13,7 +13,7 @@ def portal(portal_class):
 def contents(portal):
     with api.env.adopt_roles(["Manager"]):
         doc = api.content.create(portal, type="Document", id="doc1")
-        doc.Subject = ["doc"]
+        doc.subjects = ["doc"]
         api.content.transition(obj=doc, transition="publish")
         transaction.commit()
 

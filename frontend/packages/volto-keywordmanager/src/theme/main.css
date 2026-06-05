@@ -3,12 +3,6 @@
   flex-direction: column;
   gap: 15px;
 
-  /* Screen reader only class */
-  /* mostly used to give more context to a person using a screen reader */
-  * .sc-only {
-    display: none;
-  }
-
   .title {
     padding: 20px 15px;
     border-bottom: 2px solid;
@@ -68,6 +62,7 @@
 
   .react-aria-Table.cmsui-table {
     width: 100%;
+    padding: 0;
 
     .react-aria-Column,
     .react-aria-Cell {
@@ -102,8 +97,12 @@
         .normal {
           padding-left: 10px;
 
-          &:hover button {
-            text-decoration: underline;
+          button {
+            color: #000;
+
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
 

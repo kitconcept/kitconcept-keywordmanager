@@ -24,7 +24,7 @@ msgstr ""
 #. Default: "All types"
 #: components/KeywordView
 msgid "All types"
-msgstr ""
+msgstr "Alle Inhaltstypen"
 
 #. Default: "Back"
 #: components/KeywordManager
@@ -51,7 +51,7 @@ msgstr "Löschen"
 #. Default: "Keyword"
 #: components/KeywordManager
 msgid "Keyword"
-msgstr ""
+msgstr "Stichwort"
 
 #. Default: "Keyword Manager"
 #: components/KeywordManager
@@ -61,7 +61,7 @@ msgstr ""
 #. Default: "Keywords"
 #: components/KeywordManager
 msgid "Keywords"
-msgstr ""
+msgstr "Stichworte"
 
 #. Default: "Occurrence"
 #: components/KeywordManager
@@ -81,12 +81,12 @@ msgstr ""
 #. Default: "Delete keyword(s)"
 #: components/DeleteModal
 msgid "confirm-modal-title"
-msgstr ""
+msgstr "Stichwort(e) löschen"
 
 #. Default: "Keyword field:"
 #: components/KeywordManager
 msgid "keyword-field"
-msgstr ""
+msgstr "Stichwort Feld:"
 
 #. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
 #: components/KeywordManager
@@ -114,7 +114,7 @@ msgstr "Kein Inhalt ausgewählt"
 #. Default: "No keyword selected"
 #: components/KeywordManager
 msgid "no-keyword-selected"
-msgstr ""
+msgstr "Kein Stichwort ausgewählt"
 
 #. Default: "{num} content(s) selected"
 #: components/KeywordView
@@ -124,7 +124,7 @@ msgstr "{num} Inhalt(e) ausgewählt"
 #. Default: "{num} keyword(s) selected"
 #: components/KeywordManager
 msgid "number-keywords-selected"
-msgstr ""
+msgstr "{num} Stichwort(e) ausgewählt"
 
 #. Default: "You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
 #: components/RenameModal
@@ -134,7 +134,7 @@ msgstr ""
 #. Default: "Rename & merge keyword(s)"
 #: components/RenameModal
 msgid "rename-modal-title"
-msgstr ""
+msgstr "Stichwort(e) umbennenen & zusammenführen"
 
 #. Default: "Search"
 #: components/KeywordView
@@ -154,4 +154,4 @@ msgstr "Titel / Pfad"
 #. Default: "Type"
 #: components/KeywordView
 msgid "type"
-msgstr ""
+msgstr "Inhaltstyp"
