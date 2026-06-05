@@ -1,4 +1,8 @@
-import { Spinner, Table, Button, Select } from '@plone/components';
+import type { SortDescriptor, Selection } from 'react-aria-components';
+import { Table, TableHeader, TableBody } from 'react-aria-components';
+import { Column, Row, Cell, Collection } from 'react-aria-components';
+import { Checkbox } from 'react-aria-components';
+import { Spinner, Button, Select } from '@plone/components';
 import { DialogTrigger } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Error from '@plone/volto/components/theme/Error/Error';
@@ -61,9 +65,7 @@ const KeywordManager = (props) => {
   const pathname = location.pathname;
   // selectedKeys can become the string 'all' when the user selects all rows
   // (e.g. via the header checkbox), rather than a Set of individual keys
-  const [selectedKeys, setSelectedKeys] = useState<string | Set<string>>(
-    new Set(),
-  );
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
   const selectionCount =
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
   const [keywordIndex, setKeywordIndex] = useState<string>('Subject');
@@ -72,8 +74,9 @@ const KeywordManager = (props) => {
   const [pageSize, setPageSize] = useState<number>(25);
   const pageSizes = [25, 50, 100];
   // Sorting
-  const [sortOn, setSortOn] = useState<string>('');
-  const [sortOrder, setSortOrder] = useState<string>('');
+  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
+  const sortOn = sortDescriptor?.column;
+  const sortOrder = sortDescriptor?.direction;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const options = useMemo(
@@ -92,21 +95,62 @@ const KeywordManager = (props) => {
     dispatch(getKeywordIndexes());
   }, [dispatch, options]);
 
-  const handleSorting = (value: string) => {
-    if (sortOn !== value) {
-      setSortOn(value);
-      setSortOrder('ascending');
-      return;
-    }
-    if (value === 'alphabetical') setSortOn(value);
-    if (value === 'frequency') setSortOn(value);
-    if (!sortOrder) {
-      setSortOrder('ascending');
-    } else if (sortOrder === 'ascending') {
-      setSortOrder('descending');
-    } else if (sortOrder === 'descending') {
-      setSortOrder('');
-      setSortOn('');
+  const columns = [
+    {
+      id: 'keyword',
+      name: (
+        <>
+          {intl.formatMessage(messages.keyword)}
+          <Icon name={sortDownSVG} size="16px" ariaHidden="true" />
+        </>
+      ),
+      isRowHeader: true,
+      allowsSorting: true,
+    },
+    {
+      id: 'occurrence',
+      name: (
+        <>
+          {intl.formatMessage(messages.occurrence)}
+          <Icon name={sortDownSVG} size="16px" ariaHidden="true" />
+        </>
+      ),
+      allowsSorting: true,
+    },
+    {
+      id: 'actions',
+      name: intl.formatMessage(messages.actions),
+    },
+  ];
+
+  const rows = keywords.items?.map((kw) => ({
+    id: kw.name,
+    textValue: kw.name,
+    keyword: kw.name,
+    occurrence: kw.total,
+    actions: (
+      <div>
+        <UniversalLink
+          href={`${pathname}/${keywordIndex}/${kw.name}`}
+          openLinkInNewTab={true}
+        >
+          <Icon name={showSVG} size="20px" />
+        </UniversalLink>
+        <Button onPress={() => handleDeleteKeywords(kw.name)}>
+          <Icon name={trashSVG} size="20px" />
+        </Button>
+      </div>
+    ),
+  }));
+
+  const handleSortChange = (newDescriptor: SortDescriptor) => {
+    if (
+      newDescriptor.column === sortDescriptor?.column &&
+      sortDescriptor?.direction === 'descending'
+    ) {
+      setSortDescriptor(undefined);
+    } else {
+      setSortDescriptor(newDescriptor);
     }
   };
 
@@ -242,77 +286,51 @@ const KeywordManager = (props) => {
           </div>
         </div>
       </div>
-      {keywords.loaded ? (
-        <Table
-          className="react-aria-Table cmsui-table"
-          columns={[
-            {
-              id: 'keyword',
-              name: (
-                <div>
-                  <p>{intl.formatMessage(messages.keyword)}</p>
-                  <Button onPress={() => handleSorting('alphabetical')}>
-                    <Icon
-                      name={
-                        sortOn === 'alphabetical' && sortOrder === 'ascending'
-                          ? sortDownSVG
-                          : sortUpSVG
-                      }
-                      size="20px"
-                    />
-                  </Button>
-                </div>
-              ),
-              isRowHeader: true,
-            },
-            {
-              id: 'occurrence',
-              name: (
-                <div>
-                  <p>{intl.formatMessage(messages.occurrence)}</p>
-                  <Button onPress={() => handleSorting('frequency')}>
-                    <Icon
-                      name={
-                        sortOn === 'frequency' && sortOrder === 'ascending'
-                          ? sortDownSVG
-                          : sortUpSVG
-                      }
-                      size="20px"
-                    />
-                  </Button>
-                </div>
-              ),
-            },
-            {
-              id: 'actions',
-              name: <p>{intl.formatMessage(messages.actions)}</p>,
-            },
-          ]}
-          rows={keywords.items?.map((kw) => ({
-            id: kw.name,
-            textValue: kw.name,
-            keyword: kw.name,
-            occurrence: kw.total,
-            actions: (
-              <div>
-                <UniversalLink
-                  href={`${pathname}/${keywordIndex}/${kw.name}`}
-                  openLinkInNewTab={true}
-                >
-                  <Icon name={showSVG} size="20px" />
-                </UniversalLink>
-                <Button onPress={() => handleDeleteKeywords(kw.name)}>
-                  <Icon name={trashSVG} size="20px" />
-                </Button>
-              </div>
-            ),
-          }))}
-          selectionMode="multiple"
-          onSelectionChange={setSelectedKeys}
-        />
-      ) : (
-        <Spinner label={intl.formatMessage(messages.loading)} />
-      )}
+      <Table
+        className="react-aria-Table cmsui-table"
+        selectionMode="multiple"
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+        sortDescriptor={sortDescriptor}
+        onSortChange={handleSortChange}
+      >
+        <TableHeader columns={columns}>
+          <Column>
+            <Checkbox slot="selection" />
+          </Column>
+          <Collection items={columns}>
+            {(column) => (
+              <Column
+                isRowHeader={column.isRowHeader}
+                allowsSorting={column.allowsSorting}
+              >
+                {column.name}
+              </Column>
+            )}
+          </Collection>
+        </TableHeader>
+        <TableBody
+          items={rows}
+          renderEmptyState={() =>
+            keywords.loading ? (
+              <Spinner aria-label={intl.formatMessage(messages.loading)} />
+            ) : (
+              'No results found.'
+            )
+          }
+        >
+          {(item) => (
+            <Row columns={columns} textValue={item.textValue}>
+              <Cell>
+                <Checkbox slot="selection" />
+              </Cell>
+              <Collection items={columns}>
+                {(column) => <Cell>{item[column.id]}</Cell>}
+              </Collection>
+            </Row>
+          )}
+        </TableBody>
+      </Table>
       {keywords?.items_total > Math.min(...pageSizes) && (
         <Pagination
           current={currentPage}

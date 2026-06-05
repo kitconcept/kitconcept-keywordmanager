@@ -28,7 +28,9 @@
   },
   "addons": [],
   "theme": "",
-  "dependencies": {},
+  "dependencies": {
+    "react-aria-components": "catalog:"
+  },
   "peerDependencies": {
     "@plone/components": "^4.1.0",
     "react": "^18.2.0",

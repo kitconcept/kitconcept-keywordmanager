@@ -24,8 +24,8 @@ class KeywordsGet(Service):
             reverse = sort_order == "descending"
 
         sort_keys = {
-            "alphabetical": lambda x: x[0].lower(),
-            "frequency": lambda x: x[1],
+            "keyword": lambda x: x[0].lower(),
+            "occurrence": lambda x: x[1],
         }
 
         if sort_on := self.request.form.get("sort_on"):
