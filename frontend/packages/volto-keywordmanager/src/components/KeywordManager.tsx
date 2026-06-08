@@ -5,7 +5,6 @@ import { Checkbox } from 'react-aria-components';
 import { Spinner, Button, Select } from '@plone/components';
 import { DialogTrigger } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
-import Error from '@plone/volto/components/theme/Error/Error';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
@@ -31,6 +30,8 @@ import trashSVG from '@plone/volto/icons/delete.svg';
 import showSVG from '@plone/volto/icons/show.svg';
 import sortUpSVG from '@plone/volto/icons/sort-up.svg';
 import sortDownSVG from '@plone/volto/icons/sort-down.svg';
+import { toast } from 'react-toastify';
+import { Toast } from '@plone/components';
 
 const messages = defineMessages({
   back: {
@@ -94,6 +95,39 @@ const KeywordManager = (props) => {
     dispatch(getKeywords(options));
     dispatch(getKeywordIndexes());
   }, [dispatch, options]);
+
+  useEffect(() => {
+    const actionType = keywords.type;
+
+    const isUpdate = actionType.startsWith('UPDATE_');
+    const isDelete = actionType.startsWith('DELETE_');
+    const isSuccess = actionType.endsWith('_SUCCESS');
+    const isFail = actionType.endsWith('_FAIL');
+
+    if (!isUpdate && !isDelete) return;
+
+    if (isUpdate) {
+      isSuccess &&
+        toast.success(
+          <Toast title="Update Success" content="Updated successfully!" />,
+        );
+      isFail &&
+        toast.error(
+          <Toast error title="Update Failed" content="Could not update." />,
+        );
+    }
+
+    if (isDelete) {
+      isSuccess &&
+        toast.success(
+          <Toast title="Delete Success" content="Deleted successfully!" />,
+        );
+      isFail &&
+        toast.error(
+          <Toast error title="Delete Failed" content="Could not delete." />,
+        );
+    }
+  }, [keywords]);
 
   const columns = [
     {
@@ -182,10 +216,6 @@ const KeywordManager = (props) => {
     }
     dispatch(getKeywords(options));
   };
-
-  if (keywords?.error?.status) {
-    return <Error error={keywords.error} />;
-  }
 
   return (
     <div
