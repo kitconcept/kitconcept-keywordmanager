@@ -1,8 +1,7 @@
 import type { SortDescriptor, Selection } from 'react-aria-components';
 import { Table, TableHeader, TableBody } from 'react-aria-components';
 import { Column, Row, Cell, Collection } from 'react-aria-components';
-import { Checkbox } from 'react-aria-components';
-import { Spinner, Button, Select } from '@plone/components';
+import { Checkbox, Spinner, Button, Select } from '@plone/components';
 import { DialogTrigger } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
@@ -135,7 +134,12 @@ const KeywordManager = (props) => {
       name: (
         <>
           {intl.formatMessage(messages.keyword)}
-          <Icon name={sortDownSVG} size="16px" ariaHidden="true" />
+          <Icon
+            className={sortOn === 'keyword' && 'active'}
+            name={sortOrder === 'descending' ? sortDownSVG : sortUpSVG}
+            size="20px"
+            ariaHidden="true"
+          />
         </>
       ),
       isRowHeader: true,
@@ -146,7 +150,12 @@ const KeywordManager = (props) => {
       name: (
         <>
           {intl.formatMessage(messages.occurrence)}
-          <Icon name={sortDownSVG} size="16px" ariaHidden="true" />
+          <Icon
+            className={sortOn === 'occurrence' && 'active'}
+            name={sortOrder === 'descending' ? sortDownSVG : sortUpSVG}
+            size="20px"
+            ariaHidden="true"
+          />
         </>
       ),
       allowsSorting: true,
