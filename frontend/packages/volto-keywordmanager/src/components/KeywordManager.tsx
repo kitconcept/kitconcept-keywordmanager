@@ -25,7 +25,7 @@ import RenameModal from './RenameModal';
 import DeleteModal from './DeleteModal';
 
 import backSVG from '@plone/volto/icons/back.svg';
-import replaceSVG from '@plone/volto/icons/replace.svg';
+import editSVG from '@plone/volto/icons/pencil.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import showSVG from '@plone/volto/icons/show.svg';
 import sortUpSVG from '@plone/volto/icons/sort-up.svg';
@@ -282,7 +282,7 @@ const KeywordManager = (props) => {
               <Button
                 isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
               >
-                <Icon name={replaceSVG} size="20px" />
+                <Icon name={editSVG} size="20px" />
               </Button>
               <RenameModal
                 isLoading={isLoading}
