@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
 import DeleteModal from './DeleteModal';
+import { toast } from 'react-toastify';
+import { Toast } from '@plone/components';
 
 import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 import backSVG from '@plone/volto/icons/back.svg';
@@ -130,6 +132,13 @@ const KeywordView = (props) => {
     try {
       await dispatch(
         deleteKeywords({ items: kw, path: id, indexName: keywordIndex }),
+      );
+      toast.success(
+        <Toast title="Delete Success" content="Deleted successfully!" />,
+      );
+    } catch (error) {
+      toast.error(
+        <Toast error title="Delete Failed" content="Could not delete." />,
       );
     } finally {
       setIsLoading(false);

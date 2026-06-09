@@ -95,39 +95,6 @@ const KeywordManager = (props) => {
     dispatch(getKeywordIndexes());
   }, [dispatch, options]);
 
-  useEffect(() => {
-    const actionType = keywords.type;
-
-    const isUpdate = actionType.startsWith('UPDATE_');
-    const isDelete = actionType.startsWith('DELETE_');
-    const isSuccess = actionType.endsWith('_SUCCESS');
-    const isFail = actionType.endsWith('_FAIL');
-
-    if (!isUpdate && !isDelete) return;
-
-    if (isUpdate) {
-      isSuccess &&
-        toast.success(
-          <Toast title="Update Success" content="Updated successfully!" />,
-        );
-      isFail &&
-        toast.error(
-          <Toast error title="Update Failed" content="Could not update." />,
-        );
-    }
-
-    if (isDelete) {
-      isSuccess &&
-        toast.success(
-          <Toast title="Delete Success" content="Deleted successfully!" />,
-        );
-      isFail &&
-        toast.error(
-          <Toast error title="Delete Failed" content="Could not delete." />,
-        );
-    }
-  }, [keywords]);
-
   const columns = [
     {
       id: 'keyword',
@@ -204,6 +171,13 @@ const KeywordManager = (props) => {
     setIsLoading(true);
     try {
       await dispatch(deleteKeywords({ items: kw, indexName: keywordIndex }));
+      toast.success(
+        <Toast title="Delete Success" content="Deleted successfully!" />,
+      );
+    } catch (error) {
+      toast.error(
+        <Toast error title="Delete Failed" content="Could not delete." />,
+      );
     } finally {
       setIsLoading(false);
     }
@@ -219,6 +193,13 @@ const KeywordManager = (props) => {
           old_keywords: olds,
           indexName: keywordIndex,
         }),
+      );
+      toast.success(
+        <Toast title="Update Success" content="Updated successfully!" />,
+      );
+    } catch (error) {
+      toast.error(
+        <Toast error title="Update Failed" content="Could not update." />,
       );
     } finally {
       setIsLoading(false);
