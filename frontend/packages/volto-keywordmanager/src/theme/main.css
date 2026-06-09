@@ -36,6 +36,8 @@
 
   .react-aria-Select > button {
     border: 1px solid #000;
+    border-top: 3px solid #000;
+    border-radius: 0;
   }
 
   .react-aria-Button[data-pressed] {
@@ -50,11 +52,24 @@
       align-items: center;
       gap: 30px;
 
-      button {
-        cursor: pointer;
+      > div {
+        display: flex;
+        gap: 10px;
+      }
 
-        &:disabled {
-          cursor: default;
+      button {
+        height: 100%;
+      }
+
+      .search {
+        max-width: 250px;
+        border: 1px solid #000;
+        border-top: 3px solid #000;
+        display: flex;
+        flex-direction: row;
+
+        input {
+          border: none;
         }
       }
     }

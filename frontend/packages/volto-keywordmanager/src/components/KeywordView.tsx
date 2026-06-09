@@ -196,7 +196,7 @@ const KeywordView = (props) => {
               />
             </DialogTrigger>
           </div>
-          <div className="select-portal_type">
+          <div className="filtering">
             <Select
               selectionMode="multiple"
               placeholder={intl.formatMessage(messages.selectTypePlaceholder)}
@@ -206,8 +206,6 @@ const KeywordView = (props) => {
                 value: <FormattedMessage id={item.label} />,
               }))}
             />
-          </div>
-          <div className="select-review_state">
             <Select
               selectionMode="multiple"
               placeholder={intl.formatMessage(messages.selectStatePlaceholder)}
@@ -217,16 +215,17 @@ const KeywordView = (props) => {
                 value: <FormattedMessage id={item.label} />,
               }))}
             />
-          </div>
-          <div className="search">
-            <SearchField
-              placeholder={intl.formatMessage(messages.searchFieldPlaceholder)}
-              onSubmit={setSearch}
-            >
+            <div className="search">
+              <SearchField
+                placeholder={intl.formatMessage(
+                  messages.searchFieldPlaceholder,
+                )}
+                onSubmit={setSearch}
+              />
               <Button>
                 <Icon name={searchSVG} size="20px" />
               </Button>
-            </SearchField>
+            </div>
           </div>
         </div>
       </div>
