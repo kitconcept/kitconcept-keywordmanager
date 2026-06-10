@@ -35,17 +35,12 @@ class KeywordsGet(Service):
                 )
             keywords.sort(key=sort_keys.get(sort_on), reverse=reverse)
 
-        batch = HypermediaBatch(self.request, keywords)
-        items = [{"name": name, "total": count} for name, count in batch]
-
-        keywords_data = {
-            "@id": batch.canonical_url,
-            "items": items,
-            "items_total": batch.items_total,
+        result = {
+            "@id": self.context.absolute_url(),
+            "items": [{"name": name, "total": count} for name, count in keywords],
+            "items_total": len(keywords),
         }
-        if batch.links:
-            keywords_data["batching"] = batch.links
-        return keywords_data
+        return result
 
 
 class KeywordIndexesGet(Service):

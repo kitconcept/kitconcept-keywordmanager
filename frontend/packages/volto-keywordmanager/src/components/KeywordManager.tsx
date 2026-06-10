@@ -69,10 +69,6 @@ const KeywordManager = (props) => {
   const selectionCount =
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
   const [keywordIndex, setKeywordIndex] = useState<string>('Subject');
-  // Pagination
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [pageSize, setPageSize] = useState<number>(25);
-  const pageSizes = [25, 50, 100];
   // Sorting
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const sortOn = sortDescriptor?.column;
@@ -81,13 +77,11 @@ const KeywordManager = (props) => {
 
   const options = useMemo(
     () => ({
-      ...(pageSize !== 25 && { batchSize: pageSize }),
-      ...(currentPage !== 0 && { batchStart: currentPage }),
       ...(keywordIndex !== 'Subject' && { idx: keywordIndex }),
       ...(sortOrder && { sortOrder: sortOrder }),
       ...(sortOn && { sortOn: sortOn }),
     }),
-    [pageSize, currentPage, keywordIndex, sortOrder, sortOn],
+    [keywordIndex, sortOrder, sortOn],
   );
 
   useEffect(() => {
@@ -351,34 +345,6 @@ const KeywordManager = (props) => {
           )}
         </TableBody>
       </Table>
-      {keywords?.items_total > Math.min(...pageSizes) && (
-        <Pagination
-          current={currentPage}
-          total={Math.ceil(keywords?.items_total / pageSize)}
-          pageSize={pageSize}
-          pageSizes={pageSizes}
-          onChangePage={(e, { value }) => {
-            setCurrentPage(value);
-            dispatch(
-              getKeywords({
-                batchSize: pageSize,
-                batchStart: pageSize * value,
-                ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
-              }),
-            );
-          }}
-          onChangePageSize={(e, { value }) => {
-            setPageSize(value);
-            dispatch(
-              getKeywords({
-                batchSize: value,
-                batchStart: currentPage,
-                ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
-              }),
-            );
-          }}
-        />
-      )}
       {isClient &&
         createPortal(
           <Toolbar

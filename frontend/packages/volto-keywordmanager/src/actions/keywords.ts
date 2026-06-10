@@ -5,22 +5,16 @@ import { DELETE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
 export function getKeywords({
   index = null,
   groupKeywords = false,
-  batchSize = 25,
-  batchStart = 0,
   sortOn = null,
   sortOrder = null,
 }: {
   index?: string | null;
   groupKeywords?: boolean;
-  batchSize?: number;
-  batchStart?: number;
   sortOn?: string;
   sortOrder?: string;
 }) {
   let params = new URLSearchParams({
     grouped: String(groupKeywords),
-    b_size: String(batchSize),
-    b_start: String(batchStart),
   });
 
   if (index) params.append('idx', index);
