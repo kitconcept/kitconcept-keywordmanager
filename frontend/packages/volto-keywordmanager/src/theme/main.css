@@ -1,3 +1,5 @@
+@import 'pagination.css';
+
 #page-keyword_manager {
   display: flex;
   flex-direction: column;
@@ -22,11 +24,6 @@
     border-radius: 6px;
     background: #e6e6e6;
     color: #4e4e4e;
-  }
-
-  button {
-    border: none;
-    background: none;
   }
 
   * h2,
@@ -61,6 +58,10 @@
         height: 100%;
       }
 
+      .bulk-actions button {
+        border: none;
+      }
+
       .search {
         max-width: 250px;
         border: 1px solid #000;
@@ -68,7 +69,8 @@
         display: flex;
         flex-direction: row;
 
-        input {
+        input,
+        button {
           border: none;
         }
       }
@@ -138,6 +140,8 @@
 
           button {
             padding-left: 6px;
+            background: none;
+            border: none;
           }
         }
       }

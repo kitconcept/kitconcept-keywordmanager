@@ -83,6 +83,31 @@ msgstr ""
 msgid "confirm-modal-title"
 msgstr "Stichwort(e) löschen"
 
+#. Default: "Go to first page"
+#: components/Pagination
+msgid "goToFirstPage"
+msgstr "Zur ersten Seite gehen"
+
+#. Default: "Go to last page"
+#: components/Pagination
+msgid "goToLastPage"
+msgstr "Zur letzten Seite gehen"
+
+#. Default: "Go to next page"
+#: components/Pagination
+msgid "goToNext"
+msgstr "Zur nächsten Seite gehen"
+
+#. Default: "Go to page {num}"
+#: components/Pagination
+msgid "goToPageNum"
+msgstr "Weiter zu Seite {num}"
+
+#. Default: "Go to previous page"
+#: components/Pagination
+msgid "goToPrev"
+msgstr "Zur vorherigen Seite gehen"
+
 #. Default: "Keyword field:"
 #: components/KeywordManager
 msgid "keyword-field"
@@ -106,6 +131,11 @@ msgstr ""
 msgid "loading"
 msgstr ""
 
+#. Default: "Next page"
+#: components/Pagination
+msgid "nextPage"
+msgstr "Nächste Seite"
+
 #. Default: "No content selected"
 #: components/KeywordView
 msgid "no-content-selected"
@@ -125,6 +155,16 @@ msgstr "{num} Inhalt(e) ausgewählt"
 #: components/KeywordManager
 msgid "number-keywords-selected"
 msgstr "{num} Stichwort(e) ausgewählt"
+
+#. Default: "Page {num}"
+#: components/Pagination
+msgid "pageNum"
+msgstr "Seite {num}"
+
+#. Default: "Previous page"
+#: components/Pagination
+msgid "prevPage"
+msgstr "Vorherige Seite"
 
 #. Default: "You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
 #: components/RenameModal

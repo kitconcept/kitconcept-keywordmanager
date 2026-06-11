@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2026-06-01T14:06:59.107Z\n"
+"POT-Creation-Date: 2026-06-11T12:33:39.911Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -85,6 +85,31 @@ msgstr ""
 msgid "confirm-modal-title"
 msgstr ""
 
+#. Default: "Go to first page"
+#: components/Pagination
+msgid "goToFirstPage"
+msgstr ""
+
+#. Default: "Go to last page"
+#: components/Pagination
+msgid "goToLastPage"
+msgstr ""
+
+#. Default: "Go to next page"
+#: components/Pagination
+msgid "goToNext"
+msgstr ""
+
+#. Default: "Go to page {num}"
+#: components/Pagination
+msgid "goToPageNum"
+msgstr ""
+
+#. Default: "Go to previous page"
+#: components/Pagination
+msgid "goToPrev"
+msgstr ""
+
 #. Default: "Keyword field:"
 #: components/KeywordManager
 msgid "keyword-field"
@@ -108,6 +133,11 @@ msgstr ""
 msgid "loading"
 msgstr ""
 
+#. Default: "Next page"
+#: components/Pagination
+msgid "nextPage"
+msgstr ""
+
 #. Default: "No content selected"
 #: components/KeywordView
 msgid "no-content-selected"
@@ -126,6 +156,16 @@ msgstr ""
 #. Default: "{num} keyword(s) selected"
 #: components/KeywordManager
 msgid "number-keywords-selected"
+msgstr ""
+
+#. Default: "Page {num}"
+#: components/Pagination
+msgid "pageNum"
+msgstr ""
+
+#. Default: "Previous page"
+#: components/Pagination
+msgid "prevPage"
 msgstr ""
 
 #. Default: "You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."

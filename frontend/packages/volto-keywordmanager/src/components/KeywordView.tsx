@@ -2,7 +2,7 @@ import { Button, SearchField, Select, Spinner, Table } from '@plone/components';
 import { searchContent } from '@plone/volto/actions/search/search';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
-import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
+import { Pagination } from './Pagination';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { useClient } from '@plone/volto/hooks';
 import { useEffect, useMemo, useState } from 'react';
@@ -82,8 +82,9 @@ const KeywordView = (props) => {
   const selectionCount =
     selectedKeys === 'all' ? keywords.items?.length : selectedKeys?.size;
   // Pagination
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize = 5;
+  const totalPages = Math.ceil(keywords?.total / pageSize);
   const [selectedTypes, setSelectedTypes] = useState<[]>([]);
   const [selectedStates, setSelectedStates] = useState<[]>([]);
   const [search, setSearch] = useState<string>('');
@@ -94,7 +95,7 @@ const KeywordView = (props) => {
       [keywordIndex]: [id],
       metadata_fields: keywordIndex,
       b_size: pageSize,
-      b_start: currentPage * pageSize,
+      b_start: (currentPage - 1) * pageSize,
       ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
       ...(selectedStates.length > 0 && { review_state: selectedStates }),
       ...(search && { SearchableText: search }),
@@ -240,6 +241,7 @@ const KeywordView = (props) => {
       </div>
       {keywords?.loaded && keywords?.items.length > 0 ? (
         <Table
+          id="keywords"
           className="react-aria-Table cmsui-table"
           columns={[
             {
@@ -291,17 +293,13 @@ const KeywordView = (props) => {
       )}
       {keywords?.total > pageSize && (
         <Pagination
-          current={currentPage}
-          total={Math.ceil(keywords?.total / pageSize)}
-          pageSize={pageSize}
-          onChangePage={(e, { value }) => {
+          activePage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(value) => {
             setCurrentPage(value);
             dispatch(searchContent('/', options, 'keywords'));
           }}
-          onChangePageSize={(e, { value }) => {
-            setPageSize(value);
-            dispatch(searchContent('/', options, 'keywords'));
-          }}
+          ariaControls="keywords"
         />
       )}
       {isClient &&
