@@ -1,4 +1,7 @@
-import { Button, SearchField, Select, Spinner, Table } from '@plone/components';
+import { Button, SearchField, Select, Spinner } from '@plone/components';
+import { Table, TableHeader, TableBody, Row } from 'react-aria-components';
+import { Column, Collection, Cell } from 'react-aria-components';
+import { Checkbox } from '@plone/components';
 import { searchContent } from '@plone/volto/actions/search/search';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
@@ -125,6 +128,46 @@ const KeywordView = (props) => {
     );
   }, [dispatch, options]);
 
+  const columns = [
+    {
+      id: 'title',
+      name: intl.formatMessage(messages.title),
+      isRowHeader: true,
+    },
+    {
+      id: 'type',
+      name: intl.formatMessage(messages.type),
+    },
+    { id: 'state', name: intl.formatMessage(messages.state) },
+  ];
+
+  const rows = keywords?.items?.map((obj) => ({
+    id: obj['@id'],
+    textValue: obj.title,
+    title: (
+      <>
+        <UniversalLink href={obj['@id'] || '/'}>{obj.title}</UniversalLink>
+        <br />
+        <span hidden>Path: </span>
+        <span>{flattenToAppURL(obj['@id']) || '/'}</span>
+        <KeywordList
+          keywords={obj[keywordIndex]}
+          currentId={id}
+          onDelete={(item) => handleDeleteKeywords(item, obj['@id'])}
+        />
+      </>
+    ),
+    type: obj.type_title,
+    state: (
+      <FormattedMessage
+        id={
+          states?.items?.find((item) => item.value === obj.review_state)
+            ?.label ?? 'no workflow state'
+        }
+      />
+    ),
+  }));
+
   const handleDeleteKeywords = async (kw: string | string[], id?: string) => {
     if (typeof kw == 'string') {
       kw = [kw];
@@ -239,59 +282,45 @@ const KeywordView = (props) => {
           </div>
         </div>
       </div>
-      {keywords?.loaded && keywords?.items.length > 0 ? (
-        <Table
-          id="keywords"
-          className="react-aria-Table cmsui-table"
-          columns={[
-            {
-              id: 'title',
-              name: intl.formatMessage(messages.title),
-              isRowHeader: true,
-            },
-            {
-              id: 'type',
-              name: intl.formatMessage(messages.type),
-            },
-            { id: 'state', name: intl.formatMessage(messages.state) },
-          ]}
-          rows={keywords?.items?.map((obj) => ({
-            id: obj['@id'],
-            textValue: obj.title,
-            title: (
-              <>
-                <UniversalLink href={obj['@id'] || '/'}>
-                  {obj.title}
-                </UniversalLink>
-                <br />
-                <span hidden>Path: </span>
-                <span>{flattenToAppURL(obj['@id']) || '/'}</span>
-                <KeywordList
-                  keywords={obj[keywordIndex]}
-                  currentId={id}
-                  onDelete={(item) => handleDeleteKeywords(item, obj['@id'])}
-                />
-              </>
-            ),
-            type: obj.type_title,
-            state: (
-              <FormattedMessage
-                id={
-                  states?.items?.find((item) => item.value === obj.review_state)
-                    ?.label ?? 'no workflow state'
-                }
-              />
-            ),
-          }))}
-          selectionMode="multiple"
-          onSelectionChange={setSelectedKeys}
-        />
-      ) : keywords?.loading ? (
-        <Spinner aria-label={intl.formatMessage(messages.loading)} />
-      ) : (
-        <div>No results.</div>
-      )}
-      {keywords?.total > pageSize && (
+      <Table
+        className="react-aria-Table cmsui-table"
+        selectionMode="multiple"
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+      >
+        <TableHeader columns={columns}>
+          <Column>
+            <Checkbox slot="selection" />
+          </Column>
+          <Collection items={columns}>
+            {(column) => (
+              <Column isRowHeader={column.isRowHeader}>{column.name}</Column>
+            )}
+          </Collection>
+        </TableHeader>
+        <TableBody
+          items={rows}
+          renderEmptyState={() =>
+            keywords?.loading ? (
+              <Spinner aria-label={intl.formatMessage(messages.loading)} />
+            ) : (
+              'No results found.'
+            )
+          }
+        >
+          {(item) => (
+            <Row columns={columns} textValue={item.textValue}>
+              <Cell>
+                <Checkbox slot="selection" />
+              </Cell>
+              <Collection items={columns}>
+                {(column) => <Cell>{item[column.id]}</Cell>}
+              </Collection>
+            </Row>
+          )}
+        </TableBody>
+      </Table>
+      {totalPages > 1 && (
         <Pagination
           activePage={currentPage}
           totalPages={totalPages}
