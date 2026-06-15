@@ -108,6 +108,7 @@ const RenameModal = ({
             </div>
             <div className="modal-actions">
               <Button
+                className="cancel-action"
                 onPress={() => {
                   setName(null);
                   close();
@@ -116,6 +117,7 @@ const RenameModal = ({
                 <FormattedMessage id="Cancel" defaultMessage="Cancel" />
               </Button>
               <Button
+                className="confirm-action"
                 isDisabled={name === null}
                 onPress={() => {
                   onConfirm(

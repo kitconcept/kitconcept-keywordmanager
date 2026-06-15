@@ -219,7 +219,7 @@ const KeywordManager = (props) => {
         />
       </p>
       {keywordIndexes?.items?.length > 1 && (
-        <div>
+        <div className="options">
           <p>
             <FormattedMessage
               id="keyword-field"

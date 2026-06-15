@@ -147,9 +147,8 @@ const KeywordView = (props) => {
     title: (
       <>
         <UniversalLink href={obj['@id'] || '/'}>{obj.title}</UniversalLink>
-        <br />
         <span hidden>Path: </span>
-        <span>{flattenToAppURL(obj['@id']) || '/'}</span>
+        <span className="path">{flattenToAppURL(obj['@id']) || '/'}</span>
         <KeywordList
           keywords={obj[keywordIndex]}
           currentId={id}

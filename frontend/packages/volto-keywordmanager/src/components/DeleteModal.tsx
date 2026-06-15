@@ -55,10 +55,11 @@ const DeleteModal = ({
               </p>
             </div>
             <div className="modal-actions">
-              <Button onPress={close}>
+              <Button className="cancel-action" onPress={close}>
                 <FormattedMessage id="Cancel" defaultMessage="Cancel" />
               </Button>
               <Button
+                className="confirm-action"
                 onPress={() => {
                   onConfirm(
                     selectedKeys === 'all'
