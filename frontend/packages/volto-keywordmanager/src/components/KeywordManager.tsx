@@ -5,7 +5,6 @@ import { Checkbox, Spinner, Button, Select } from '@plone/components';
 import { DialogTrigger } from '@plone/components';
 import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
-import Pagination from '@plone/volto/components/theme/Pagination/Pagination';
 import { getParentUrl } from '@plone/volto/helpers/Url/Url';
 import { useClient } from '@plone/volto/hooks';
 import { useEffect, useState, useMemo } from 'react';
