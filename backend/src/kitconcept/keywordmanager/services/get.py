@@ -1,5 +1,4 @@
 from kitconcept.keywordmanager.interfaces import IKeywordManager
-from plone.restapi.batching import HypermediaBatch
 from plone.restapi.services import Service
 from zExceptions import BadRequest
 from zope.component import getUtility
