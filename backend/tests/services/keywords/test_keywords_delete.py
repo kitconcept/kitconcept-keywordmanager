@@ -34,12 +34,18 @@ class TestKeywordsDelete:
         assert resp.status_code == 204
 
     def test_response_non_root(self):
-        resp = self.api_session.delete("/doc1/@keywords")
-        assert resp.status_code == 404
+        resp = self.api_session.delete(
+            "/doc1/@keywords",
+            data=json.dumps({"items": ["doc"]}),
+            headers={"Accept": "application/json"},
+        )
+        assert resp.status_code == 204
 
     def test_response_anonymous(self):
-        resp = self.anon_api_session.delete("/doc1/@keywords")
-        assert resp.status_code == 404
+        resp = self.anon_api_session.delete(
+            "/doc1/@keywords", headers={"Accept": "application/json"}
+        )
+        assert resp.status_code == 401
 
     def test_response_no_items(self):
         resp = self.api_session.delete(
