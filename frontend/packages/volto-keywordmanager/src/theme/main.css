@@ -173,10 +173,10 @@
       }
 
       svg {
+        padding-left: 10px;
         vertical-align: center;
 
         &:not(.active) {
-          padding-left: 10px;
           opacity: 0.5;
         }
       }
