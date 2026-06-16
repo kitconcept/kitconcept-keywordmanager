@@ -160,6 +160,10 @@
     padding: 0;
     margin: 15px 0;
 
+    &.top .react-aria-Cell {
+      vertical-align: top;
+    }
+
     .react-aria-TableHeader {
       .react-aria-Column {
         padding: 15px 10px;
@@ -168,9 +172,13 @@
         white-space: nowrap;
       }
 
-      svg:not(.active) {
-        padding-left: 10px;
-        opacity: 0.5;
+      svg {
+        vertical-align: center;
+
+        &:not(.active) {
+          padding-left: 10px;
+          opacity: 0.5;
+        }
       }
     }
 
@@ -207,7 +215,7 @@
       padding: 20px 10px;
       border: none;
       font-size: 16px;
-      vertical-align: top;
+      line-height: 16px;
       white-space: nowrap;
 
       &[data-key$=':keyword'],

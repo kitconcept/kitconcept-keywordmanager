@@ -282,7 +282,7 @@ const KeywordView = (props) => {
         </div>
       </div>
       <Table
-        className="react-aria-Table cmsui-table"
+        className="react-aria-Table cmsui-table top"
         selectionMode="multiple"
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
