@@ -256,7 +256,7 @@ const KeywordView = (props) => {
               onChange={setSelectedTypes}
               items={types?.items?.map((item) => ({
                 label: item.value,
-                value: <FormattedMessage id={item.label} />,
+                value: intl.formatMessage({ id: item.label }),
               }))}
             />
             <Select
@@ -265,7 +265,7 @@ const KeywordView = (props) => {
               onChange={setSelectedStates}
               items={states?.items?.map((item) => ({
                 label: item.value,
-                value: <FormattedMessage id={item.label} />,
+                value: intl.formatMessage({ id: item.label }),
               }))}
             />
             <div className="search">
