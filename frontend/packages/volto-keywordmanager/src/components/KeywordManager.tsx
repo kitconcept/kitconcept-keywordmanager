@@ -76,7 +76,7 @@ const KeywordManager = (props) => {
 
   const options = useMemo(
     () => ({
-      ...(keywordIndex !== 'Subject' && { idx: keywordIndex }),
+      ...(keywordIndex !== 'Subject' && { index: keywordIndex }),
       ...(sortOrder && { sortOrder: sortOrder }),
       ...(sortOn && { sortOn: sortOn }),
     }),
