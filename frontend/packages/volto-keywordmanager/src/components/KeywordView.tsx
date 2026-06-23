@@ -91,6 +91,7 @@ const KeywordView = (props) => {
   const [selectedTypes, setSelectedTypes] = useState<[]>([]);
   const [selectedStates, setSelectedStates] = useState<[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [submittedSearch, setSubmittedSearch] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const options = useMemo(
@@ -101,14 +102,14 @@ const KeywordView = (props) => {
       b_start: (currentPage - 1) * pageSize,
       ...(selectedTypes.length > 0 && { portal_type: selectedTypes }),
       ...(selectedStates.length > 0 && { review_state: selectedStates }),
-      ...(search && { SearchableText: search }),
+      ...(submittedSearch && { SearchableText: submittedSearch }),
     }),
     [
       keywordIndex,
       id,
       selectedTypes,
       selectedStates,
-      search,
+      submittedSearch,
       pageSize,
       currentPage,
     ],
@@ -272,9 +273,11 @@ const KeywordView = (props) => {
                 placeholder={intl.formatMessage(
                   messages.searchFieldPlaceholder,
                 )}
-                onSubmit={setSearch}
+                value={search}
+                onChange={setSearch}
+                onSubmit={setSubmittedSearch}
               />
-              <Button>
+              <Button onPress={() => setSubmittedSearch(search)}>
                 <Icon name={searchSVG} size="20px" />
               </Button>
             </div>
