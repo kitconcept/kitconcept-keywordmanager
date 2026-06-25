@@ -7,9 +7,9 @@ import { useIntl, defineMessages } from 'react-intl';
 
 interface DeleteModalProps {
   isLoading: boolean;
-  selectionCount: number;
+  selectionCount?: number;
   selectedKeys: string | Set<string>;
-  keywords: { items?: { name: string }[] };
+  keywords: { items?: { name: string; total: number }[] };
   onConfirm: (keys: string[]) => void;
 }
 
@@ -47,11 +47,30 @@ const DeleteModal = ({
             </div>
             <div className="modal-body">
               <p>
-                <FormattedMessage
-                  id="confirm-modal-description"
-                  defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
-                  values={{ num: <strong>{selectionCount}</strong> }}
-                />
+                {typeof selectedKeys === 'string' ? (
+                  <FormattedMessage
+                    id="single-confirm-modal-description"
+                    defaultMessage="You are about to delete the keyword {keyword} from {num} content object(s). This action cannot be undone. Are you sure you want to proceed?"
+                    values={{
+                      keyword: <strong>{selectedKeys}</strong>,
+                      num: (
+                        <strong>
+                          {
+                            keywords.items?.find(
+                              (item) => item.name === selectedKeys,
+                            )?.total
+                          }
+                        </strong>
+                      ),
+                    }}
+                  />
+                ) : (
+                  <FormattedMessage
+                    id="confirm-modal-description"
+                    defaultMessage="You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
+                    values={{ num: <strong>{selectionCount}</strong> }}
+                  />
+                )}
               </p>
             </div>
             <div className="modal-actions">

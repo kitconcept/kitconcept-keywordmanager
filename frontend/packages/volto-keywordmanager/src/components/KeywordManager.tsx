@@ -139,9 +139,21 @@ const KeywordManager = (props) => {
         >
           <Icon name={showSVG} size="20px" />
         </UniversalLink>
-        <Button onPress={() => handleDeleteKeywords(kw.name)}>
-          <Icon name={trashSVG} size="20px" />
-        </Button>
+        <DialogTrigger>
+          <Button>
+            <Icon name={trashSVG} size="20px" />
+          </Button>
+          <DeleteModal
+            isLoading={isLoading}
+            selectionCount={1}
+            selectedKeys={kw.name}
+            keywords={keywords}
+            onConfirm={(keys) => {
+              handleDeleteKeywords(keys);
+              setSelectedKeys(new Set());
+            }}
+          />
+        </DialogTrigger>
       </div>
     ),
   }));
