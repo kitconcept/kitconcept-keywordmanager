@@ -52,6 +52,38 @@ const messages = defineMessages({
     id: 'Actions',
     defaultMessage: 'Actions',
   },
+  updateSuccess: {
+    id: '{num} keywords updated',
+    defaultMessage: '{num} keywords updated',
+  },
+  updateSuccessContent: {
+    id: 'The selected keywords have been updated successfully.',
+    defaultMessage: 'The selected keywords have been updated successfully.',
+  },
+  updateError: {
+    id: '{num} keywords not updated',
+    defaultMessage: '{num} keywords not updated',
+  },
+  updateErrorContent: {
+    id: 'The selected keywords could not be updated.',
+    defaultMessage: 'The selected keywords could not be updated.',
+  },
+  deleteSuccess: {
+    id: '{num} keywords deleted',
+    defaultMessage: '{num} keywords deleted',
+  },
+  deleteSuccessContent: {
+    id: 'The selected keywords have been deleted successfully.',
+    defaultMessage: 'The selected keywords have been deleted successfully.',
+  },
+  deleteError: {
+    id: '{num} keywords not deleted',
+    defaultMessage: '{num} keywords not deleted',
+  },
+  deleteErrorContent: {
+    id: 'The selected keywords could not be deleted.',
+    defaultMessage: 'The selected keywords could not be deleted.',
+  },
 });
 
 const KeywordManager = (props) => {
@@ -177,11 +209,18 @@ const KeywordManager = (props) => {
     try {
       await dispatch(deleteKeywords({ items: kw, indexName: keywordIndex }));
       toast.success(
-        <Toast title="Delete Success" content="Deleted successfully!" />,
+        <Toast
+          title={intl.formatMessage(messages.deleteSuccess, { num: kw.length })}
+          content={intl.formatMessage(messages.deleteSuccessContent)}
+        />,
       );
     } catch (error) {
       toast.error(
-        <Toast error title="Delete Failed" content="Could not delete." />,
+        <Toast
+          error
+          title={intl.formatMessage(messages.deleteError, { num: kw.length })}
+          content={intl.formatMessage(messages.deleteErrorContent)}
+        />,
       );
     } finally {
       setIsLoading(false);
@@ -200,11 +239,20 @@ const KeywordManager = (props) => {
         }),
       );
       toast.success(
-        <Toast title="Update Success" content="Updated successfully!" />,
+        <Toast
+          title={intl.formatMessage(messages.updateSuccess, {
+            num: olds.length,
+          })}
+          content={intl.formatMessage(messages.updateSuccessContent)}
+        />,
       );
-    } catch (error) {
+    } catch {
       toast.error(
-        <Toast error title="Update Failed" content="Could not update." />,
+        <Toast
+          error
+          title={intl.formatMessage(messages.updateError, { num: olds.length })}
+          content={intl.formatMessage(messages.updateErrorContent)}
+        />,
       );
     } finally {
       setIsLoading(false);

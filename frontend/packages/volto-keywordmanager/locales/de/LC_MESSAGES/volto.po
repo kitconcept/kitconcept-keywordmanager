@@ -19,7 +19,7 @@ msgstr "Aktionen"
 #. Default: "All states"
 #: components/KeywordView
 msgid "All states"
-msgstr ""
+msgstr "Alle Zustände"
 
 #. Default: "All types"
 #: components/KeywordView
@@ -63,20 +63,65 @@ msgstr ""
 msgid "Keywords"
 msgstr "Stichworte"
 
+#. Default: "New keyword name:"
+#: components/RenameModal
+msgid "New keyword name:"
+msgstr "Neuer Name für das Stichwort:"
+
 #. Default: "Occurrence"
 #: components/KeywordManager
 msgid "Occurrence"
 msgstr ""
+
+#. Default: "Please enter new name"
+#: components/RenameModal
+msgid "Please enter new name"
+msgstr "Bitte geben Sie einen neuen Namen ein"
+
+#. Default: "Please select ..."
+#: components/RenameModal
+msgid "Please select ..."
+msgstr "Bitte auswählen:"
+
+#. Default: "Rename"
+#: components/RenameModal
+msgid "Rename"
+msgstr "Umbennenen"
 
 #. Default: "Rename & Merge"
 #: components/RenameModal
 msgid "Rename & Merge"
 msgstr "Umbennen & Zusammenführen"
 
+#. Default: "Select existing keyword to keep:"
+#: components/RenameModal
+msgid "Select existing keyword to keep:"
+msgstr "Wählen Sie ein vorhandenes Stichwort aus, das beibehalten werden soll:"
+
+#. Default: "The selected keywords could not be deleted."
+#: components/KeywordManager
+msgid "The selected keywords could not be deleted."
+msgstr "Die ausgewählten Stichwörter konnten nicht gelöscht werden."
+
+#. Default: "The selected keywords could not be updated."
+#: components/KeywordManager
+msgid "The selected keywords could not be updated."
+msgstr "Die ausgewählten Stichwörter konnten nicht aktualisiert werden."
+
+#. Default: "The selected keywords have been deleted successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been deleted successfully."
+msgstr "Die ausgewählten Stichwörter wurden erfolgreich gelöscht."
+
+#. Default: "The selected keywords have been updated successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been updated successfully."
+msgstr "Die ausgewählten Stichwörter wurden erfolgreich aktualisiert."
+
 #. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
 #: components/DeleteModal
 msgid "confirm-modal-description"
-msgstr ""
+msgstr "Sie sind dabei, {num} ausgewählte Stichwörter zu löschen. Diese Aktion kann nicht rückgängig gemacht werden. Möchten Sie wirklich fortfahren?"
 
 #. Default: "Delete keyword(s)"
 #: components/DeleteModal
@@ -116,7 +161,7 @@ msgstr "Stichwort Feld:"
 #. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
 #: components/KeywordManager
 msgid "keyword-manager-description"
-msgstr ""
+msgstr "Mit dem Keyword-Manager können Sie die auf Ihrer Website verwendeten Stichworte verwalten. Wählen Sie zunächst das Stichwort-Feld aus, das Sie verwalten möchten. Anschließend können Sie einzelne Stichwörter sortieren, filtern, umbenennen, zusammenführen oder löschen."
 
 #. Default: "Manage Contents For Keyword \"{name}\""
 #: components/KeywordView
@@ -129,7 +174,7 @@ msgstr ""
 #: components/KeywordView
 #: components/RenameModal
 msgid "loading"
-msgstr ""
+msgstr "Lädt"
 
 #. Default: "Next page"
 #: components/Pagination
@@ -166,10 +211,10 @@ msgstr "Seite {num}"
 msgid "prevPage"
 msgstr "Vorherige Seite"
 
-#. Default: "You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
+#. Default: "You are about to rename & merge {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
 #: components/RenameModal
 msgid "rename-modal-description"
-msgstr ""
+msgstr "Sie sind dabei, {num} ausgewählte Schlüsselwörter umzubenennen und zusammenzuführen. Diese Aktion kann nicht rückgängig gemacht werden. Wählen Sie entweder eines der vorhandenen Stichwörter aus, das beibehalten werden soll, oder geben Sie einen neuen Namen ein, um alle ausgewählten Stichwörter zu ersetzen."
 
 #. Default: "Rename & merge keyword(s)"
 #: components/RenameModal
@@ -180,6 +225,21 @@ msgstr "Stichwort(e) umbennenen & zusammenführen"
 #: components/KeywordView
 msgid "search"
 msgstr "Suche"
+
+#. Default: "You are about to delete the keyword {keyword} from {num} content object(s). This action cannot be undone. Are you sure you want to proceed?"
+#: components/DeleteModal
+msgid "single-confirm-modal-description"
+msgstr "Sie sind dabei, das Stichwort {keyword} aus {num} Inhaltsobjekten zu löschen. Diese Aktion kann nicht rückgängig gemacht werden. Möchten Sie wirklich fortfahren?"
+
+#. Default: "You are about to rename the keyword {keyword}. This action cannot be undone. Please enter a new name to proceed."
+#: components/RenameModal
+msgid "single-rename-modal-description"
+msgstr "Sie sind dabei, das Stichwort {keyword} umzubenennen. Dieser Vorgang kann nicht rückgängig gemacht werden. Bitte geben Sie einen neuen Namen ein, um fortzufahren."
+
+#. Default: "Rename keyword"
+#: components/RenameModal
+msgid "single-rename-modal-title"
+msgstr "Stichwort umbennenen"
 
 #. Default: "State"
 #: components/KeywordView
@@ -195,3 +255,23 @@ msgstr "Titel / Pfad"
 #: components/KeywordView
 msgid "type"
 msgstr "Inhaltstyp"
+
+#. Default: "{num} keywords deleted"
+#: components/KeywordManager
+msgid "{num} keywords deleted"
+msgstr "{num} Stichwörter gelöscht"
+
+#. Default: "{num} keywords not deleted"
+#: components/KeywordManager
+msgid "{num} keywords not deleted"
+msgstr "{num} Stichwörter nicht gelöscht"
+
+#. Default: "{num} keywords not updated"
+#: components/KeywordManager
+msgid "{num} keywords not updated"
+msgstr "{num} Stichwörter nicht aktualisiert"
+
+#. Default: "{num} keywords updated"
+#: components/KeywordManager
+msgid "{num} keywords updated"
+msgstr "{num} Stichwörter aktualisiert"

@@ -70,14 +70,59 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
+#. Default: "New keyword name:"
+#: components/RenameModal
+msgid "New keyword name:"
+msgstr ""
+
 #. Default: "Occurrence"
 #: components/KeywordManager
 msgid "Occurrence"
 msgstr ""
 
+#. Default: "Please enter new name"
+#: components/RenameModal
+msgid "Please enter new name"
+msgstr ""
+
+#. Default: "Please select ..."
+#: components/RenameModal
+msgid "Please select ..."
+msgstr ""
+
+#. Default: "Rename"
+#: components/RenameModal
+msgid "Rename"
+msgstr ""
+
 #. Default: "Rename & Merge"
 #: components/RenameModal
 msgid "Rename & Merge"
+msgstr ""
+
+#. Default: "Select existing keyword to keep:"
+#: components/RenameModal
+msgid "Select existing keyword to keep:"
+msgstr ""
+
+#. Default: "The selected keywords could not be deleted."
+#: components/KeywordManager
+msgid "The selected keywords could not be deleted."
+msgstr ""
+
+#. Default: "The selected keywords could not be updated."
+#: components/KeywordManager
+msgid "The selected keywords could not be updated."
+msgstr ""
+
+#. Default: "The selected keywords have been deleted successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been deleted successfully."
+msgstr ""
+
+#. Default: "The selected keywords have been updated successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been updated successfully."
 msgstr ""
 
 #. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
@@ -173,7 +218,7 @@ msgstr ""
 msgid "prevPage"
 msgstr ""
 
-#. Default: "You are about to rename {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
+#. Default: "You are about to rename & merge {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
 #: components/RenameModal
 msgid "rename-modal-description"
 msgstr ""
@@ -186,6 +231,21 @@ msgstr ""
 #. Default: "Search"
 #: components/KeywordView
 msgid "search"
+msgstr ""
+
+#. Default: "You are about to delete the keyword {keyword} from {num} content object(s). This action cannot be undone. Are you sure you want to proceed?"
+#: components/DeleteModal
+msgid "single-confirm-modal-description"
+msgstr ""
+
+#. Default: "You are about to rename the keyword {keyword}. This action cannot be undone. Please enter a new name to proceed."
+#: components/RenameModal
+msgid "single-rename-modal-description"
+msgstr ""
+
+#. Default: "Rename keyword"
+#: components/RenameModal
+msgid "single-rename-modal-title"
 msgstr ""
 
 #. Default: "State"
@@ -201,4 +261,24 @@ msgstr ""
 #. Default: "Type"
 #: components/KeywordView
 msgid "type"
+msgstr ""
+
+#. Default: "{num} keywords deleted"
+#: components/KeywordManager
+msgid "{num} keywords deleted"
+msgstr ""
+
+#. Default: "{num} keywords not deleted"
+#: components/KeywordManager
+msgid "{num} keywords not deleted"
+msgstr ""
+
+#. Default: "{num} keywords not updated"
+#: components/KeywordManager
+msgid "{num} keywords not updated"
+msgstr ""
+
+#. Default: "{num} keywords updated"
+#: components/KeywordManager
+msgid "{num} keywords updated"
 msgstr ""
