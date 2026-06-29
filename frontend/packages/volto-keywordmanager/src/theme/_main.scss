@@ -122,7 +122,10 @@
           }
 
           [data-placeholder] {
+            white-space: nowrap;
             font-style: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
 
