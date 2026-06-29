@@ -35,7 +35,8 @@
   "dependencies": {
     "@plone/volto": "workspace:*",
     "@plone/registry": "workspace:*",
-    "volto-keywordmanager": "workspace:*"
+    "volto-keywordmanager": "workspace:*",
+    "@kitconcept/volto-light-theme": "^8.0.0-alpha.29"
   },
   "devDependencies": {
     "mrs-developer": "^2.2.0"
