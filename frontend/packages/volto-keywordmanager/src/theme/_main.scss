@@ -5,6 +5,10 @@
   flex-direction: column;
   color: #000;
 
+  * button[data-pressed] {
+    box-shadow: none;
+  }
+
   .title {
     padding: 20px 15px;
     border-bottom: 2px solid;
