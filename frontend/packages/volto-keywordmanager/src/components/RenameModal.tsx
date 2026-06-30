@@ -1,11 +1,5 @@
-import {
-  Button,
-  Modal,
-  RadioGroup,
-  Radio,
-  TextField,
-  Select,
-} from '@plone/components';
+import { Button, Modal, RadioGroup, Radio, TextField } from '@plone/components';
+import { Select } from './Select';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -132,7 +126,7 @@ const RenameModal = ({
                               label: kw.name,
                               value: kw.name,
                             }))
-                          : [...(selectedKeys as Set<string>)].map((kw) => ({
+                          : [...selectedKeys].map((kw) => ({
                               label: kw,
                               value: kw,
                             }))
