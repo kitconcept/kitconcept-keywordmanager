@@ -33,10 +33,10 @@
     "storybook-build": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto build-storybook -c $(pwd)/.storybook"
   },
   "dependencies": {
-    "@plone/volto": "workspace:*",
+    "@kitconcept/volto-light-theme": "^8.0.0-alpha.29",
     "@plone/registry": "workspace:*",
-    "volto-keywordmanager": "workspace:*",
-    "@kitconcept/volto-light-theme": "^8.0.0-alpha.29"
+    "@plone/volto": "workspace:*",
+    "volto-keywordmanager": "workspace:*"
   },
   "devDependencies": {
     "mrs-developer": "^2.2.0"

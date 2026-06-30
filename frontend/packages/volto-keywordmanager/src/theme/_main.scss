@@ -122,10 +122,10 @@
           }
 
           [data-placeholder] {
-            white-space: nowrap;
-            font-style: normal;
             overflow: hidden;
+            font-style: normal;
             text-overflow: ellipsis;
+            white-space: nowrap;
           }
         }
 
@@ -227,12 +227,12 @@
       }
 
       ul.actions {
-        list-style: none;
         display: flex;
         justify-content: center;
-        gap: 10px;
-        margin: 0;
         padding: 0;
+        margin: 0;
+        gap: 10px;
+        list-style: none;
 
         a {
           height: 20px;
