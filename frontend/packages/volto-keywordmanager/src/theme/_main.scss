@@ -226,10 +226,13 @@
         width: 100%;
       }
 
-      > div {
+      ul.actions {
+        list-style: none;
         display: flex;
         justify-content: center;
         gap: 10px;
+        margin: 0;
+        padding: 0;
 
         a {
           height: 20px;
@@ -264,7 +267,7 @@
         font-size: 12px;
       }
 
-      ul {
+      ul.pills {
         display: flex;
         flex-wrap: wrap;
         align-items: center;

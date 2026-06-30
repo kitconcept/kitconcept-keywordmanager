@@ -11,7 +11,7 @@ const KeywordList = ({ keywords = [], currentId, onDelete }) => {
   const hiddenCount = keywords.length - maxVisible;
 
   return (
-    <ul aria-label="Keywords">
+    <ul className="pills" aria-label="Keywords">
       {visible.map((item) => (
         <li key={item} className={item === currentId && 'current'}>
           <span>{item}</span>

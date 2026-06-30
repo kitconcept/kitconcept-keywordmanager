@@ -84,6 +84,23 @@ const messages = defineMessages({
     id: 'The selected keywords could not be deleted.',
     defaultMessage: 'The selected keywords could not be deleted.',
   },
+  openKeyword: {
+    id: 'Open keyword',
+    defaultMessage:
+      'Open detailed view for keyword {keyword} (opens in new tab)',
+  },
+  deleteKeyword: {
+    id: 'Delete keyword',
+    defaultMessage: 'Delete keyword {keyword}',
+  },
+  deleteKeywordSelection: {
+    id: 'Delete keyword selection',
+    defaultMessage: 'Delete keyword selection',
+  },
+  renameKeywordSelection: {
+    id: 'Rename keyword selection',
+    defaultMessage: 'Rename keyword selection',
+  },
 });
 
 const KeywordManager = (props) => {
@@ -127,7 +144,7 @@ const KeywordManager = (props) => {
         <>
           {intl.formatMessage(messages.keyword)}
           <Icon
-            className={sortOn === 'keyword' && 'active'}
+            className={sortOn !== undefined && 'active'}
             name={sortOrder === 'descending' ? sortDownSVG : sortUpSVG}
             size="20px"
             ariaHidden="true"
@@ -164,29 +181,40 @@ const KeywordManager = (props) => {
     keyword: kw.name,
     occurrence: kw.total,
     actions: (
-      <div>
-        <UniversalLink
-          href={`${pathname}/${keywordIndex}/${kw.name}`}
-          openLinkInNewTab={true}
-        >
-          <Icon name={showSVG} size="20px" />
-        </UniversalLink>
-        <DialogTrigger>
-          <Button>
-            <Icon name={trashSVG} size="20px" />
-          </Button>
-          <DeleteModal
-            isLoading={isLoading}
-            selectionCount={1}
-            selectedKeys={kw.name}
-            keywords={keywords}
-            onConfirm={(keys) => {
-              handleDeleteKeywords(keys);
-              setSelectedKeys(new Set());
-            }}
-          />
-        </DialogTrigger>
-      </div>
+      <ul className="actions">
+        <li>
+          <UniversalLink
+            aria-label={intl.formatMessage(messages.openKeyword, {
+              keyword: kw.name,
+            })}
+            href={`${pathname}/${keywordIndex}/${kw.name}`}
+            openLinkInNewTab={true}
+          >
+            <Icon name={showSVG} size="20px" ariaHidden={true} />
+          </UniversalLink>
+        </li>
+        <li>
+          <DialogTrigger>
+            <Button
+              aria-label={intl.formatMessage(messages.deleteKeyword, {
+                keyword: kw.name,
+              })}
+            >
+              <Icon name={trashSVG} size="20px" ariaHidden={true} />
+            </Button>
+            <DeleteModal
+              isLoading={isLoading}
+              selectionCount={1}
+              selectedKeys={kw.name}
+              keywords={keywords}
+              onConfirm={(keys) => {
+                handleDeleteKeywords(keys);
+                setSelectedKeys(new Set());
+              }}
+            />
+          </DialogTrigger>
+        </li>
+      </ul>
     ),
   }));
 
@@ -323,6 +351,7 @@ const KeywordManager = (props) => {
           <div className="bulk-actions">
             <DialogTrigger>
               <Button
+                aria-label={intl.formatMessage(messages.renameKeywordSelection)}
                 isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
               >
                 <Icon name={editSVG} size="20px" />
@@ -341,6 +370,7 @@ const KeywordManager = (props) => {
 
             <DialogTrigger>
               <Button
+                aria-label={intl.formatMessage(messages.deleteKeywordSelection)}
                 isDisabled={selectedKeys !== 'all' && selectedKeys?.size === 0}
               >
                 <Icon name={trashSVG} size="20px" />
