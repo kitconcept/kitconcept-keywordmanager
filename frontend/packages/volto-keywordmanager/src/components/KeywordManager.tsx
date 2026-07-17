@@ -144,8 +144,12 @@ const KeywordManager = (props) => {
         <>
           {intl.formatMessage(messages.keyword)}
           <Icon
-            className={sortOn !== undefined && 'active'}
-            name={sortOrder === 'descending' ? sortDownSVG : sortUpSVG}
+            className={sortOn === 'keyword' && 'active'}
+            name={
+              sortOn === 'keyword' && sortOrder === 'ascending'
+                ? sortUpSVG
+                : sortDownSVG
+            }
             size="20px"
             ariaHidden="true"
           />
@@ -161,7 +165,11 @@ const KeywordManager = (props) => {
           {intl.formatMessage(messages.occurrence)}
           <Icon
             className={sortOn === 'occurrence' && 'active'}
-            name={sortOrder === 'descending' ? sortDownSVG : sortUpSVG}
+            name={
+              sortOn === 'occurrence' && sortOrder === 'ascending'
+                ? sortUpSVG
+                : sortDownSVG
+            }
             size="20px"
             ariaHidden="true"
           />

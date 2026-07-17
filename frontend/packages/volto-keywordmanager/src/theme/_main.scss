@@ -181,7 +181,11 @@
 
       svg {
         padding-left: 10px;
-        vertical-align: center;
+        vertical-align: top;
+
+        path {
+          fill: #000;
+        }
 
         &:not(.active) {
           opacity: 0.5;
