@@ -1363,8 +1363,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@plone/components':
-        specifier: ^4.1.0
-        version: 4.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^4.2.1
+        version: 4.2.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@plone/registry':
         specifier: workspace:*
         version: link:../../core/packages/registry
@@ -3402,17 +3402,8 @@ packages:
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@plone/components@4.1.0':
-    resolution: {integrity: sha512-RtnDLA16Kv38slukHyNP3F/RX9aFKlJ+27x87xY0+jUXw6ElZD/IqM/DdgG6fWkdjrqc5ZJVeJvm/cIRr3SwDQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-
-  '@plone/components@4.2.0':
-    resolution: {integrity: sha512-COBYBzccDsPNsFG0vL62JdfBjsusX/AlAk+VIcsZeT3NP4il0mk9czH5w2KWdIotIVaC3PVy2Sd5NRBEpBcs2g==}
+  '@plone/components@4.2.1':
+    resolution: {integrity: sha512-AtV1khC1geGZEhIilP0Rmd0UoaAWHKZtVUQjY/b8QtRF5c6boxlpYfP9Jn6IFO2lFVvjgePVFspXv+HYc2a/4g==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -12946,7 +12937,7 @@ snapshots:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       '@dnd-kit/utilities': 3.2.2(react@18.2.0)
       '@kitconcept/volto-bm3-compat': 1.0.0-alpha.1(classnames@2.5.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@plone/components': 4.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@plone/components': 4.2.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       classnames: 2.5.1
       embla-carousel-autoplay: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-react: 8.6.0(react@18.2.0)
@@ -13201,24 +13192,7 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@plone/components@4.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@internationalized/date': 3.12.1
-      '@react-aria/utils': 3.34.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@react-spectrum/utils': 3.13.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      clsx: 2.1.1
-      react: 18.2.0
-      react-aria: 3.48.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-aria-components: 1.17.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-stately: 3.46.0(react@18.2.0)
-      tailwind-merge: 3.5.0
-      tailwind-variants: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.3)
-      tailwindcss: 4.2.3
-      tailwindcss-animate: 1.0.7(tailwindcss@4.2.3)
-    optionalDependencies:
-      react-dom: 18.2.0(react@18.2.0)
-
-  '@plone/components@4.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@plone/components@4.2.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/date': 3.12.2
       '@react-aria/utils': 3.34.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)

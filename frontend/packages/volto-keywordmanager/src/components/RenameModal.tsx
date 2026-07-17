@@ -1,5 +1,5 @@
-import { Button, Modal, RadioGroup, Radio, TextField } from '@plone/components';
-import { Select } from './Select';
+import { Button, Modal, Select, TextField } from '@plone/components';
+import { RadioGroup, Radio } from '@plone/components';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';

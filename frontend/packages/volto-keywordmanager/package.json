@@ -41,7 +41,7 @@
     "react-toastify": "5.5.0"
   },
   "devDependencies": {
-    "@plone/components": "^4.1.0",
+    "@plone/components": "^4.2.1",
     "@plone/registry": "workspace:*",
     "@plone/scripts": "workspace:*",
     "@plone/types": "workspace:*",
