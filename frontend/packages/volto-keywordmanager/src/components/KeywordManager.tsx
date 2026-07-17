@@ -238,12 +238,12 @@ const KeywordManager = (props) => {
   };
 
   const handleDeleteKeywords = async (kw: string | string[]) => {
-    if (typeof kw == 'string') {
-      kw = [kw];
-    }
+    const result = Array.isArray(kw) ? kw : [kw];
     setIsLoading(true);
     try {
-      await dispatch(deleteKeywords({ items: kw, indexName: keywordIndex }));
+      await dispatch(
+        deleteKeywords({ items: result, indexName: keywordIndex }),
+      );
       toast.success(
         <Toast
           title={intl.formatMessage(messages.deleteSuccess, { num: kw.length })}

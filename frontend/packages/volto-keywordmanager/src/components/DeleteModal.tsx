@@ -83,7 +83,9 @@ const DeleteModal = ({
                   onConfirm(
                     selectedKeys === 'all'
                       ? keywords.items?.map((kw) => kw.name) ?? []
-                      : [...(selectedKeys as Set<string>)],
+                      : typeof selectedKeys === 'string'
+                        ? [selectedKeys]
+                        : Array.from(selectedKeys),
                   );
                   close();
                 }}
