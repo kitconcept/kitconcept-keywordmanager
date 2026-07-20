@@ -1,148 +1,126 @@
 # kitconcept-keywordmanager 🚀
 
 [![Built with Cookieplone](https://img.shields.io/badge/built%20with-Cookieplone-0083be.svg?logo=cookiecutter)](https://github.com/plone/cookieplone-templates/)
-[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
-Change, merge and delete keywords (subjects) in Plone.
+Change, merge and delete keywords (subjects) in Plone 6.
 
-## Quick Start 🏁
+> [!WARNING]
+> This add-on is meant to be used in combination with the [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If you plan to use this add-on with plain Volto you will have to write your own styles for it. You can use the existing ones via manual import like this `import "@kitconcept/volto-keywordmanager/theme/_main.scss"` or as reference.
 
-### Prerequisites ✅
+## Features 🔥
 
--   An [operating system](https://6.docs.plone.org/install/create-project-cookieplone.html#prerequisites-for-installation) that runs all the requirements mentioned.
--   [uv](https://6.docs.plone.org/install/create-project-cookieplone.html#uv)
--   [nvm](https://6.docs.plone.org/install/create-project-cookieplone.html#nvm)
--   [Node.js and pnpm](https://6.docs.plone.org/install/create-project.html#node-js) 24
--   [Make](https://6.docs.plone.org/install/create-project-cookieplone.html#make)
--   [Git](https://6.docs.plone.org/install/create-project-cookieplone.html#git)
--   [Docker](https://docs.docker.com/get-started/get-docker/) (optional)
+<details>
+<summary>Control Panel (frontend)</summary>
 
+Coming soon...
 
-### Installation 🔧
+</details>
 
-1.  Clone this repository, then change your working directory.
+<details>
+<summary>Configurable (backend)</summary>
 
-    ```shell
-    git clone git@github.com:kitconcept/kitconcept-keywordmanager.git
-    cd kitconcept-keywordmanager
-    ```
+Coming soon...
 
-2.  Install this code base.
+</details>
 
-    ```shell
-    make install
-    ```
+<details>
+<summary>REST-API Services (backend)</summary>
 
+### GET `/@keywords` (or `/path/to/page/@keywords`)
 
-### Fire Up the Servers 🔥
+| Parameter    | Source | Type / Values               | Required | Default   | Description                 |
+| ------------ | ------ | --------------------------- | -------- | --------- | --------------------------- |
+| `idx`        | form   | string                      | no       | "Subject" | The keyword index to query. |
+| `sort_order` | form   | "ascending" or "descending" | no       | —         | The sort order of results.  |
+| `sort_on`    | form   | "keyword" or "occurrence"   | no       | —         | The field to sort on.       |
 
-1.  Create a new Plone site on your first run.
+### PATCH `/@keywords` (or `/path/to/page/@keywords`)
 
-    ```shell
-    make backend-create-site
-    ```
+| Parameter      | Source | Type / Values | Required | Default   | Description                            |
+| -------------- | ------ | ------------- | -------- | --------- | -------------------------------------- |
+| `idx`          | form   | string        | no       | "Subject" | The keyword index to query.            |
+| `new_keyword`  | body   | string        | yes      | —         | The name of the keyword to be created. |
+| `old_keywords` | body   | list[string]  | yes      | —         | The old keywords to be deleted.        |
 
-2.  Start the backend at http://localhost:8080/.
+### DELETE `/@keywords` (or `/path/to/page/@keywords`)
 
-    ```shell
-    make backend-start
-    ```
+| Parameter | Source | Type / Values | Required | Default   | Description                             |
+| --------- | ------ | ------------- | -------- | --------- | --------------------------------------- |
+| `idx`     | form   | string        | no       | "Subject" | The keyword index to query.             |
+| `items`   | body   | list          | yes      | —         | The name of the keywords to be deleted. |
 
-3.  In a new shell session, start the frontend at http://localhost:3000/.
+### GET `/@keywordIndex`
 
-    ```shell
-    make frontend-start
-    ```
+No parameters.
 
-Voila! Your Plone site should be live and kicking! 🎉
+</details>
 
-### Local Stack Deployment 📦
+<details>
+<summary>Utility (backend)</summary>
 
-Deploy a local Docker Compose environment that includes the following.
+### The Utility
 
-- Docker images for Backend and Frontend 🖼️
-- A stack with a Traefik router and a PostgreSQL database 🗃️
-- Accessible at [http://kitconcept-keywordmanager.localhost](http://kitconcept-keywordmanager.localhost) 🌐
+Getting the utility.
 
-Run the following commands in a shell session.
+```py
+from kitconcept.keywordmanager.interfaces import IKeywordManager
+from zope.component import getUtility
 
-```shell
-make stack-create-site
-make stack-start
+km = getUtility(IKeywordManager)
 ```
 
-And... you're all set! Your Plone site is up and running locally! 🚀
+### API
 
-## Project structure 🏗️
+Coming soon...
 
-This monorepo consists of the following distinct sections:
+</details>
 
-- **backend**: Houses the API and Plone installation, utilizing pip instead of buildout, and includes a policy package named kitconcept.keywordmanager.
-- **frontend**: Contains the React (Volto) package.
-- **devops**: Encompasses Docker stack, Ansible playbooks, and cache settings.
-- **docs**: Scaffold for writing documentation for your project.
+## Installation 🔧
 
-### Why this structure? 🤔
+1. Frontend package:
 
-- All necessary codebases to run the site are contained within the repository (excluding existing add-ons for Plone and React).
-- Specific GitHub Workflows are triggered based on changes in each codebase (refer to .github/workflows).
-- Simplifies the creation of Docker images for each codebase.
-- Demonstrates Plone installation/setup without buildout.
+    ```shell
+    pnpm add @kitconcept/volto-keywordmanager
+    ```
 
-## Code quality assurance 🧐
+1. Backend package:
 
-To check your code against quality standards, run the following shell command.
+    ```shell
+    uv add kitconcept.keywordmanager
+    ```
 
-```shell
-make check
-```
+    or
 
-### Format the codebase
+    ```shell
+    pip install kitconcept.keywordmanager
+    ```
 
-To format and rewrite the code base, ensuring it adheres to quality standards, run the following shell command.
+## Screenshots 🖼️
 
-```shell
-make format
-```
+Coming soon...
 
-| Section | Tool | Description | Configuration |
-| --- | --- | --- | --- |
-| backend | Ruff | Python code formatting, imports sorting  | [`backend/pyproject.toml`](./backend/pyproject.toml) |
-| backend | `zpretty` | XML and ZCML formatting  | -- |
-| frontend | ESLint | Fixes most common frontend issues | [`frontend/.eslintrc.js`](.frontend/.eslintrc.js) |
-| frontend | prettier | Format JS and Typescript code  | [`frontend/.prettierrc`](.frontend/.prettierrc) |
-| frontend | Stylelint | Format Styles (css, less, sass)  | [`frontend/.stylelintrc`](.frontend/.stylelintrc) |
+## Contributing 🐛
 
-Formatters can also be run within the `backend` or `frontend` folders.
-
-### Linting the codebase
-or `lint`:
-
- ```shell
-make lint
-```
-
-| Section | Tool | Description | Configuration |
-| --- | --- | --- | --- |
-| backend | Ruff | Checks code formatting, imports sorting  | [`backend/pyproject.toml`](./backend/pyproject.toml) |
-| backend | Pyroma | Checks Python package metadata  | -- |
-| backend | check-python-versions | Checks Python version information  | -- |
-| backend | `zpretty` | Checks XML and ZCML formatting  | -- |
-| frontend | ESLint | Checks JS / Typescript lint | [`frontend/.eslintrc.js`](.frontend/.eslintrc.js) |
-| frontend | prettier | Check JS / Typescript formatting  | [`frontend/.prettierrc`](.frontend/.prettierrc) |
-| frontend | Stylelint | Check Styles (css, less, sass) formatting  | [`frontend/.stylelintrc`](.frontend/.stylelintrc) |
-
-Linters can be run individually within the `backend` or `frontend` folders.
-
-## Internationalization 🌐
-
-Generate translation files for Plone and Volto with ease:
-
-```shell
-make i18n
-```
+Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Credits and acknowledgements 🙏
 
-Generated using [Cookieplone (2.0.0a3)](https://github.com/plone/cookieplone) and [cookieplone-templates (cda10db)](https://github.com/plone/cookieplone-templates/commit/cda10db886223a9aa9be1b1368484296418bb880) on 2026-05-29 11:44:37.855709. A special thanks to all contributors and supporters!
+This add-on is based on code from Products.PloneKeywordManager, adapted and extended for Plone 6 & Volto.
+
+### Origins of PloneKeywordManager
+
+PloneKeywordManager was originally written by Maik Jablonski at the Plone Paderborn Sprint in September 2003, an event funded by the Bertelsmann Foundation. Alexander Limi of Plone Solutions contributed the initial user interface updates and setup code, and Joe Geldart of Netalley Networks later brought the templates up to the Plone 2.0 format. Maik Jablonski subsequently donated the code to the Collective, allowing the community to maintain and extend it going forward.
+
+Since then, the package has been maintained and updated through successive Plone releases by numerous contributors within the Plone Collective. The full list of contributors is available on [GitHub](https://github.com/collective/Products.PloneKeywordManager/graphs/contributors/).
+
+### This add-on
+
+Building on that foundation, this package was created by the kitconcept GmbH to bring keyword management Volto.
+
+### Long-term goal: bringing keyword management into Plone core
+
+There is an ongoing effort to bring keyword-management functionality into Plone core itself, tracked as PLIP: Keyword Manager. This add-on is intended as a step toward that goal — a working, up-to-date implementation that can inform (and hopefully eventually be folded into) that core integration. Getting there will require several steps: stabilizing the add-on for Plone 6, gathering community feedback, aligning with the Volto/core UI patterns, and going through the PLIP review process. Contributions and feedback toward that end are welcome.
+
+Thanks to Maik Jablonski and everyone who has contributed to Products.PloneKeywordManager over the years for the original work this builds on.
