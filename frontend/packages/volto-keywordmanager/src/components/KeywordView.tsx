@@ -18,13 +18,13 @@ import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
 import DeleteModal from './DeleteModal';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/components';
-
 import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
+import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
+
 import backSVG from '@plone/volto/icons/back.svg';
 import trashSVG from '@plone/volto/icons/delete.svg';
 import searchSVG from '@plone/volto/icons/zoom.svg';
-import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
-import KeywordList from './KeywordList';
+import circleDismissSVG from '@plone/volto/icons/circle-dismiss.svg';
 
 const messages = defineMessages({
   back: {
@@ -60,6 +60,41 @@ const messages = defineMessages({
     defaultMessage: 'Search',
   },
 });
+
+export const KeywordList = ({ keywords = [], currentId, onDelete }) => {
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const maxVisible = 4;
+  const visible = expanded ? keywords : keywords.slice(0, maxVisible);
+  const hiddenCount = keywords.length - maxVisible;
+
+  return (
+    <ul className="pills" aria-label="Keywords">
+      {visible.map((item) => (
+        <li key={item} className={item === currentId && 'current'}>
+          <span>{item}</span>
+          <Button
+            type="button"
+            aria-label={`Remove keyword: ${item}`}
+            onPress={() => onDelete(item)}
+          >
+            <Icon name={circleDismissSVG} size="16px" ariaHidden="true" />
+          </Button>
+        </li>
+      ))}
+      {!expanded && hiddenCount > 0 && (
+        <li className="normal">
+          <Button
+            type="button"
+            aria-label={`Show ${hiddenCount} more keywords`}
+            onPress={() => setExpanded(true)}
+          >
+            +{hiddenCount}
+          </Button>
+        </li>
+      )}
+    </ul>
+  );
+};
 
 const KeywordView = (props) => {
   const { location } = props;
@@ -241,6 +276,8 @@ const KeywordView = (props) => {
                 selectedKeys={selectedKeys}
                 keywords={keywords}
                 onConfirm={(keys) => {
+                  // `id` is the keyword and `keys` are the content items
+                  // where the keyword is being deleted from
                   keys.forEach((key) => handleDeleteKeywords(id, key));
                   setSelectedKeys(new Set());
                 }}
