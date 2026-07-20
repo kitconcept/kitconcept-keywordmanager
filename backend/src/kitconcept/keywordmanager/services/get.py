@@ -30,7 +30,7 @@ class KeywordsGet(Service):
         if sort_on := self.request.form.get("sort_on"):
             if sort_on not in sort_keys:
                 raise BadRequest(
-                    f"Invalid sort_on '{sort_on}'. Must be 'alphabetical' or 'frequency'."
+                    f"Invalid sort_on '{sort_on}'. Must be 'keyword' or 'occurrence'."
                 )
             keywords.sort(key=sort_keys.get(sort_on), reverse=reverse)
 
