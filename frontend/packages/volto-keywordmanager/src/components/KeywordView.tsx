@@ -169,13 +169,11 @@ const KeywordView = (props) => {
   }));
 
   const handleDeleteKeywords = async (kw: string | string[], id?: string) => {
-    if (typeof kw == 'string') {
-      kw = [kw];
-    }
+    const result = Array.isArray(kw) ? kw : [kw];
     setIsLoading(true);
     try {
       await dispatch(
-        deleteKeywords({ items: kw, path: id, indexName: keywordIndex }),
+        deleteKeywords({ items: result, path: id, indexName: keywordIndex }),
       );
       toast.success(
         <Toast title="Delete Success" content="Deleted successfully!" />,

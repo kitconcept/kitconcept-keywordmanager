@@ -300,6 +300,15 @@
             background: #d1d6f1;
           }
 
+          &.normal {
+            border: none;
+            background: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
           button {
             padding: 0;
             border: none;
