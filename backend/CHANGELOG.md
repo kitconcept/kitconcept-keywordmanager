@@ -8,3 +8,10 @@
 -->
 
 <!-- towncrier release notes start -->
+
+## 1.0.0a1 (2026-07-21)
+
+
+### New features:
+
+- Add keyword manager utility & services. @jnptk

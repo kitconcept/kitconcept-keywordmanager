@@ -1,6 +1,6 @@
 {
   "name": "@kitconcept/volto-keywordmanager",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Change, merge and delete keywords (subjects) in Plone.",
   "main": "src/index.ts",
   "license": "MIT",

@@ -7,3 +7,40 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a1 (2026-07-21)
+
+### Backend
+
+
+#### New features:
+
+- Add keyword manager utility & services. @jnptk 
+
+
+
+### Frontend
+
+#### Feature
+
+- Add keyword manager control panel. @jnptk 
+
+#### Internal
+
+- Renamed the frontend package from `volto-keywordmanager` to `@kitconcept/volto-keywordmanager`. @ericof 
+
+
+
+### Project
+
+
+#### Feature
+
+- Add keyword manager. @jnptk 
+
+
+#### Internal
+
+- Updated `repository.toml` for the frontend package rename to `@kitconcept/volto-keywordmanager`. @ericof 
+
+
+
