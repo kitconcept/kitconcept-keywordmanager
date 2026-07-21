@@ -25,7 +25,7 @@ FROM plone/frontend-prod-config:${VOLTO_VERSION}
 
 LABEL maintainer="kitconcept GmbH <info@kitconcept.com>" \
       org.label-schema.name="kitconcept-keywordmanager-frontend" \
-      org.label-schema.description="kitconcept-keywordmanager frontend image." \
+      org.label-schema.description="@kitconcept/volto-keywordmanager frontend image." \
       org.label-schema.vendor="kitconcept GmbH"
 
 COPY --from=builder /app/ /app/

@@ -1,9 +1,9 @@
-# kitconcept-keywordmanager (volto-keywordmanager)
+# Keyword Manager (@kitconcept/volto-keywordmanager)
 
 Change, merge and delete keywords (subjects) in Plone.
 
-[![npm](https://img.shields.io/npm/v/volto-keywordmanager)](https://www.npmjs.com/package/volto-keywordmanager)
-[![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/volto-keywordmanager/)
+[![npm](https://img.shields.io/npm/v/@kitconcept/volto-keywordmanager)](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager)
+[![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/kitconcept-keywordmanager/)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
 
@@ -18,59 +18,15 @@ To install your project, you must choose the method appropriate to your version 
 
 ### Volto 18 and later
 
-Add `volto-keywordmanager` to your `package.json`.
+Add `@kitconcept/volto-keywordmanager` to your `package.json`.
 
 ```json
-"dependencies": {
-    "volto-keywordmanager": "*"
-}
-```
-
-Add `volto-keywordmanager` to your `volto.config.js`.
-
-```javascript
-const addons = ['volto-keywordmanager'];
-```
-
-If this package provides a Volto theme, and you want to activate it, then add the following to your `volto.config.js`.
-
-```javascript
-const theme = 'volto-keywordmanager';
-```
-
-### Volto 17 and earlier
-
-Create a new Volto project.
-You can skip this step if you already have one.
-
-```
-npm install -g yo @plone/generator-volto
-yo @plone/volto my-volto-project --addon volto-keywordmanager
-cd my-volto-project
-```
-
-Add `volto-keywordmanager` to your `package.json`.
-
-```JSON
 "addons": [
-    "volto-keywordmanager"
+    "@kitconcept/volto-keywordmanager"
 ],
-
 "dependencies": {
-    "volto-keywordmanager": "*"
+    "@kitconcept/volto-keywordmanager": "*"
 }
-```
-
-Download and install the new add-on.
-
-```
-yarn install
-```
-
-Start Volto.
-
-```
-yarn start
 ```
 
 ## Test installation

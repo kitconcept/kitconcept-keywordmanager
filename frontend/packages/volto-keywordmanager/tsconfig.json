@@ -14,7 +14,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@plone/volto/*": ["../../core/packages/volto/src/*"],
-      "volto-keywordmanager/*": ["./src/*"]
+      "@kitconcept/volto-keywordmanager/*": ["./src/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],

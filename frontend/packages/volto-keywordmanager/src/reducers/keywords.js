@@ -2,7 +2,7 @@ import {
   DELETE_KEYWORDS,
   GET_KEYWORDS,
   UPDATE_KEYWORDS,
-} from 'volto-keywordmanager/constants/Keywords';
+} from '@kitconcept/volto-keywordmanager/constants/Keywords';
 
 const initialState = {
   type: '',

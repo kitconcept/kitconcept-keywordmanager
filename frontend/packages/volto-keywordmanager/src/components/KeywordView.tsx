@@ -14,7 +14,7 @@ import { createPortal } from 'react-dom';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { deleteKeywords } from 'volto-keywordmanager/actions/keywords';
+import { deleteKeywords } from '@kitconcept/volto-keywordmanager/actions/keywords';
 import DeleteModal from './DeleteModal';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/components';

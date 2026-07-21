@@ -1,4 +1,7 @@
-const addons = ['volto-keywordmanager', '@kitconcept/volto-light-theme'];
+const addons = [
+  '@kitconcept/volto-keywordmanager',
+  '@kitconcept/volto-light-theme',
+];
 const theme = '@kitconcept/volto-light-theme';
 
 module.exports = {
