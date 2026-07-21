@@ -4,29 +4,92 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
+> [!WARNING]
+> This add-on is meant to be used in combination with the [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If you plan to use this add-on with plain Volto you will have to write your own styles for it. You can use the existing ones via manual import like this `import "@kitconcept/volto-keywordmanager/theme/_main.scss"` or as reference. Read more about theming [here](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html).
+
 Change, merge and delete keywords (subjects) in Plone 6.
 
-> [!WARNING]
-> This add-on is meant to be used in combination with the [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If you plan to use this add-on with plain Volto you will have to write your own styles for it. You can use the existing ones via manual import like this `import "@kitconcept/volto-keywordmanager/theme/_main.scss"` or as reference.
+![Keyword Manger](./assets/Keyword_Manager.png)
 
 ## Features 🔥
 
-<details>
-<summary>Control Panel (frontend)</summary>
+- Control Panel (frontend)
+- Configurable (backend)
+- REST-API Services (backend)
+- Utility (backend)
 
-Coming soon...
+## Installation 🔧
 
-</details>
+1. Frontend package:
 
-<details>
-<summary>Configurable (backend)</summary>
+   ```shell
+   pnpm add @kitconcept/volto-keywordmanager
+   ```
 
-Coming soon...
+1. Backend package:
 
-</details>
+   ```shell
+   uv add kitconcept.keywordmanager
+   ```
 
-<details>
-<summary>REST-API Services (backend)</summary>
+   or
+
+   ```shell
+   pip install kitconcept.keywordmanager
+   ```
+
+## Control Panel
+
+> [!NOTE]
+> This section is a work in progress. Expect more information in the coming releases.
+
+The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords.
+
+## Configuration
+
+This package allows for some configuration.
+
+To configure one of the following options, import the config module like so:
+
+```py
+from kitconcept.keywordmanager import config
+```
+
+### Options
+
+The keywords permission allows you to set a custom permission who should be able to manage keywords.
+
+```py
+config.MANAGE_KEYWORDS_PERMISSION = "kitconcept.keywordmanager: Manage Keywords"
+```
+
+The meta type of the keyword indexes can be set. This is only useful if you're one of those crazy people that use custom indexes.
+
+```py
+config.META_TYPE = "KeywordIndex"
+```
+
+There are indexes of `META_TYPE` we know we don't want to manage because bad things will happen. You can exclude those using:
+
+```py
+config.IGNORE_INDEXES = [
+    "object_provides",
+    "allowedRolesAndUsers",
+    "getRawRelatedItems",
+    "getEventType",
+    "block_types",
+]
+```
+
+You can set a list of indexes that should always be reindex when merging or deleting keywords on objects. Most people won't need this.
+
+```py
+config.ALWAYS_REINDEX = (
+    "SearchableText",
+)
+```
+
+## REST-API Services
 
 ### GET `/@keywords` (or `/path/to/page/@keywords`)
 
@@ -55,12 +118,7 @@ Coming soon...
 
 No parameters.
 
-</details>
-
-<details>
-<summary>Utility (backend)</summary>
-
-### The Utility
+## Utility
 
 Getting the utility.
 
@@ -70,36 +128,6 @@ from zope.component import getUtility
 
 km = getUtility(IKeywordManager)
 ```
-
-### API
-
-Coming soon...
-
-</details>
-
-## Installation 🔧
-
-1. Frontend package:
-
-    ```shell
-    pnpm add @kitconcept/volto-keywordmanager
-    ```
-
-1. Backend package:
-
-    ```shell
-    uv add kitconcept.keywordmanager
-    ```
-
-    or
-
-    ```shell
-    pip install kitconcept.keywordmanager
-    ```
-
-## Screenshots 🖼️
-
-Coming soon...
 
 ## Contributing 🐛
 
@@ -117,10 +145,10 @@ Since then, the package has been maintained and updated through successive Plone
 
 ### This add-on
 
-Building on that foundation, this package was created by the kitconcept GmbH to bring keyword management Volto.
+Building on that foundation, this package was created by the kitconcept GmbH to bring keyword management to Volto.
 
 ### Long-term goal: bringing keyword management into Plone core
 
-There is an ongoing effort to bring keyword-management functionality into Plone core itself, tracked as PLIP: Keyword Manager. This add-on is intended as a step toward that goal — a working, up-to-date implementation that can inform (and hopefully eventually be folded into) that core integration. Getting there will require several steps: stabilizing the add-on for Plone 6, gathering community feedback, aligning with the Volto/core UI patterns, and going through the PLIP review process. Contributions and feedback toward that end are welcome.
+There is an ongoing effort to bring keyword-management functionality into Plone core itself, tracked as [PLIP: Keyword Manager](https://github.com/plone/volto/issues/5300). This add-on is intended as a step toward that goal, a working, up-to-date implementation that can inform (and hopefully eventually be folded into) that core integration. Getting there will require several steps: stabilizing the add-on for Plone 6, gathering community feedback, aligning with the Volto/core UI patterns, and going through the PLIP review process. Contributions and feedback toward that end are welcome.
 
 Thanks to Maik Jablonski and everyone who has contributed to Products.PloneKeywordManager over the years for the original work this builds on.
