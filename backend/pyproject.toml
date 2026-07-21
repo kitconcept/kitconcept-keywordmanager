@@ -44,10 +44,10 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/kitconcept/kitconcept.keywordmanager"
+Homepage = "https://github.com/kitconcept/kitconcept-keywordmanager"
 PyPI = "https://pypi.org/project/kitconcept.keywordmanager"
-Source = "https://github.com/kitconcept/kitconcept.keywordmanager"
-Tracker = "https://github.com/kitconcept/kitconcept.keywordmanager/issues"
+Source = "https://github.com/kitconcept/kitconcept-keywordmanager"
+Tracker = "https://github.com/kitconcept/kitconcept-keywordmanager/issues"
 
 
 [project.entry-points."plone.autoinclude.plugin"]
@@ -80,7 +80,7 @@ filename = "CHANGELOG.md"
 start_string = "<!-- towncrier release notes start -->\n"
 title_format = "## {version} ({project_date})"
 template = "news/.changelog_template.jinja"
-issue_format = "[#{issue}](https://github.com/kitconcept/kitconcept.keywordmanager/issues/{issue})"
+issue_format = "[#{issue}](https://github.com/kitconcept/kitconcept-keywordmanager/issues/{issue})"
 underlines = ["", "", ""]
 
 [[tool.towncrier.type]]

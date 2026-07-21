@@ -1,0 +1,526 @@
+@import '_pagination.scss';
+
+#page-keyword_manager {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+
+  * button[data-pressed] {
+    box-shadow: none;
+  }
+
+  .title {
+    padding: 20px 15px;
+    border-bottom: 2px solid;
+    margin-bottom: 15px;
+    border-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        #0e0e0e 14%,
+        #565656 84%,
+        rgba(102, 102, 102, 0.2) 100%
+      )
+      1;
+    color: #4e4e4e;
+    font-size: 24px;
+  }
+
+  .description {
+    padding: 30px;
+    border-radius: 6px;
+    background: #e6e6e6;
+    color: #4e4e4e;
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    p {
+      padding-right: 20px;
+      margin: 0;
+      color: #5e5e5e;
+      font-size: 16px;
+    }
+
+    button {
+      width: 300px;
+      padding: 10px 15px;
+      color: #5e5e5e;
+      font-size: 16px;
+    }
+  }
+
+  .table-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    > .info {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      h2 {
+        margin: 0;
+        color: #000;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      p {
+        margin: 0;
+        color: #000;
+        font-size: 16px;
+      }
+    }
+
+    > .tools {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .bulk-actions {
+        display: flex;
+
+        button {
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          border: none;
+          background: none;
+          cursor: pointer;
+
+          &[data-disabled] {
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .filtering {
+        display: flex;
+        gap: 10px;
+
+        .react-aria-Select > button,
+        .search {
+          display: flex;
+          height: 36px;
+          align-items: center;
+          border: 1px solid #000;
+          border-radius: 0;
+          border-top: 3px solid #000;
+          background: #fff;
+          font-size: 16px;
+        }
+
+        .react-aria-Select {
+          width: 160px;
+
+          > button {
+            width: 100%;
+            justify-content: space-between;
+            padding: 0 10px;
+            cursor: pointer;
+          }
+
+          .react-aria-SelectValue {
+            overflow: hidden;
+            font-style: normal;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        .search {
+          width: 250px;
+          padding: 0;
+
+          input {
+            width: 100%;
+            height: 100%;
+            padding: 0 10px;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+          }
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .react-aria-Table.cmsui-table {
+    width: 100%;
+    padding: 0;
+    margin: 15px 0;
+
+    &.top .react-aria-Cell {
+      vertical-align: top;
+    }
+
+    .react-aria-TableHeader {
+      .react-aria-Column {
+        padding: 15px 10px;
+        border: none;
+        font-size: 20px;
+        white-space: nowrap;
+      }
+
+      svg {
+        padding-left: 10px;
+        vertical-align: top;
+
+        path {
+          fill: #000;
+        }
+
+        &:not(.active) {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    tr[role='row'] {
+      position: relative;
+
+      &:after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.2) 0%,
+          #0e0e0e 14%,
+          #565656 84%,
+          rgba(102, 102, 102, 0.2) 100%
+        );
+        content: '';
+      }
+
+      &.react-aria-Row:hover:not([data-selected]) {
+        background: #f0f2ff;
+      }
+
+      &[data-selected] {
+        background: #d1d6f1;
+        color: #000;
+      }
+    }
+
+    .react-aria-Cell {
+      padding: 20px 10px;
+      border: none;
+      font-size: 16px;
+      line-height: 16px;
+      white-space: nowrap;
+
+      &[data-key$=':keyword'],
+      &[data-key$=':title'] {
+        width: 100%;
+      }
+
+      ul.actions {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        gap: 10px;
+        list-style: none;
+
+        a {
+          height: 20px;
+          padding: 4px;
+          margin: 0;
+          color: #000;
+        }
+
+        button {
+          padding: 4px;
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+      }
+
+      a {
+        display: block;
+        width: fit-content;
+        margin-bottom: 6px;
+        color: #6a8cff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .path {
+        display: block;
+        margin-bottom: 12px;
+        color: #000;
+        font-size: 12px;
+      }
+
+      ul.pills {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        gap: 5px;
+        list-style: none;
+
+        li {
+          display: flex;
+          align-items: center;
+          padding: 1px 10px;
+          border: 1px solid #a0a0a0;
+          border-radius: 6px;
+          background: #e6e6e6;
+          font-size: 12px;
+          gap: 6px;
+
+          &.current {
+            border-color: #aeb6e8;
+            background: #d1d6f1;
+          }
+
+          &.normal {
+            border: none;
+            background: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          button {
+            padding: 0;
+            border: none;
+            background: none;
+            color: #000;
+            cursor: pointer;
+          }
+        }
+      }
+
+      svg {
+        color: #000;
+      }
+    }
+
+    .react-aria-Checkbox .checkbox {
+      border: 1px solid #000;
+    }
+  }
+}
+
+.react-aria-ModalOverlay .rename-modal,
+.react-aria-ModalOverlay .delete-modal {
+  width: 100%;
+  max-width: 750px;
+  border-radius: 8px;
+  border-top: 1px solid #000;
+  border-right: 3px solid #000;
+  border-bottom: 3px solid #000;
+  border-left: 1px solid #000;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  color: #000;
+
+  .react-aria-Dialog {
+    padding: 0;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px 8px 20px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #000;
+    background: #e6e6e6;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 4px;
+      border: 1px solid #000;
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+
+      &:hover {
+        background: #e6e6e6;
+      }
+
+      svg {
+        color: #000;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 20px;
+
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+
+      strong {
+        font-weight: 500;
+      }
+    }
+
+    .react-aria-RadioGroup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .react-aria-Radio-wrapper {
+      display: flex;
+      align-items: flex-end;
+      gap: 15px;
+
+      .react-aria-Radio {
+        display: flex;
+        align-items: center;
+        margin-bottom: 9px;
+        cursor: pointer;
+
+        &::before {
+          display: flex;
+          width: 16px;
+          height: 16px;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #000;
+          border-radius: 50%;
+        }
+
+        &[data-selected]::before {
+          background: #000;
+          box-shadow: inset 0 0 0 3px #f4f4f4;
+        }
+      }
+
+      .react-aria-Select,
+      .react-aria-TextField {
+        display: flex;
+        width: 400px;
+        flex-direction: column;
+        gap: 6px;
+
+        label,
+        .react-aria-Label {
+          display: block;
+          width: 100%;
+          color: #000;
+          font-size: 12px;
+        }
+
+        &[data-disabled] {
+          label,
+          .react-aria-Label {
+            background: #999;
+            color: #000;
+          }
+
+          > button,
+          > input {
+            border-color: #999;
+            background: #ebebeb;
+            color: #888;
+            cursor: not-allowed;
+          }
+        }
+
+        > button,
+        > input {
+          width: 100%;
+          height: 34px;
+          padding: 0 10px;
+          border: 1px solid #000;
+          border-radius: 0;
+          border-top: 3px solid #000;
+          background: #fff;
+          color: #000;
+          font-size: 14px;
+        }
+
+        > button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px 20px 20px;
+    gap: 15px;
+
+    button {
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+
+      &.cancel-action {
+        border: 1px solid #0000ee;
+        border-bottom: 3px solid #0000ee;
+        background: #fff;
+        color: #0000ee;
+
+        &:hover {
+          background: #f0f0ff;
+        }
+      }
+
+      &.confirm-action {
+        border: 1px solid #000;
+        border-bottom: 3px solid #000;
+        background: #e10000;
+        color: #fff;
+
+        &:hover:not([data-disabled]) {
+          background: #333;
+        }
+
+        &[data-disabled] {
+          border-color: #000;
+          background: #999;
+          color: #fff;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

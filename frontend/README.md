@@ -1,10 +1,10 @@
-# Keyword Manager (volto-keywordmanager)
+# kitconcept-keywordmanager (volto-keywordmanager)
 
 Change, merge and delete keywords (subjects) in Plone.
 
 [![npm](https://img.shields.io/npm/v/volto-keywordmanager)](https://www.npmjs.com/package/volto-keywordmanager)
 [![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/volto-keywordmanager/)
-[![CI](https://github.com/kitconcept/kitconcept.keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept.keywordmanager/actions/workflows/main.yml)
+[![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
 
 ## Features
@@ -88,7 +88,7 @@ For these reasons, it only works with pnpm and Volto 18.
 
 -   An [operating system](https://6.docs.plone.org/install/create-project-cookieplone.html#prerequisites-for-installation) that runs all the requirements mentioned.
 -   [nvm](https://6.docs.plone.org/install/create-project-cookieplone.html#nvm)
--   [Node.js and pnpm](https://6.docs.plone.org/install/create-project.html#node-js) 22
+-   [Node.js and pnpm](https://6.docs.plone.org/install/create-project.html#node-js) 24
 -   [Make](https://6.docs.plone.org/install/create-project-cookieplone.html#make)
 -   [Git](https://6.docs.plone.org/install/create-project-cookieplone.html#git)
 -   [Docker](https://docs.docker.com/get-started/get-docker/) (optional)
@@ -98,8 +98,8 @@ For these reasons, it only works with pnpm and Volto 18.
 1.  Clone this repository, then change your working directory.
 
     ```shell
-    git clone git@github.com:kitconcept/kitconcept.keywordmanager.git
-    cd kitconcept.keywordmanager/frontend
+    git clone git@github.com:kitconcept/kitconcept-keywordmanager.git
+    cd kitconcept-keywordmanager/frontend
     ```
 
 2.  Install this code base.

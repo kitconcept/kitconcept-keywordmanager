@@ -10,3 +10,268 @@ msgstr ""
 "Content-Type: \n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. Default: "Actions"
+#: components/KeywordManager
+msgid "Actions"
+msgstr ""
+
+#. Default: "All states"
+#: components/KeywordView
+msgid "All states"
+msgstr ""
+
+#. Default: "All types"
+#: components/KeywordView
+msgid "All types"
+msgstr ""
+
+#. Default: "Back"
+#: components/KeywordManager
+#: components/KeywordView
+msgid "Back"
+msgstr ""
+
+#. Default: "Cancel"
+#: components/DeleteModal
+#: components/RenameModal
+msgid "Cancel"
+msgstr ""
+
+#. Default: "{num} Contents"
+#: components/KeywordView
+msgid "Contents"
+msgstr ""
+
+#. Default: "Delete"
+#: components/DeleteModal
+msgid "Delete"
+msgstr ""
+
+#. Default: "Keyword"
+#: components/KeywordManager
+msgid "Keyword"
+msgstr ""
+
+#. Default: "Keyword Manager"
+#: components/KeywordManager
+msgid "Keyword Manager"
+msgstr ""
+
+#. Default: "Keywords"
+#: components/KeywordManager
+msgid "Keywords"
+msgstr ""
+
+#. Default: "New keyword name:"
+#: components/RenameModal
+msgid "New keyword name:"
+msgstr ""
+
+#. Default: "Occurrence"
+#: components/KeywordManager
+msgid "Occurrence"
+msgstr ""
+
+#. Default: "Please enter new name"
+#: components/RenameModal
+msgid "Please enter new name"
+msgstr ""
+
+#. Default: "Please select ..."
+#: components/RenameModal
+msgid "Please select ..."
+msgstr ""
+
+#. Default: "Rename"
+#: components/RenameModal
+msgid "Rename"
+msgstr ""
+
+#. Default: "Rename & Merge"
+#: components/RenameModal
+msgid "Rename & Merge"
+msgstr ""
+
+#. Default: "Select existing keyword to keep:"
+#: components/RenameModal
+msgid "Select existing keyword to keep:"
+msgstr ""
+
+#. Default: "The selected keywords could not be deleted."
+#: components/KeywordManager
+msgid "The selected keywords could not be deleted."
+msgstr ""
+
+#. Default: "The selected keywords could not be updated."
+#: components/KeywordManager
+msgid "The selected keywords could not be updated."
+msgstr ""
+
+#. Default: "The selected keywords have been deleted successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been deleted successfully."
+msgstr ""
+
+#. Default: "The selected keywords have been updated successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been updated successfully."
+msgstr ""
+
+#. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
+#: components/DeleteModal
+msgid "confirm-modal-description"
+msgstr ""
+
+#. Default: "Delete keyword(s)"
+#: components/DeleteModal
+msgid "confirm-modal-title"
+msgstr ""
+
+#. Default: "Go to first page"
+#: components/Pagination
+msgid "goToFirstPage"
+msgstr ""
+
+#. Default: "Go to last page"
+#: components/Pagination
+msgid "goToLastPage"
+msgstr ""
+
+#. Default: "Go to next page"
+#: components/Pagination
+msgid "goToNext"
+msgstr ""
+
+#. Default: "Go to page {num}"
+#: components/Pagination
+msgid "goToPageNum"
+msgstr ""
+
+#. Default: "Go to previous page"
+#: components/Pagination
+msgid "goToPrev"
+msgstr ""
+
+#. Default: "Keyword field:"
+#: components/KeywordManager
+msgid "keyword-field"
+msgstr ""
+
+#. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+#: components/KeywordManager
+msgid "keyword-manager-description"
+msgstr ""
+
+#. Default: "Manage Contents For Keyword \"{name}\""
+#: components/KeywordView
+msgid "keyword-name"
+msgstr ""
+
+#. Default: "Loading"
+#: components/DeleteModal
+#: components/KeywordManager
+#: components/KeywordView
+#: components/RenameModal
+msgid "loading"
+msgstr ""
+
+#. Default: "Next page"
+#: components/Pagination
+msgid "nextPage"
+msgstr ""
+
+#. Default: "No content selected"
+#: components/KeywordView
+msgid "no-content-selected"
+msgstr ""
+
+#. Default: "No keyword selected"
+#: components/KeywordManager
+msgid "no-keyword-selected"
+msgstr ""
+
+#. Default: "{num} content(s) selected"
+#: components/KeywordView
+msgid "number-contents-selected"
+msgstr ""
+
+#. Default: "{num} keyword(s) selected"
+#: components/KeywordManager
+msgid "number-keywords-selected"
+msgstr ""
+
+#. Default: "Page {num}"
+#: components/Pagination
+msgid "pageNum"
+msgstr ""
+
+#. Default: "Previous page"
+#: components/Pagination
+msgid "prevPage"
+msgstr ""
+
+#. Default: "You are about to rename & merge {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
+#: components/RenameModal
+msgid "rename-modal-description"
+msgstr ""
+
+#. Default: "Rename & merge keyword(s)"
+#: components/RenameModal
+msgid "rename-modal-title"
+msgstr ""
+
+#. Default: "Search"
+#: components/KeywordView
+msgid "search"
+msgstr ""
+
+#. Default: "You are about to delete the keyword {keyword} from {num} content object(s). This action cannot be undone. Are you sure you want to proceed?"
+#: components/DeleteModal
+msgid "single-confirm-modal-description"
+msgstr ""
+
+#. Default: "You are about to rename the keyword {keyword}. This action cannot be undone. Please enter a new name to proceed."
+#: components/RenameModal
+msgid "single-rename-modal-description"
+msgstr ""
+
+#. Default: "Rename keyword"
+#: components/RenameModal
+msgid "single-rename-modal-title"
+msgstr ""
+
+#. Default: "State"
+#: components/KeywordView
+msgid "state"
+msgstr ""
+
+#. Default: "Title / Path"
+#: components/KeywordView
+msgid "title-path"
+msgstr ""
+
+#. Default: "Type"
+#: components/KeywordView
+msgid "type"
+msgstr ""
+
+#. Default: "{num} keywords deleted"
+#: components/KeywordManager
+msgid "{num} keywords deleted"
+msgstr ""
+
+#. Default: "{num} keywords not deleted"
+#: components/KeywordManager
+msgid "{num} keywords not deleted"
+msgstr ""
+
+#. Default: "{num} keywords not updated"
+#: components/KeywordManager
+msgid "{num} keywords not updated"
+msgstr ""
+
+#. Default: "{num} keywords updated"
+#: components/KeywordManager
+msgid "{num} keywords updated"
+msgstr ""

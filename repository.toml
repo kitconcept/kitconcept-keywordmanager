@@ -1,9 +1,9 @@
 [repository]
-name = "kitconcept.keywordmanager"
+name = "kitconcept-keywordmanager"
 changelog = "CHANGELOG.md"
 version = "version.txt"
 version_format = "semver"
-container_images_prefix = "ghcr.io/kitconcept/kitconcept.keywordmanager"
+container_images_prefix = "ghcr.io/kitconcept/kitconcept-keywordmanager-"
 compose = ["docker-compose.yml"]
 
 [repository.towncrier]
@@ -13,6 +13,7 @@ settings = "towncrier.toml"
 [backend.package]
 name = "kitconcept.keywordmanager"
 path = "backend"
+code_path = "src/kitconcept/keywordmanager"
 changelog = "backend/CHANGELOG.md"
 towncrier_settings = "backend/pyproject.toml"
 base_package = "Products.CMFPlone"
@@ -21,6 +22,7 @@ publish = true
 [frontend.package]
 name = "volto-keywordmanager"
 path = "frontend/packages/volto-keywordmanager"
+code_path = "src"
 changelog = "frontend/packages/volto-keywordmanager/CHANGELOG.md"
 towncrier_settings = "frontend/packages/volto-keywordmanager/towncrier.toml"
 base_package = "@plone/volto"
@@ -28,5 +30,5 @@ publish = true
 
 [cookieplone]
 template = "monorepo_addon"
-template_version = "ca9ba9fa67bc9a824eab13962a63db230c93679e"
-generated_date = "2026-03-19 15:50:09"
+template_version = "cda10db886223a9aa9be1b1368484296418bb880"
+generated_date = "2026-05-29 09:47:12"

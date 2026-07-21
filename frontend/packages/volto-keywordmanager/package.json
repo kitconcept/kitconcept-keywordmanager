@@ -11,10 +11,10 @@
     "react"
   ],
   "author": "kitconcept GmbH",
-  "homepage": "https://github.com/kitconcept/kitconcept.keywordmanager#readme",
+  "homepage": "https://github.com/kitconcept/kitconcept-keywordmanager#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:kitconcept/kitconcept.keywordmanager"
+    "url": "git@github.com:kitconcept/kitconcept-keywordmanager"
   },
   "publishConfig": {
     "access": "public"
@@ -28,18 +28,33 @@
   },
   "addons": [],
   "theme": "",
-  "dependencies": {},
+  "dependencies": {
+    "react-aria-components": "catalog:"
+  },
   "peerDependencies": {
+    "@plone/components": "^4.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-intl": "3.12.1",
+    "react-redux": "8.1.2",
+    "react-router-dom": "5.2.0",
+    "react-toastify": "5.5.0"
   },
   "devDependencies": {
+    "@plone/components": "^4.2.1",
     "@plone/registry": "workspace:*",
     "@plone/scripts": "workspace:*",
     "@plone/types": "workspace:*",
+    "@testing-library/react": "^16.2.0",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
+    "@types/react-router-dom": "^5.3.3",
+    "react-intl": "3.12.1",
+    "react-redux": "8.1.2",
+    "react-router-dom": "5.2.0",
+    "react-toastify": "5.5.0",
+    "release-it": "^19.0.5",
     "typescript": "^5.7.3",
-    "release-it": "^19.0.5"
+    "vitest": "^3.1.2"
   }
 }

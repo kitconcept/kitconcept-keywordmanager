@@ -33,13 +33,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-  docs:
-    uses: ./.github/workflows/docs.yml
-    needs:
-        - config
-    with:
-      python-version: ${{ needs.config.outputs.python-version }}
-    if: ${{ needs.config.outputs.docs == 'true' }}
 
   frontend:
     uses: ./.github/workflows/frontend.yml
