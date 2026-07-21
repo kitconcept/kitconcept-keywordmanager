@@ -1,4 +1,4 @@
-import { GET_KEYWORD_INDEXES } from 'volto-keywordmanager/constants/KeywordIndexes';
+import { GET_KEYWORD_INDEXES } from '@kitconcept/volto-keywordmanager/constants/KeywordIndexes';
 
 export function getKeywordIndexes() {
   return {

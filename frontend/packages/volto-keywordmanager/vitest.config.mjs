@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@plone/volto': path.resolve(__dirname, '../../core/packages/volto/src'), // Add paths accordingly
+      '@kitconcept/volto-keywordmanager': path.resolve(__dirname, './src'),
       // 'promise-file-reader': require.resolve('promise-file-reader') // Add to identify dependency from package
     },
   },

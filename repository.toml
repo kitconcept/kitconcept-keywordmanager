@@ -20,7 +20,7 @@ base_package = "Products.CMFPlone"
 publish = true
 
 [frontend.package]
-name = "volto-keywordmanager"
+name = "@kitconcept/volto-keywordmanager"
 path = "frontend/packages/volto-keywordmanager"
 code_path = "src"
 changelog = "frontend/packages/volto-keywordmanager/CHANGELOG.md"

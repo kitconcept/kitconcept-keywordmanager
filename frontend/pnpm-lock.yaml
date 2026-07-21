@@ -110,6 +110,9 @@ importers:
 
   .:
     dependencies:
+      '@kitconcept/volto-keywordmanager':
+        specifier: workspace:*
+        version: link:packages/volto-keywordmanager
       '@kitconcept/volto-light-theme':
         specifier: ^8.0.0-alpha.29
         version: 8.0.0-alpha.30(classnames@2.5.1)(embla-carousel@8.6.0)(lodash@4.18.1)(react-dom@18.2.0(react@18.2.0))(react-intl@3.12.1(@types/react@18.3.28)(react@18.2.0))(react-redux@8.1.2(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(redux@4.2.1))(react-router-dom@5.2.0(react@18.2.0))(react@18.2.0)
@@ -119,9 +122,6 @@ importers:
       '@plone/volto':
         specifier: workspace:*
         version: link:core/packages/volto
-      volto-keywordmanager:
-        specifier: workspace:*
-        version: link:packages/volto-keywordmanager
     devDependencies:
       mrs-developer:
         specifier: ^2.2.0

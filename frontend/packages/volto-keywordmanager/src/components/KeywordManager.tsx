@@ -16,8 +16,8 @@ import {
   getKeywords,
   deleteKeywords,
   updateKeywords,
-} from 'volto-keywordmanager/actions/keywords';
-import { getKeywordIndexes } from 'volto-keywordmanager/actions/keywordIndexes';
+} from '@kitconcept/volto-keywordmanager/actions/keywords';
+import { getKeywordIndexes } from '@kitconcept/volto-keywordmanager/actions/keywordIndexes';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 import RenameModal from './RenameModal';
 import DeleteModal from './DeleteModal';

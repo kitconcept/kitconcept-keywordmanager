@@ -29,7 +29,7 @@ module.exports = {
           ['@plone/volto-slate', `${coreLocation}/packages/volto-slate/src`],
           ['@plone/registry', `${coreLocation}/packages/registry/src`],
           [
-            'volto-keywordmanager',
+            '@kitconcept/volto-keywordmanager',
             `${projectRootPath}/packages/volto-keywordmanager/src`,
           ],
           ...addonAliases,

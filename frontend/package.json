@@ -17,18 +17,18 @@
     "start:prod": "pnpm --filter @plone/volto start:prod",
     "build": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto build",
     "build:deps": "pnpm --filter @plone/registry --filter @plone/components build",
-    "i18n": "pnpm --filter volto-keywordmanager i18n && VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto i18n",
-    "test": "pnpm --filter volto-keywordmanager exec vitest",
+    "i18n": "pnpm --filter @kitconcept/volto-keywordmanager i18n && VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto i18n",
+    "test": "pnpm --filter @kitconcept/volto-keywordmanager exec vitest",
     "lint": "VOLTOCONFIG=$(pwd)/volto.config.js eslint --max-warnings=0 'packages/**/src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "VOLTOCONFIG=$(pwd)/volto.config.js eslint --fix 'packages/**/src/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --check 'packages/**/src/**/*.{js,jsx,ts,tsx}'",
     "prettier:fix": "prettier --write 'packages/**/src/**/*.{js,jsx,ts,tsx}' ",
     "stylelint": "stylelint 'packages/**/src/**/*.{css,scss,less}' --allow-empty-input",
     "stylelint:fix": "stylelint 'packages/**/src/**/*.{css,scss,less}' --fix --allow-empty-input",
-    "dry-release": "pnpm --filter volto-keywordmanager dry-release",
-    "release": "pnpm --filter volto-keywordmanager release",
-    "release-major-alpha": "pnpm --filter volto-keywordmanager release-major-alpha",
-    "release-alpha": "pnpm --filter volto-keywordmanager release-alpha",
+    "dry-release": "pnpm --filter @kitconcept/volto-keywordmanager dry-release",
+    "release": "pnpm --filter @kitconcept/volto-keywordmanager release",
+    "release-major-alpha": "pnpm --filter @kitconcept/volto-keywordmanager release-major-alpha",
+    "release-alpha": "pnpm --filter @kitconcept/volto-keywordmanager release-alpha",
     "storybook": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto storybook dev -p 6006 -c $(pwd)/.storybook",
     "storybook-build": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto build-storybook -c $(pwd)/.storybook"
   },
@@ -36,7 +36,7 @@
     "@kitconcept/volto-light-theme": "^8.0.0-alpha.29",
     "@plone/registry": "workspace:*",
     "@plone/volto": "workspace:*",
-    "volto-keywordmanager": "workspace:*"
+    "@kitconcept/volto-keywordmanager": "workspace:*"
   },
   "devDependencies": {
     "mrs-developer": "^2.2.0"

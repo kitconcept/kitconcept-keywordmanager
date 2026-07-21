@@ -1,6 +1,6 @@
-import { GET_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
-import { UPDATE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
-import { DELETE_KEYWORDS } from 'volto-keywordmanager/constants/Keywords';
+import { GET_KEYWORDS } from '@kitconcept/volto-keywordmanager/constants/Keywords';
+import { UPDATE_KEYWORDS } from '@kitconcept/volto-keywordmanager/constants/Keywords';
+import { DELETE_KEYWORDS } from '@kitconcept/volto-keywordmanager/constants/Keywords';
 
 export function getKeywords({
   index = null,
