@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a2 (2026-07-25)
+
+
+### Documentation:
+
+- Updated the backend README and synced it with the top-level README. @tisto [#3](https://github.com/kitconcept/kitconcept-keywordmanager/issues/3)
+
 ## 1.0.0a1 (2026-07-21)
 
 

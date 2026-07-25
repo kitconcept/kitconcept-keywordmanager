@@ -1,6 +1,6 @@
 {
   "name": "volto-keywordmanager-dev",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Change, merge and delete keywords (subjects) in Plone.",
   "author": "kitconcept GmbH",
   "homepage": "https://github.com/kitconcept/kitconcept-keywordmanager",

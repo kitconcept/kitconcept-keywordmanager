@@ -7,6 +7,34 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a2 (2026-07-25)
+
+### Backend
+
+
+#### Documentation:
+
+- Updated the backend README and synced it with the top-level README. @tisto [#3](https://github.com/kitconcept/kitconcept-keywordmanager/issues/3)
+
+
+
+### Frontend
+
+#### Documentation
+
+- Updated the frontend README and synced it with the top-level README. @tisto [#3](https://github.com/kitconcept/kitconcept-keywordmanager/issue/3)
+
+
+
+### Project
+
+
+#### Documentation
+
+- Overhauled the README with a clearer product description, a "who is this for" section, a revised features list, requirements, and screenshots. @tisto [#3](https://github.com/kitconcept/kitconcept-keywordmanager/pull/3)
+
+
+
 ## 1.0.0a1 (2026-07-21)
 
 ### Backend
