@@ -1,10 +1,20 @@
-# kitconcept.keywordmanager
+# Keyword Manager for Plone (Backend: kitconcept.keywordmanager)
 
-Change, merge and delete keywords (subjects) in Plone.
+The backend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the frontend package [@kitconcept/volto-keywordmanager](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager).
 
 ## Features
 
-TODO: List our awesome features
+- **Browse all keywords** currently in use, sorted by name or by number of occurrences.
+- **Filter keywords** to quickly find a specific term in a long list.
+- **Rename a keyword** — the new name is applied to every content item that uses it automatically.
+- **Merge keywords** — combine synonyms, fix typos, or resolve ambiguities by merging multiple keywords into one canonical term; all affected content is updated in one step.
+- **Delete keywords** — remove terms that are no longer needed.
+- **Manage multiple keyword fields** — works with the standard `Subject` field and any other keyword-type index in the catalog.
+
+## Requirements
+
+- Plone 6.1 or 6.2
+- Python 3.11, 3.12, or 3.13
 
 ## Installation
 
@@ -18,6 +28,86 @@ Create the Plone site.
 
 ```shell
 make create-site
+```
+
+## Configuration
+
+To configure one of the following options, import the config module:
+
+```py
+from kitconcept.keywordmanager import config
+```
+
+### Options
+
+The keywords permission allows you to set a custom permission who should be able to manage keywords.
+
+```py
+config.MANAGE_KEYWORDS_PERMISSION = "kitconcept.keywordmanager: Manage Keywords"
+```
+
+The meta type of the keyword indexes can be set. This is only useful if you're one of those crazy people that use custom indexes.
+
+```py
+config.META_TYPE = "KeywordIndex"
+```
+
+There are indexes of `META_TYPE` we know we don't want to manage because bad things will happen. You can exclude those using:
+
+```py
+config.IGNORE_INDEXES = [
+    "object_provides",
+    "allowedRolesAndUsers",
+    "getRawRelatedItems",
+    "getEventType",
+    "block_types",
+]
+```
+
+You can set a list of indexes that should always be reindex when merging or deleting keywords on objects. Most people won't need this.
+
+```py
+config.ALWAYS_REINDEX = (
+    "SearchableText",
+)
+```
+
+## REST API
+
+### GET `/@keywords` (or `/path/to/page/@keywords`)
+
+| Parameter    | Source | Type / Values               | Required | Default   | Description                 |
+| ------------ | ------ | --------------------------- | -------- | --------- | --------------------------- |
+| `idx`        | form   | string                      | no       | "Subject" | The keyword index to query. |
+| `sort_order` | form   | "ascending" or "descending" | no       | —         | The sort order of results.  |
+| `sort_on`    | form   | "keyword" or "occurrence"   | no       | —         | The field to sort on.       |
+
+### PATCH `/@keywords` (or `/path/to/page/@keywords`)
+
+| Parameter      | Source | Type / Values | Required | Default   | Description                            |
+| -------------- | ------ | ------------- | -------- | --------- | -------------------------------------- |
+| `idx`          | form   | string        | no       | "Subject" | The keyword index to query.            |
+| `new_keyword`  | body   | string        | yes      | —         | The name of the keyword to be created. |
+| `old_keywords` | body   | list[string]  | yes      | —         | The old keywords to be deleted.        |
+
+### DELETE `/@keywords` (or `/path/to/page/@keywords`)
+
+| Parameter | Source | Type / Values | Required | Default   | Description                             |
+| --------- | ------ | ------------- | -------- | --------- | --------------------------------------- |
+| `idx`     | form   | string        | no       | "Subject" | The keyword index to query.             |
+| `items`   | body   | list          | yes      | —         | The name of the keywords to be deleted. |
+
+### GET `/@keywordIndex`
+
+No parameters.
+
+## Utility
+
+```py
+from kitconcept.keywordmanager.interfaces import IKeywordManager
+from zope.component import getUtility
+
+km = getUtility(IKeywordManager)
 ```
 
 ## Contribute
