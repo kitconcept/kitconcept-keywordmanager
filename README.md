@@ -18,10 +18,12 @@ The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their
 
 ## Features 🔥
 
-- Control Panel (frontend)
-- Configurable (backend)
-- REST-API Services (backend)
-- Utility (backend)
+- **Browse all keywords** currently in use, sorted by name or by number of occurrences.
+- **Filter keywords** to quickly find a specific term in a long list.
+- **Rename a keyword** — the new name is applied to every content item that uses it automatically.
+- **Merge keywords** — combine synonyms, fix typos, or resolve ambiguities by merging multiple keywords into one canonical term; all affected content is updated in one step.
+- **Delete keywords** — remove terms that are no longer needed.
+- **Manage multiple keyword fields** — works with the standard `Subject` field and any other keyword-type index in the catalog.
 
 ## Installation 🔧
 
