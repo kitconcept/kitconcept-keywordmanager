@@ -18,7 +18,8 @@ class KeywordsGet(Service):
         if sort_order := self.request.form.get("sort_order"):
             if sort_order not in ("ascending", "descending"):
                 raise BadRequest(
-                    f"Invalid sort_order '{sort_order}'. Must be 'ascending' or 'descending'."
+                    f"Invalid sort_order '{sort_order}'. Must be 'ascending' "
+                    "or 'descending'."
                 )
             reverse = sort_order == "descending"
 

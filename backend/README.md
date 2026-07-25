@@ -95,9 +95,7 @@ config.IGNORE_INDEXES = [
 You can set a list of indexes that should always be reindex when merging or deleting keywords on objects. Most people won't need this.
 
 ```py
-config.ALWAYS_REINDEX = (
-    "SearchableText",
-)
+config.ALWAYS_REINDEX = ("SearchableText",)
 ```
 
 ## REST API

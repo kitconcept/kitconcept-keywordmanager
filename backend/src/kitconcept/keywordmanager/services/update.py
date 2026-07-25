@@ -18,7 +18,8 @@ class KeywordsPatch(Service):
 
         if not isinstance(new_keyword, str):
             raise BadRequest(
-                f"Invalid request: 'new_keyword' must be of type 'str', but received '{type(new_keyword).__name__}'."
+                f"Invalid request: 'new_keyword' must be of type 'str', "
+                f"but received '{type(new_keyword).__name__}'."
             )
         if not new_keyword:
             raise BadRequest(
@@ -26,7 +27,8 @@ class KeywordsPatch(Service):
             )
         if not isinstance(old_keywords, list):
             raise BadRequest(
-                f"Invalid request: 'old_keywords' must be of type 'list', but received '{type(old_keywords).__name__}'."
+                f"Invalid request: 'old_keywords' must be of type 'list', "
+                f"but received '{type(old_keywords).__name__}'."
             )
         if not old_keywords:
             raise BadRequest(
