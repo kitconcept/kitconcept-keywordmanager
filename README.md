@@ -52,13 +52,6 @@ The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their
    pip install kitconcept.keywordmanager
    ```
 
-## Control Panel
-
-> [!NOTE]
-> This section is a work in progress. Expect more information in the coming releases.
-
-The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords.
-
 ## Configuration
 
 This package allows for some configuration.
