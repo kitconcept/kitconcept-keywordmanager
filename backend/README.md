@@ -4,7 +4,7 @@ The backend package for Keyword Manager for Plone — a Plone 6 add-on that lets
 
 ![Keyword Manager](https://raw.githubusercontent.com/kitconcept/kitconcept-keywordmanager/main/assets/Keyword_Manager.png)
 
-## Features
+## Features 🔥
 
 - **Browse all keywords** currently in use, sorted by name or by number of occurrences.
 - **Filter keywords** to quickly find a specific term in a long list.
@@ -18,7 +18,7 @@ The backend package for Keyword Manager for Plone — a Plone 6 add-on that lets
 - Plone 6.1 or 6.2
 - Python 3.11, 3.12, or 3.13
 
-## Installation
+## Installation 🔧
 
 Install kitconcept.keywordmanager with uv.
 
@@ -34,7 +34,9 @@ make create-site
 
 ## Configuration
 
-To configure one of the following options, import the config module:
+This package allows for some configuration.
+
+To configure one of the following options, import the config module like so:
 
 ```py
 from kitconcept.keywordmanager import config
@@ -105,6 +107,8 @@ No parameters.
 
 ## Utility
 
+Getting the utility.
+
 ```py
 from kitconcept.keywordmanager.interfaces import IKeywordManager
 from zope.component import getUtility
@@ -112,7 +116,7 @@ from zope.component import getUtility
 km = getUtility(IKeywordManager)
 ```
 
-## Contribute
+## Contributing 🐛
 
 - [Issue tracker](https://github.com/kitconcept/kitconcept-keywordmanager/issues)
 - [Source code](https://github.com/kitconcept/kitconcept-keywordmanager/)

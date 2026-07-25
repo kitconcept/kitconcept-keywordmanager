@@ -6,8 +6,7 @@
 
 The frontend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the backend package [kitconcept.keywordmanager](https://pypi.org/project/kitconcept.keywordmanager/).
 
-
-## Features
+## Features 🔥
 
 - **Browse all keywords** currently in use, sorted by name or by number of occurrences.
 - **Filter keywords** to quickly find a specific term in a long list.
@@ -21,7 +20,7 @@ The frontend package for Keyword Manager for Plone — a Plone 6 add-on that let
 
 ![Keyword Manager](https://raw.githubusercontent.com/kitconcept/kitconcept-keywordmanager/main/assets/Keyword_Manager.png)
 
-## Installation
+## Installation 🔧
 
 To install your project, you must choose the method appropriate to your version of Volto.
 
@@ -41,7 +40,7 @@ Add `@kitconcept/volto-keywordmanager` to your `package.json`.
 
 ## Test installation
 
-Visit http://localhost:3000/ in a browser, login, and check the awesome new features.
+Visit http://localhost:3000/ in a browser and log in to verify the Keyword Manager is available under the site control panel.
 
 
 ## Development
@@ -155,6 +154,10 @@ In the third session, start the Cypress interactive test runner.
 ```shell
 make acceptance-test
 ```
+
+## Contributing 🐛
+
+Contributions are welcome! Please read [CONTRIBUTING.md](https://github.com/kitconcept/kitconcept-keywordmanager/blob/main/CONTRIBUTING.md).
 
 ## License
 

@@ -96,7 +96,7 @@ config.ALWAYS_REINDEX = (
 )
 ```
 
-## REST-API Services
+## REST API
 
 ### GET `/@keywords` (or `/path/to/page/@keywords`)
 
