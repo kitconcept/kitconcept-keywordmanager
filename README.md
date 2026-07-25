@@ -9,7 +9,12 @@ The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their
 > [!WARNING]
 > This add-on is designed to work with [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If your site uses a different theme, you will need to provide your own styles or import the existing ones manually: `import "@kitconcept/volto-keywordmanager/theme/_main.scss"`. See the [Volto theming documentation](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html) for details.
 
-![Keyword Manger](./assets/Keyword_Manager.png)
+![Keyword Manager](./assets/Keyword_Manager.png)
+
+## Who is this for?
+
+- **Content editors** who manage tags and subjects on a Plone website and want a clean interface to keep keywords organised.
+- **Site administrators and technical staff** who need to install and configure the add-on for their institution's Plone instance.
 
 ## Features 🔥
 
