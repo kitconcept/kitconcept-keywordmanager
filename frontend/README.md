@@ -19,6 +19,8 @@ The frontend package for Keyword Manager for Plone — a Plone 6 add-on that let
 > [!WARNING]
 > This add-on is designed to work with [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If your site uses a different theme, you will need to provide your own styles or import the existing ones manually: `import "@kitconcept/volto-keywordmanager/theme/_main.scss"`. See the [Volto theming documentation](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html) for details.
 
+![Keyword Manager](https://raw.githubusercontent.com/kitconcept/kitconcept-keywordmanager/main/assets/Keyword_Manager.png)
+
 ## Installation
 
 To install your project, you must choose the method appropriate to your version of Volto.

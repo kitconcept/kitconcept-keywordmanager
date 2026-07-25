@@ -2,6 +2,8 @@
 
 The backend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the frontend package [@kitconcept/volto-keywordmanager](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager).
 
+![Keyword Manager](https://raw.githubusercontent.com/kitconcept/kitconcept-keywordmanager/main/assets/Keyword_Manager.png)
+
 ## Features
 
 - **Browse all keywords** currently in use, sorted by name or by number of occurrences.
