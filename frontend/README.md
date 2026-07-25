@@ -1,8 +1,20 @@
-# Keyword Manager for Plone (Frontend: @kitconcept/volto-keywordmanager)
+<div align="center">
+
+<h1 align="center">Keyword Manager for Plone</h1>
+<h2 align="center">@kitconcept/volto-keywordmanager</h2>
+
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/@kitconcept/volto-keywordmanager)](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager)
 [![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/kitconcept-keywordmanager/)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
+
+[![GitHub contributors](https://img.shields.io/github/contributors/kitconcept/kitconcept-keywordmanager)](https://github.com/kitconcept/kitconcept-keywordmanager)
+[![GitHub Repo stars](https://img.shields.io/github/stars/kitconcept/kitconcept-keywordmanager?style=social)](https://github.com/kitconcept/kitconcept-keywordmanager)
+
+</div>
 
 The frontend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the backend package [kitconcept.keywordmanager](https://pypi.org/project/kitconcept.keywordmanager/).
 
@@ -162,3 +174,7 @@ Contributions are welcome! Please read [CONTRIBUTING.md](https://github.com/kitc
 ## License
 
 The project is licensed under the MIT license.
+
+## Credits and acknowledgements 🙏
+
+Generated using [Cookieplone (2.0.0a3)](https://github.com/plone/cookieplone) and [cookieplone-templates (cda10db)](https://github.com/plone/cookieplone-templates/commit/cda10db886223a9aa9be1b1368484296418bb880) on 2026-05-29 11:44:37.855709. A special thanks to all contributors and supporters!

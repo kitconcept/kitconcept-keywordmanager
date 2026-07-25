@@ -1,8 +1,27 @@
-# Keyword Manager for Plone
+<div align="center">
+
+<h1 align="center">Keyword Manager for Plone</h1>
+
+</div>
+
+<div align="center">
 
 [![Built with Cookieplone](https://img.shields.io/badge/built%20with-Cookieplone-0083be.svg?logo=cookiecutter)](https://github.com/plone/cookieplone-templates/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
+[![PyPI](https://img.shields.io/pypi/v/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+[![PyPI - Plone Versions](https://img.shields.io/pypi/frameworkversions/plone/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+
+[![npm](https://img.shields.io/npm/v/@kitconcept/volto-keywordmanager)](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager)
+[![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/kitconcept-keywordmanager/)
+
+
+[![GitHub contributors](https://img.shields.io/github/contributors/kitconcept/kitconcept-keywordmanager)](https://github.com/kitconcept/kitconcept-keywordmanager)
+[![GitHub Repo stars](https://img.shields.io/github/stars/kitconcept/kitconcept-keywordmanager?style=social)](https://github.com/kitconcept/kitconcept-keywordmanager)
+
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
+
+</div>
 
 The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their site's keywords (also called subjects or tags) clean and consistent — without needing developer support. From a dedicated control panel, editors can rename, merge, and delete keywords, and every content item on the site is updated automatically.
 
@@ -27,18 +46,41 @@ The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their
 
 ## Requirements
 
+### Backend
+
 - Plone 6.1 or 6.2
 - Python 3.11, 3.12, or 3.13
-- Volto (Plone's React-based frontend)
+
+### Frontend
+
+- Volto 18 or later (Plone's React-based frontend)
+- Node.js 24
+- pnpm
 - [volto-light-theme](https://github.com/kitconcept/volto-light-theme) (recommended; see warning above)
 
 ## Installation 🔧
 
 1. Frontend package:
 
+   Add the package to your Volto project.
+
    ```shell
    pnpm add @kitconcept/volto-keywordmanager
    ```
+
+   Then register it as an add-on in your project's `package.json`.
+
+   ```json
+   "addons": [
+       "@kitconcept/volto-keywordmanager"
+   ],
+   "dependencies": {
+       "@kitconcept/volto-keywordmanager": "*"
+   }
+   ```
+
+   > [!IMPORTANT]
+   > Installing the package without adding it to the `addons` array will not enable the control panel.
 
 1. Backend package:
 
@@ -51,6 +93,14 @@ The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their
    ```shell
    pip install kitconcept.keywordmanager
    ```
+
+   Then install the add-on in your Plone site from the **Add-ons** control panel.
+
+## Usage
+
+Once installed, the Keyword Manager is available in the Plone site control panel.
+Start by selecting the keyword field you want to manage, then sort, filter, rename, merge, or delete individual keywords.
+Every content item using an affected keyword is updated automatically.
 
 ## Configuration
 
@@ -140,6 +190,15 @@ km = getUtility(IKeywordManager)
 
 Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
+## License
+
+This repository contains two packages, each under its own license.
+
+| Package | Location | License |
+| ------- | -------- | ------- |
+| `kitconcept.keywordmanager` | [backend/](./backend/) | GPL-2.0-only |
+| `@kitconcept/volto-keywordmanager` | [frontend/](./frontend/) | MIT |
+
 ## Credits and acknowledgements 🙏
 
 This add-on is based on code from Products.PloneKeywordManager, adapted and extended for Plone 6 & Volto.
@@ -159,3 +218,5 @@ Building on that foundation, this package was created by the kitconcept GmbH to 
 There is an ongoing effort to bring keyword-management functionality into Plone core itself, tracked as [PLIP: Keyword Manager](https://github.com/plone/volto/issues/5300). This add-on is intended as a step toward that goal, a working, up-to-date implementation that can inform (and hopefully eventually be folded into) that core integration. Getting there will require several steps: stabilizing the add-on for Plone 6, gathering community feedback, aligning with the Volto/core UI patterns, and going through the PLIP review process. Contributions and feedback toward that end are welcome.
 
 Thanks to Maik Jablonski and everyone who has contributed to Products.PloneKeywordManager over the years for the original work this builds on.
+
+Generated using [Cookieplone (2.0.0a3)](https://github.com/plone/cookieplone) and [cookieplone-templates (cda10db)](https://github.com/plone/cookieplone-templates/commit/cda10db886223a9aa9be1b1368484296418bb880) on 2026-05-29 11:44:37.855709. A special thanks to all contributors and supporters!

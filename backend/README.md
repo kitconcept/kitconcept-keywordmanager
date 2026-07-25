@@ -1,4 +1,28 @@
-# Keyword Manager for Plone (Backend: kitconcept.keywordmanager)
+<div align="center">
+
+<h1 align="center">Keyword Manager for Plone</h1>
+<h2 align="center">kitconcept.keywordmanager</h2>
+
+</div>
+
+<div align="center">
+
+[![PyPI](https://img.shields.io/pypi/v/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+[![PyPI - License](https://img.shields.io/pypi/l/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+[![PyPI - Status](https://img.shields.io/pypi/status/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+
+[![PyPI - Plone Versions](https://img.shields.io/pypi/frameworkversions/plone/kitconcept.keywordmanager)](https://pypi.org/project/kitconcept.keywordmanager/)
+
+[![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
+
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
+[![GitHub contributors](https://img.shields.io/github/contributors/kitconcept/kitconcept-keywordmanager)](https://github.com/kitconcept/kitconcept-keywordmanager)
+[![GitHub Repo stars](https://img.shields.io/github/stars/kitconcept/kitconcept-keywordmanager?style=social)](https://github.com/kitconcept/kitconcept-keywordmanager)
+
+</div>
 
 The backend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the frontend package [@kitconcept/volto-keywordmanager](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager).
 
@@ -143,36 +167,6 @@ km = getUtility(IKeywordManager)
     ```shell
     make install
     ```
-
-
-### Add features using `plonecli` or `bobtemplates.plone`
-
-This package provides markers as strings (`<!-- extra stuff goes here -->`) that are compatible with [`plonecli`](https://github.com/plone/plonecli) and [`bobtemplates.plone`](https://github.com/plone/bobtemplates.plone).
-These markers act as hooks to add all kinds of features through subtemplates, including behaviors, control panels, upgrade steps, or other subtemplates from `bobtemplates.plone`.
-`plonecli` is a command line client for `bobtemplates.plone`, adding autocompletion and other features.
-
-To add a feature as a subtemplate to your package, use the following command pattern.
-
-```shell
-make add <template_name>
-```
-
-For example, you can add a content type to your package with the following command.
-
-```shell
-make add content_type
-```
-
-You can add a behavior with the following command.
-
-```shell
-make add behavior
-```
-
-```{seealso}
-You can check the list of available subtemplates in the [`bobtemplates.plone` `README.md` file](https://github.com/plone/bobtemplates.plone/?tab=readme-ov-file#provided-subtemplates).
-See also the documentation of [Mockup and Patternslib](https://6.docs.plone.org/classic-ui/mockup.html) for how to build the UI toolkit for Classic UI.
-```
 
 ## License
 
