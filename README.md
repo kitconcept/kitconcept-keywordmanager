@@ -25,6 +25,13 @@ The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their
 - **Delete keywords** — remove terms that are no longer needed.
 - **Manage multiple keyword fields** — works with the standard `Subject` field and any other keyword-type index in the catalog.
 
+## Requirements
+
+- Plone 6.1 or 6.2
+- Python 3.11, 3.12, or 3.13
+- Volto (Plone's React-based frontend)
+- [volto-light-theme](https://github.com/kitconcept/volto-light-theme) (recommended; see warning above)
+
 ## Installation 🔧
 
 1. Frontend package:
