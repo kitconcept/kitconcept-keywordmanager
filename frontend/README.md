@@ -1,15 +1,23 @@
-# Keyword Manager (@kitconcept/volto-keywordmanager)
-
-Change, merge and delete keywords (subjects) in Plone.
+# Keyword Manager for Plone (Frontend: @kitconcept/volto-keywordmanager)
 
 [![npm](https://img.shields.io/npm/v/@kitconcept/volto-keywordmanager)](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager)
 [![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/kitconcept-keywordmanager/)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
+The frontend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the backend package [kitconcept.keywordmanager](https://pypi.org/project/kitconcept.keywordmanager/).
+
 
 ## Features
 
-<!-- List your awesome features here -->
+- **Browse all keywords** currently in use, sorted by name or by number of occurrences.
+- **Filter keywords** to quickly find a specific term in a long list.
+- **Rename a keyword** — the new name is applied to every content item that uses it automatically.
+- **Merge keywords** — combine synonyms, fix typos, or resolve ambiguities by merging multiple keywords into one canonical term; all affected content is updated in one step.
+- **Delete keywords** — remove terms that are no longer needed.
+- **Manage multiple keyword fields** — works with the standard `Subject` field and any other keyword-type index in the catalog.
+
+> [!WARNING]
+> This add-on is designed to work with [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If your site uses a different theme, you will need to provide your own styles or import the existing ones manually: `import "@kitconcept/volto-keywordmanager/theme/_main.scss"`. See the [Volto theming documentation](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html) for details.
 
 ## Installation
 
