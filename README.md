@@ -1,13 +1,13 @@
-# kitconcept-keywordmanager 🚀
+# Keyword Manager for Plone
 
 [![Built with Cookieplone](https://img.shields.io/badge/built%20with-Cookieplone-0083be.svg?logo=cookiecutter)](https://github.com/plone/cookieplone-templates/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
-> [!WARNING]
-> This add-on is meant to be used in combination with the [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If you plan to use this add-on with plain Volto you will have to write your own styles for it. You can use the existing ones via manual import like this `import "@kitconcept/volto-keywordmanager/theme/_main.scss"` or as reference. Read more about theming [here](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html).
+The **Keyword Manager** is a Plone 6 add-on that lets content editors keep their site's keywords (also called subjects or tags) clean and consistent — without needing developer support. From a dedicated control panel, editors can rename, merge, and delete keywords, and every content item on the site is updated automatically.
 
-Change, merge and delete keywords (subjects) in Plone 6.
+> [!WARNING]
+> This add-on is designed to work with [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If your site uses a different theme, you will need to provide your own styles or import the existing ones manually: `import "@kitconcept/volto-keywordmanager/theme/_main.scss"`. See the [Volto theming documentation](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html) for details.
 
 ![Keyword Manger](./assets/Keyword_Manager.png)
 
