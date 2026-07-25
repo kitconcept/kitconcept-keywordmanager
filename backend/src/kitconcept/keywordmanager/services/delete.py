@@ -17,7 +17,8 @@ class KeywordsDelete(Service):
 
         if not isinstance(keywords, list):
             raise BadRequest(
-                f"Invalid request: 'items' must be of type 'list', but received '{type(keywords).__name__}'."
+                f"Invalid request: 'items' must be of type 'list', "
+                f"but received '{type(keywords).__name__}'."
             )
         if not keywords:
             raise BadRequest("Invalid request: missing required parameter 'items'.")

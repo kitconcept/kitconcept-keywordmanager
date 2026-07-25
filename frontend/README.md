@@ -1,17 +1,38 @@
-# Keyword Manager (@kitconcept/volto-keywordmanager)
+<div align="center">
 
-Change, merge and delete keywords (subjects) in Plone.
+<h1 align="center">Keyword Manager for Plone</h1>
+<h2 align="center">@kitconcept/volto-keywordmanager</h2>
+
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/@kitconcept/volto-keywordmanager)](https://www.npmjs.com/package/@kitconcept/volto-keywordmanager)
 [![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://kitconcept.github.io/kitconcept-keywordmanager/)
 [![CI](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml/badge.svg)](https://github.com/kitconcept/kitconcept-keywordmanager/actions/workflows/main.yml)
 
+[![GitHub contributors](https://img.shields.io/github/contributors/kitconcept/kitconcept-keywordmanager)](https://github.com/kitconcept/kitconcept-keywordmanager)
+[![GitHub Repo stars](https://img.shields.io/github/stars/kitconcept/kitconcept-keywordmanager?style=social)](https://github.com/kitconcept/kitconcept-keywordmanager)
 
-## Features
+</div>
 
-<!-- List your awesome features here -->
+The frontend package for Keyword Manager for Plone — a Plone 6 add-on that lets content editors rename, merge, and delete keywords (subjects/tags) across a site, with all content updated automatically. See also the backend package [kitconcept.keywordmanager](https://pypi.org/project/kitconcept.keywordmanager/).
 
-## Installation
+## Features 🔥
+
+- **Browse all keywords** currently in use, sorted by name or by number of occurrences.
+- **Filter keywords** to quickly find a specific term in a long list.
+- **Rename a keyword** — the new name is applied to every content item that uses it automatically.
+- **Merge keywords** — combine synonyms, fix typos, or resolve ambiguities by merging multiple keywords into one canonical term; all affected content is updated in one step.
+- **Delete keywords** — remove terms that are no longer needed.
+- **Manage multiple keyword fields** — works with the standard `Subject` field and any other keyword-type index in the catalog.
+
+> [!WARNING]
+> This add-on is designed to work with [volto-light-theme](https://github.com/kitconcept/volto-light-theme). If your site uses a different theme, you will need to provide your own styles or import the existing ones manually: `import "@kitconcept/volto-keywordmanager/theme/_main.scss"`. See the [Volto theming documentation](https://6.docs.plone.org/volto/theming/theming-a-base-theme.html) for details.
+
+![Keyword Manager](https://raw.githubusercontent.com/kitconcept/kitconcept-keywordmanager/main/assets/Keyword_Manager.png)
+
+## Installation 🔧
 
 To install your project, you must choose the method appropriate to your version of Volto.
 
@@ -31,7 +52,7 @@ Add `@kitconcept/volto-keywordmanager` to your `package.json`.
 
 ## Test installation
 
-Visit http://localhost:3000/ in a browser, login, and check the awesome new features.
+Visit http://localhost:3000/ in a browser and log in to verify the Keyword Manager is available under the site control panel.
 
 
 ## Development
@@ -146,6 +167,14 @@ In the third session, start the Cypress interactive test runner.
 make acceptance-test
 ```
 
+## Contributing 🐛
+
+Contributions are welcome! Please read [CONTRIBUTING.md](https://github.com/kitconcept/kitconcept-keywordmanager/blob/main/CONTRIBUTING.md).
+
 ## License
 
 The project is licensed under the MIT license.
+
+## Credits and acknowledgements 🙏
+
+Generated using [Cookieplone (2.0.0a3)](https://github.com/plone/cookieplone) and [cookieplone-templates (cda10db)](https://github.com/plone/cookieplone-templates/commit/cda10db886223a9aa9be1b1368484296418bb880) on 2026-05-29 11:44:37.855709. A special thanks to all contributors and supporters!
