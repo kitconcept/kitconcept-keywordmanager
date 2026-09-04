@@ -421,10 +421,15 @@ const KeywordManager = (props) => {
           </Collection>
         </TableHeader>
         <TableBody
-          items={rows}
+          items={keywords.loading ? [] : rows}
           renderEmptyState={() =>
             keywords.loading ? (
-              <Spinner aria-label={intl.formatMessage(messages.loading)} />
+              <div className="react-aria-Spinner-wrapper">
+                <Spinner
+                  size="32px"
+                  aria-label={intl.formatMessage(messages.loading)}
+                />
+              </div>
             ) : (
               'No results found.'
             )
