@@ -86,8 +86,7 @@ const messages = defineMessages({
   },
   openKeyword: {
     id: 'Open keyword',
-    defaultMessage:
-      'Open detailed view for keyword {keyword} (opens in new tab)',
+    defaultMessage: 'Open detailed view for keyword {keyword} (opens in new tab)',
   },
   deleteKeyword: {
     id: 'Delete keyword',
@@ -241,9 +240,7 @@ const KeywordManager = (props) => {
     const result = Array.isArray(kw) ? kw : [kw];
     setIsLoading(true);
     try {
-      await dispatch(
-        deleteKeywords({ items: result, indexName: keywordIndex }),
-      );
+      await dispatch(deleteKeywords({ items: result, indexName: keywordIndex }));
       toast.success(
         <Toast
           title={intl.formatMessage(messages.deleteSuccess, { num: kw.length })}
@@ -302,10 +299,7 @@ const KeywordManager = (props) => {
       className="ui container controlpanel-keyword-manager"
     >
       <h1 className="title">
-        <FormattedMessage
-          id="Keyword Manager"
-          defaultMessage="Keyword Manager"
-        />
+        <FormattedMessage id="Keyword Manager" defaultMessage="Keyword Manager" />
       </h1>
       <p className="description">
         <FormattedMessage
@@ -316,10 +310,7 @@ const KeywordManager = (props) => {
       {keywordIndexes?.items?.length > 1 && (
         <div className="options">
           <p>
-            <FormattedMessage
-              id="keyword-field"
-              defaultMessage="Keyword field: "
-            />
+            <FormattedMessage id="keyword-field" defaultMessage="Keyword field: " />
           </p>
           <Select
             selectionMode="single"
@@ -421,10 +412,15 @@ const KeywordManager = (props) => {
           </Collection>
         </TableHeader>
         <TableBody
-          items={rows}
+          items={keywords.loading ? [] : rows}
           renderEmptyState={() =>
             keywords.loading ? (
-              <Spinner aria-label={intl.formatMessage(messages.loading)} />
+              <div className="react-aria-Spinner-wrapper">
+                <Spinner
+                  size="32px"
+                  aria-label={intl.formatMessage(messages.loading)}
+                />
+              </div>
             ) : (
               'No results found.'
             )
