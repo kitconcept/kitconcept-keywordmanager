@@ -1,10 +1,12 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
-from kitconcept.keywordmanager import config
+from kitconcept.keywordmanager import PACKAGE_NAME
 from kitconcept.keywordmanager.interfaces import IKeywordManager
 from plone import api
+from plone.api.portal import get_registry_record
 from plone.dexterity.interfaces import IDexterityContent
 from Products.CMFCore.indexing import processQueue
+from zExceptions.unauthorized import Unauthorized
 from zope.interface import implementer
 
 
@@ -32,14 +34,16 @@ class KeywordManager:
     """A utility to manage keywords within Plone."""
 
     security = ClassSecurityInfo()
+    security.declarePublic("change", "delete", "getKeywords", "getScoredMatches")
 
     manage_options = ({"label": "Overview", "action": "manage_overview"},)
 
     def _getFullIndexList(self, indexName):
-        idxs = {indexName}.union(config.ALWAYS_REINDEX)
+        idxs = {indexName}.union(
+            get_registry_record("kitconcept.keywordmanager.always_reindex")
+        )
         return list(idxs)
 
-    @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
     def change(
         self,
         new_keyword: str,
@@ -54,6 +58,11 @@ class KeywordManager:
 
         Returns the number of objects that have been updated.
         """
+        required = get_registry_record(f"{PACKAGE_NAME}.manage_keywords_permission")
+        if not api.user.has_permission(required):
+            raise Unauthorized(
+                "You are missing required permissions to access this resource."
+            )
 
         # #MOD Dynamic field getting
         query = {indexName: old_keywords}
@@ -84,12 +93,17 @@ class KeywordManager:
 
         return len(brains)
 
-    @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
     def delete(self, keywords: list, context=None, indexName: str = "Subject") -> int:
         """Removes the keywords from all objects using it.
 
         Returns the number of objects that have been updated.
         """
+        required = get_registry_record(f"{PACKAGE_NAME}.manage_keywords_permission")
+        if not api.user.has_permission(required):
+            raise Unauthorized(
+                "You are missing required permissions to access this resource."
+            )
+
         query = {indexName: keywords}
         if context:
             query["depth"] = 0
@@ -122,7 +136,6 @@ class KeywordManager:
             idxs = self._getFullIndexList(indexName)
             obj.reindexObject(idxs=idxs)
 
-    @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
     def getKeywords(
         self, indexName: str = "Subject", withLengths: bool = False
     ) -> list[str] | list[tuple[str, int]]:
@@ -140,6 +153,12 @@ class KeywordManager:
         Raises:
             ValueError: If indexName is not a valid keyword index.
         """
+        required = get_registry_record(f"{PACKAGE_NAME}.manage_keywords_permission")
+        if not api.user.has_permission(required):
+            raise Unauthorized(
+                "You are missing required permissions to access this resource."
+            )
+
         processQueue()
         if indexName not in self.getKeywordIndexes():
             raise ValueError(f"'{indexName}' is not a valid index")
@@ -169,11 +188,16 @@ class KeywordManager:
 
         return count
 
-    @security.protected(config.MANAGE_KEYWORDS_PERMISSION)
     def getScoredMatches(self, word, possibilities, num, score, context=None):
         """Take a word, compare it to a list of possibilities,
         return max. num matches > score).
         """
+        required = get_registry_record(f"{PACKAGE_NAME}.manage_keywords_permission")
+        if not api.user.has_permission(required):
+            raise Unauthorized(
+                "You are missing required permissions to access this resource."
+            )
+
         if not USE_LEVENSHTEIN:
             # No levenshtein module around. Fall back to difflib
             return difflib.get_close_matches(word, possibilities, num, score)
@@ -198,16 +222,18 @@ class KeywordManager:
         return [item[1] for item in res[:num]]
 
     def getKeywordIndexes(self) -> list[str]:
-        """Gets a list of indexes from the catalog. Uses config.py to choose the
-        meta type and filters out a subset of known indexes that should not be
+        """Gets a list of indexes from the catalog. Uses registry records to choose
+        the meta type and filters out a subset of known indexes that should not be
         managed.
         """
+        meta_type = get_registry_record("kitconcept.keywordmanager.meta_type")
+        ignore_indexes = get_registry_record("kitconcept.keywordmanager.ignore_indexes")
         catalog = api.portal.get_tool("portal_catalog")
         idxs = catalog.index_objects()
         idxs = [
             i.id
             for i in idxs
-            if i.meta_type == config.META_TYPE and i.id not in config.IGNORE_INDEXES
+            if i.meta_type == meta_type and i.id not in ignore_indexes
         ]
         idxs.sort()
         return idxs
