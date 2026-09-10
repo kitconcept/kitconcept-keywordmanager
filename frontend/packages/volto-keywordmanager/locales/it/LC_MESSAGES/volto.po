@@ -1,0 +1,277 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: it\n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. Default: "Actions"
+#: components/KeywordManager
+msgid "Actions"
+msgstr "Azioni"
+
+#. Default: "All states"
+#: components/KeywordView
+msgid "All states"
+msgstr "Tutti gli stati"
+
+#. Default: "All types"
+#: components/KeywordView
+msgid "All types"
+msgstr "Tutti i tipi"
+
+#. Default: "Back"
+#: components/KeywordManager
+#: components/KeywordView
+msgid "Back"
+msgstr "Indietro"
+
+#. Default: "Cancel"
+#: components/DeleteModal
+#: components/RenameModal
+msgid "Cancel"
+msgstr "Annulla"
+
+#. Default: "{num} Contents"
+#: components/KeywordView
+msgid "Contents"
+msgstr ""
+
+#. Default: "Delete"
+#: components/DeleteModal
+msgid "Delete"
+msgstr "Elimina"
+
+#. Default: "Keyword"
+#: components/KeywordManager
+msgid "Keyword"
+msgstr "Parola chiave"
+
+#. Default: "Keyword Manager"
+#: components/KeywordManager
+msgid "Keyword Manager"
+msgstr "Gestione parole chiave"
+
+#. Default: "Keywords"
+#: components/KeywordManager
+msgid "Keywords"
+msgstr "Parole chiave"
+
+#. Default: "New keyword name:"
+#: components/RenameModal
+msgid "New keyword name:"
+msgstr "Nuovo nome della parola chiave:"
+
+#. Default: "Occurrence"
+#: components/KeywordManager
+msgid "Occurrence"
+msgstr "Occorrenze"
+
+#. Default: "Please enter new name"
+#: components/RenameModal
+msgid "Please enter new name"
+msgstr "Inserisci il nuovo nome"
+
+#. Default: "Please select ..."
+#: components/RenameModal
+msgid "Please select ..."
+msgstr "Seleziona ..."
+
+#. Default: "Rename"
+#: components/RenameModal
+msgid "Rename"
+msgstr "Rinomina"
+
+#. Default: "Rename & Merge"
+#: components/RenameModal
+msgid "Rename & Merge"
+msgstr "Rinomina e unisci"
+
+#. Default: "Select existing keyword to keep:"
+#: components/RenameModal
+msgid "Select existing keyword to keep:"
+msgstr "Seleziona la parola chiave esistente da mantenere:"
+
+#. Default: "The selected keywords could not be deleted."
+#: components/KeywordManager
+msgid "The selected keywords could not be deleted."
+msgstr "Non è stato possibile eliminare le parole chiave selezionate."
+
+#. Default: "The selected keywords could not be updated."
+#: components/KeywordManager
+msgid "The selected keywords could not be updated."
+msgstr "Non è stato possibile aggiornare le parole chiave selezionate."
+
+#. Default: "The selected keywords have been deleted successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been deleted successfully."
+msgstr "Le parole chiave selezionate sono state eliminate correttamente."
+
+#. Default: "The selected keywords have been updated successfully."
+#: components/KeywordManager
+msgid "The selected keywords have been updated successfully."
+msgstr "Le parole chiave selezionate sono state aggiornate correttamente."
+
+#. Default: "You are about to delete {num} selected keyword(s). This action cannot be undone. Are you sure you want to proceed?"
+#: components/DeleteModal
+msgid "confirm-modal-description"
+msgstr "Stai per eliminare le parole chiave selezionate ({num}). L'azione non può essere annullata. Vuoi procedere?"
+
+#. Default: "Delete keyword(s)"
+#: components/DeleteModal
+msgid "confirm-modal-title"
+msgstr "Elimina parole chiave"
+
+#. Default: "Go to first page"
+#: components/Pagination
+msgid "goToFirstPage"
+msgstr "Vai alla prima pagina"
+
+#. Default: "Go to last page"
+#: components/Pagination
+msgid "goToLastPage"
+msgstr "Vai all'ultima pagina"
+
+#. Default: "Go to next page"
+#: components/Pagination
+msgid "goToNext"
+msgstr "Vai alla pagina successiva"
+
+#. Default: "Go to page {num}"
+#: components/Pagination
+msgid "goToPageNum"
+msgstr "Vai alla pagina {num}"
+
+#. Default: "Go to previous page"
+#: components/Pagination
+msgid "goToPrev"
+msgstr "Vai alla pagina precedente"
+
+#. Default: "Keyword field:"
+#: components/KeywordManager
+msgid "keyword-field"
+msgstr "Campo parole chiave:"
+
+#. Default: "The Keyword Manager allows you to maintain the keywords used in your website. Start by selecting the keyword field you want to manage. You can then sort, filter, rename, merge, or delete individual keywords."
+#: components/KeywordManager
+msgid "keyword-manager-description"
+msgstr "Gestione parole chiave permette di mantenere in ordine le parole chiave usate nel sito. Inizia selezionando il campo da gestire: potrai poi ordinare, filtrare, rinominare, unire o eliminare le singole parole chiave."
+
+#. Default: "Manage Contents For Keyword \"{name}\""
+#: components/KeywordView
+msgid "keyword-name"
+msgstr "Gestisci i contenuti con la parola chiave \"{name}\""
+
+#. Default: "Loading"
+#: components/DeleteModal
+#: components/KeywordManager
+#: components/KeywordView
+#: components/RenameModal
+msgid "loading"
+msgstr "caricamento"
+
+#. Default: "Next page"
+#: components/Pagination
+msgid "nextPage"
+msgstr "Pagina successiva"
+
+#. Default: "No content selected"
+#: components/KeywordView
+msgid "no-content-selected"
+msgstr "Nessun contenuto selezionato"
+
+#. Default: "No keyword selected"
+#: components/KeywordManager
+msgid "no-keyword-selected"
+msgstr "Nessuna parola chiave selezionata"
+
+#. Default: "{num} content(s) selected"
+#: components/KeywordView
+msgid "number-contents-selected"
+msgstr "{num} {num, plural, one {contenuto selezionato} other {contenuti selezionati}}"
+
+#. Default: "{num} keyword(s) selected"
+#: components/KeywordManager
+msgid "number-keywords-selected"
+msgstr "{num} {num, plural, one {parola chiave selezionata} other {parole chiave selezionate}}"
+
+#. Default: "Page {num}"
+#: components/Pagination
+msgid "pageNum"
+msgstr "Pagina {num}"
+
+#. Default: "Previous page"
+#: components/Pagination
+msgid "prevPage"
+msgstr "Pagina precedente"
+
+#. Default: "You are about to rename & merge {num} selected keyword(s). This action cannot be undone. Either select one of the existing keywords to keep or enter a new name to replace all selected keywords."
+#: components/RenameModal
+msgid "rename-modal-description"
+msgstr "Stai per rinominare e unire le parole chiave selezionate ({num}). L'azione non può essere annullata. Seleziona una delle parole chiave esistenti da mantenere oppure inserisci un nuovo nome che sostituirà tutte le parole chiave selezionate."
+
+#. Default: "Rename & merge keyword(s)"
+#: components/RenameModal
+msgid "rename-modal-title"
+msgstr "Rinomina e unisci parole chiave"
+
+#. Default: "Search"
+#: components/KeywordView
+msgid "search"
+msgstr "Cerca"
+
+#. Default: "You are about to delete the keyword {keyword} from {num} content object(s). This action cannot be undone. Are you sure you want to proceed?"
+#: components/DeleteModal
+msgid "single-confirm-modal-description"
+msgstr "Stai per eliminare la parola chiave {keyword} dai contenuti che la utilizzano ({num}). L'azione non può essere annullata. Vuoi procedere?"
+
+#. Default: "You are about to rename the keyword {keyword}. This action cannot be undone. Please enter a new name to proceed."
+#: components/RenameModal
+msgid "single-rename-modal-description"
+msgstr "Stai per rinominare la parola chiave {keyword}. L'azione non può essere annullata. Inserisci un nuovo nome per procedere."
+
+#. Default: "Rename keyword"
+#: components/RenameModal
+msgid "single-rename-modal-title"
+msgstr "Rinomina parola chiave"
+
+#. Default: "State"
+#: components/KeywordView
+msgid "state"
+msgstr "Stato"
+
+#. Default: "Title / Path"
+#: components/KeywordView
+msgid "title-path"
+msgstr "Titolo / Percorso"
+
+#. Default: "Type"
+#: components/KeywordView
+msgid "type"
+msgstr "Tipo"
+
+#. Default: "{num} keywords deleted"
+#: components/KeywordManager
+msgid "{num} keywords deleted"
+msgstr "{num} {num, plural, one {parola chiave eliminata} other {parole chiave eliminate}}"
+
+#. Default: "{num} keywords not deleted"
+#: components/KeywordManager
+msgid "{num} keywords not deleted"
+msgstr "{num} {num, plural, one {parola chiave non eliminata} other {parole chiave non eliminate}}"
+
+#. Default: "{num} keywords not updated"
+#: components/KeywordManager
+msgid "{num} keywords not updated"
+msgstr "{num} {num, plural, one {parola chiave non aggiornata} other {parole chiave non aggiornate}}"
+
+#. Default: "{num} keywords updated"
+#: components/KeywordManager
+msgid "{num} keywords updated"
+msgstr "{num} {num, plural, one {parola chiave aggiornata} other {parole chiave aggiornate}}"

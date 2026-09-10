@@ -10,30 +10,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: it\n"
-"Language-Name: English\n"
+"Language-Name: Italiano\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
 #: kitconcept/keywordmanager/profiles.zcml:13
 msgid "Change, merge and delete keywords (subjects) in Plone."
-msgstr ""
+msgstr "Modifica, unisci ed elimina le parole chiave (subjects) in Plone."
 
 #: kitconcept/keywordmanager/profiles.zcml:22
 msgid "Create example content to showcase this addon."
-msgstr ""
+msgstr "Crea contenuti di esempio per mostrare le funzionalità di questo add-on."
 
 #: kitconcept/keywordmanager/profiles.zcml:22
 msgid "Keyword Manager: Example content"
-msgstr ""
+msgstr "Gestione parole chiave: contenuti di esempio"
 
 #: kitconcept/keywordmanager/profiles.zcml:13
 msgid "Keyword Manager: Install"
-msgstr ""
+msgstr "Gestione parole chiave: installazione"
 
 #: kitconcept/keywordmanager/profiles.zcml:30
 msgid "Keyword Manager: Uninstall"
-msgstr ""
+msgstr "Gestione parole chiave: disinstallazione"
 
 #: kitconcept/keywordmanager/profiles.zcml:30
 msgid "Uninstall Keyword Manager setup."
-msgstr ""
+msgstr "Disinstalla la configurazione di Gestione parole chiave."
