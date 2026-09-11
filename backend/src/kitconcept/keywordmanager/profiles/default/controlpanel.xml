@@ -3,6 +3,19 @@
         name="portal_controlpanel"
 >
 
+  <configlet action_id="KeywordManagerSettings"
+             appId="KeywordManagerSettings"
+             category="Products"
+             condition_expr=""
+             icon_expr="string:keywordmanager-settings"
+             title="Keyword Manager Settings"
+             url_expr="string:${portal_url}/keywordmanager_settings"
+             visible="True"
+             i18n:attributes="title"
+  >
+    <permission>Manage portal</permission>
+  </configlet>
+
   <!-- -*- extra stuff goes here -*- -->
 
 </object>

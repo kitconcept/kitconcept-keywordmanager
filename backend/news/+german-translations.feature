@@ -1,0 +1,1 @@
+Add german translations. @jnptk
