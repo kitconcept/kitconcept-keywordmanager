@@ -11,21 +11,10 @@ class IKeywordManagerSettings(Interface):
 
     manage_keywords_permission = schema.Choice(
         title=_("Permission"),
-        description=_("", default=""),
+        description=_(""),
         required=True,
         default="kitconcept.keywordmanager: Manage Keywords",
         vocabulary="kitconcept.keywordmanager.vocabularies.permissions",
-    )
-
-    meta_type = schema.TextLine(
-        title=_("Type"),
-        description=_(
-            "",
-            default="Meta type of the keyword indexes. If you're one of those "
-            "crazy people that use custom indexes, you'll want to update this.",
-        ),
-        default="KeywordIndex",
-        required=True,
     )
 
     directives.widget(
@@ -39,12 +28,12 @@ class IKeywordManagerSettings(Interface):
     ignore_indexes = schema.List(
         title=_("Ignore indexes"),
         description=_(
-            "",
-            default="indexes of META_TYPE we know we don't want to manage, "
-            "because bad things(tm) will happen",
+            "Indexes of type 'KeywordIndex' that the Keyword Manager shouldn't be able "
+            "to manage. These are disallowed intentionally, since managing them could "
+            "cause problems."
         ),
         required=True,
-        default=["block_types", "getEventType"],
+        default=["block_types", "object_provides"],
         value_type=schema.TextLine(),
     )
 
@@ -59,9 +48,8 @@ class IKeywordManagerSettings(Interface):
     always_reindex = schema.List(
         title=_("Always reindex"),
         description=_(
-            "",
-            default="A list of indexes that should always be reindexed when merging "
-            "or deleting keywords on objects. Most people won't need this.",
+            "Indexes that should always be reindexed when merging or deleting "
+            "keywords on objects. Most users won't need to configure this.",
         ),
         required=True,
         default=["SearchableText"],

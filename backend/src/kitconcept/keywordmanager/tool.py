@@ -222,14 +222,13 @@ class KeywordManager:
         the meta type and filters out a subset of known indexes that should not be
         managed.
         """
-        meta_type = get_registry_record("kitconcept.keywordmanager.meta_type")
         ignore_indexes = get_registry_record("kitconcept.keywordmanager.ignore_indexes")
         catalog = api.portal.get_tool("portal_catalog")
         idxs = catalog.index_objects()
         idxs = [
             i.id
             for i in idxs
-            if i.meta_type == meta_type and i.id not in ignore_indexes
+            if i.meta_type == "KeywordIndex" and i.id not in ignore_indexes
         ]
         idxs.sort()
         return idxs
