@@ -11,7 +11,10 @@ class IKeywordManagerSettings(Interface):
 
     manage_keywords_permission = schema.Choice(
         title=_("Permission"),
-        description=_(""),
+        description=_(
+            "The permission required to manage keywords (via the Keyword Manager, "
+            "the REST-API and the Zope Utility)."
+        ),
         required=True,
         default="kitconcept.keywordmanager: Manage Keywords",
         vocabulary="kitconcept.keywordmanager.vocabularies.permissions",
