@@ -1,4 +1,3 @@
-from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from kitconcept.keywordmanager import PACKAGE_NAME
 from kitconcept.keywordmanager.interfaces import IKeywordManager
@@ -32,9 +31,6 @@ except ImportError:
 @implementer(IKeywordManager)
 class KeywordManager:
     """A utility to manage keywords within Plone."""
-
-    security = ClassSecurityInfo()
-    security.declarePublic("change", "delete", "getKeywords", "getScoredMatches")
 
     manage_options = ({"label": "Overview", "action": "manage_overview"},)
 
@@ -238,7 +234,6 @@ class KeywordManager:
         idxs.sort()
         return idxs
 
-    @security.private
     def fieldNameForIndex(self, indexName: str) -> str:
         """The name of the index may not be the same as the field on the object,
         and we need the actual field name in order to find its mutator.
@@ -252,7 +247,6 @@ class KeywordManager:
 
         return fieldName
 
-    @security.private
     def getSetter(self, obj, indexName: str):
         """Gets the setter function for the field based on the index name.
 
