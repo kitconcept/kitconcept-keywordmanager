@@ -339,7 +339,7 @@ const KeywordView = (props) => {
           items={keywords.loading ? [] : rows}
           renderEmptyState={() =>
             keywords.loading ? (
-              <div className="react-aria-Spinner-wrapper">
+              <div className="spinner-wrapper">
                 <Spinner
                   size="32px"
                   aria-label={intl.formatMessage(messages.loading)}
