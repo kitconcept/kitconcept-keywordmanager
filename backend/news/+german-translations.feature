@@ -1,1 +1,1 @@
-Add german translations. @jnptk
+Add German translations. @jnptk
