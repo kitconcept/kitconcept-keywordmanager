@@ -48,6 +48,16 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+#. Default: "Delete keyword {keyword}"
+#: components/KeywordManager
+msgid "Delete keyword"
+msgstr ""
+
+#. Default: "Delete keyword selection"
+#: components/KeywordManager
+msgid "Delete keyword selection"
+msgstr ""
+
 #. Default: "Keyword"
 #: components/KeywordManager
 msgid "Keyword"
@@ -73,6 +83,11 @@ msgstr ""
 msgid "Occurrence"
 msgstr ""
 
+#. Default: "Open detailed view for keyword {keyword} (opens in new tab)"
+#: components/KeywordManager
+msgid "Open keyword"
+msgstr ""
+
 #. Default: "Please enter new name"
 #: components/RenameModal
 msgid "Please enter new name"
@@ -91,6 +106,11 @@ msgstr ""
 #. Default: "Rename & Merge"
 #: components/RenameModal
 msgid "Rename & Merge"
+msgstr ""
+
+#. Default: "Rename keyword selection"
+#: components/KeywordManager
+msgid "Rename keyword selection"
 msgstr ""
 
 #. Default: "Select existing keyword to keep:"

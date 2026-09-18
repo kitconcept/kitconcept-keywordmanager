@@ -48,6 +48,16 @@ msgstr "{num} Inhalte"
 msgid "Delete"
 msgstr "Löschen"
 
+#. Default: "Delete keyword {keyword}"
+#: components/KeywordManager
+msgid "Delete keyword"
+msgstr "Stichwort {keyword} löschen"
+
+#. Default: "Delete keyword selection"
+#: components/KeywordManager
+msgid "Delete keyword selection"
+msgstr "Ausgewählte Stichwörter löschen"
+
 #. Default: "Keyword"
 #: components/KeywordManager
 msgid "Keyword"
@@ -71,7 +81,12 @@ msgstr "Neuer Name für das Stichwort:"
 #. Default: "Occurrence"
 #: components/KeywordManager
 msgid "Occurrence"
-msgstr ""
+msgstr "Anzahl"
+
+#. Default: "Open detailed view for keyword {keyword} (opens in new tab)"
+#: components/KeywordManager
+msgid "Open keyword"
+msgstr "Detailansicht für das Stichwort {keyword} öffnen (wird in neuem Tab geöffnet)"
 
 #. Default: "Please enter new name"
 #: components/RenameModal
@@ -92,6 +107,11 @@ msgstr "Umbennenen"
 #: components/RenameModal
 msgid "Rename & Merge"
 msgstr "Umbennen & Zusammenführen"
+
+#. Default: "Rename keyword selection"
+#: components/KeywordManager
+msgid "Rename keyword selection"
+msgstr "Ausgewählte Stichworte umbennenen"
 
 #. Default: "Select existing keyword to keep:"
 #: components/RenameModal

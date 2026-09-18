@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-04-23 20:58+0000\n"
+"POT-Creation-Date: 2026-09-11 12:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,32 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: kitconcept.keywordmanager\n"
 
+#: kitconcept/keywordmanager/controlpanel.py:52
+msgid "Always reindex"
+msgstr ""
+
 #: kitconcept/keywordmanager/profiles.zcml:13
 msgid "Change, merge and delete keywords (subjects) in Plone."
 msgstr ""
 
 #: kitconcept/keywordmanager/profiles.zcml:22
 msgid "Create example content to showcase this addon."
+msgstr ""
+
+#: kitconcept/keywordmanager/controlpanel.py:32
+msgid "Ignore indexes"
+msgstr ""
+
+#: kitconcept/keywordmanager/controlpanel.py:33
+msgid "Indexes of type 'KeywordIndex' that the Keyword Manager shouldn't be able to manage. These are disallowed intentionally, since managing them could cause problems."
+msgstr ""
+
+#: kitconcept/keywordmanager/controlpanel.py:53
+msgid "Indexes that should always be reindexed when merging or deleting keywords on objects. Most users won't need to configure this."
+msgstr ""
+
+#: kitconcept/keywordmanager/controlpanel.py:67
+msgid "Keyword Manager Settings"
 msgstr ""
 
 #: kitconcept/keywordmanager/profiles.zcml:22
@@ -35,6 +55,14 @@ msgstr ""
 
 #: kitconcept/keywordmanager/profiles.zcml:30
 msgid "Keyword Manager: Uninstall"
+msgstr ""
+
+#: kitconcept/keywordmanager/controlpanel.py:13
+msgid "Permission"
+msgstr ""
+
+#: kitconcept/keywordmanager/controlpanel.py:14
+msgid "The permission required to manage keywords (via the Keyword Manager, the REST-API and the Zope Utility)."
 msgstr ""
 
 #: kitconcept/keywordmanager/profiles.zcml:30

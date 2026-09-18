@@ -16,8 +16,14 @@
   <include file="permissions.zcml" />
 
   <include package=".services" />
+  <include package=".vocabularies" />
 
   <utility factory=".tool.KeywordManager" />
+
+  <adapter
+      factory=".controlpanel.KeywordManagerControlpanel"
+      name="keywordmanager-settings"
+      />
 
   <!-- -*- extra stuff goes here -*- -->
 
