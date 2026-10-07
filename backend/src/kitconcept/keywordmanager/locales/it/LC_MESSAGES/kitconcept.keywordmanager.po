@@ -10,50 +10,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: it\n"
-"Language-Name: English\n"
+"Language-Name: Italiano\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
 #: kitconcept/keywordmanager/controlpanel.py:33
 msgid "Always reindex"
-msgstr ""
+msgstr "Reindicizza sempre"
 
 #: kitconcept/keywordmanager/profiles.zcml:13
 msgid "Change, merge and delete keywords (subjects) in Plone."
-msgstr ""
+msgstr "Modifica, unisci ed elimina le parole chiave (subjects) in Plone."
 
 #: kitconcept/keywordmanager/profiles.zcml:22
 msgid "Create example content to showcase this addon."
-msgstr ""
+msgstr "Crea contenuti di esempio per mostrare le funzionalità di questo add-on."
 
 #: kitconcept/keywordmanager/controlpanel.py:13
 msgid "Ignore indexes"
-msgstr ""
+msgstr "Indici da ignorare"
 
 #: kitconcept/keywordmanager/controlpanel.py:14
 msgid "Indexes of type 'KeywordIndex' that the Keyword Manager shouldn't be able to manage. These are disallowed intentionally, since managing them could cause problems. Provide the values as a comma-separated string, e.g. \"block_types, object_provides\"."
-msgstr ""
+msgstr "Indici di tipo 'KeywordIndex' che Gestione parole chiave non deve poter gestire. Sono esclusi intenzionalmente, perché gestirli potrebbe causare problemi. Indica i valori come stringa separata da virgole, ad esempio \"block_types, object_provides\"."
 
 #: kitconcept/keywordmanager/controlpanel.py:34
 msgid "Indexes that should always be reindexed when merging or deleting keywords on objects. Most users won't need to configure this. Provide the values as a comma-separated string, e.g. \"block_types, object_provides\"."
-msgstr ""
+msgstr "Indici da reindicizzare sempre quando si uniscono o si eliminano parole chiave sui contenuti. Alla maggior parte degli utenti non serve configurarlo. Indica i valori come stringa separata da virgole, ad esempio \"block_types, object_provides\"."
 
 #: kitconcept/keywordmanager/controlpanel.py:49
 msgid "Keyword Manager Settings"
-msgstr ""
+msgstr "Impostazioni di Gestione parole chiave"
 
 #: kitconcept/keywordmanager/profiles.zcml:22
 msgid "Keyword Manager: Example content"
-msgstr ""
+msgstr "Gestione parole chiave: contenuti di esempio"
 
 #: kitconcept/keywordmanager/profiles.zcml:13
 msgid "Keyword Manager: Install"
-msgstr ""
+msgstr "Gestione parole chiave: installazione"
 
 #: kitconcept/keywordmanager/profiles.zcml:30
 msgid "Keyword Manager: Uninstall"
-msgstr ""
+msgstr "Gestione parole chiave: disinstallazione"
 
 #: kitconcept/keywordmanager/profiles.zcml:30
 msgid "Uninstall Keyword Manager setup."
-msgstr ""
+msgstr "Disinstalla la configurazione di Gestione parole chiave."
