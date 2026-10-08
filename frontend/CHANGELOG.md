@@ -8,6 +8,17 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0-alpha.3 (2026-10-08)
+
+### Feature
+
+- Add Italian translation of the Keyword Manager control panel. @giulio-red-turtle 
+- Update German translations. @jnptk 
+
+### Bugfix
+
+- Fix loading indicator when waiting for response not working. @jnptk [#5](https://github.com/kitconcept/kitconcept-keywordmanager/issue/5)
+
 ## 1.0.0-alpha.2 (2026-07-25)
 
 ### Documentation

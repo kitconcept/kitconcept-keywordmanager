@@ -7,6 +7,41 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a3 (2026-10-08)
+
+### Backend
+
+
+#### New features:
+
+- Add "Keyword Manager Settings" control panel & make use of the registry instead of having a hard-coded config. @jnptk [#8](https://github.com/kitconcept/kitconcept-keywordmanager/issues/8)
+- Add German translations. @jnptk 
+- Add Italian translation of the add-on profile titles and descriptions. @giulio-red-turtle 
+
+
+
+### Frontend
+
+#### Feature
+
+- Add Italian translation of the Keyword Manager control panel. @giulio-red-turtle 
+- Update German translations. @jnptk 
+
+#### Bugfix
+
+- Fix loading indicator when waiting for response not working. @jnptk [#5](https://github.com/kitconcept/kitconcept-keywordmanager/issue/5)
+
+
+
+### Project
+
+
+#### Feature
+
+- Add Italian translations for both the backend and the frontend package. @giulio-red-turtle 
+
+
+
 ## 1.0.0a2 (2026-07-25)
 
 ### Backend
