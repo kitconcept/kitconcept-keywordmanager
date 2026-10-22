@@ -7,6 +7,30 @@
 -->
 
 <!-- towncrier release notes start -->
+## 1.0.0a4 (2026-10-22)
+
+### Backend
+
+No significant changes.
+
+
+
+
+### Frontend
+
+#### Bugfix
+
+- Fix loading error in keyword details view. @jnptk 
+
+
+
+### Project
+
+No significant changes.
+
+
+
+
 ## 1.0.0a3 (2026-10-08)
 
 ### Backend

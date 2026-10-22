@@ -8,6 +8,12 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0-alpha.4 (2026-10-22)
+
+### Bugfix
+
+- Fix loading error in keyword details view. @jnptk 
+
 ## 1.0.0-alpha.3 (2026-10-08)
 
 ### Feature
