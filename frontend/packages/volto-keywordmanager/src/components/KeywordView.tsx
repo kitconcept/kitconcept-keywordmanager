@@ -336,9 +336,9 @@ const KeywordView = (props) => {
           </Collection>
         </TableHeader>
         <TableBody
-          items={keywords.loading ? [] : rows}
+          items={keywords?.loading ? [] : rows}
           renderEmptyState={() =>
-            keywords.loading ? (
+            keywords?.loading ? (
               <div className="spinner-wrapper">
                 <Spinner
                   size="32px"
